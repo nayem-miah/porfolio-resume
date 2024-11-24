@@ -149,7 +149,7 @@ export default function Main() {
                     <div className="grid grid-cols-12 gap-[30px]">
                       <div className="col-span-12 md:col-span-5">
                         <div className="rounded-xl bg-white p-[30px] dark:bg-card">
-                          <Image src="/n.png" alt="" width={200} height={200} />
+                          <Image src="/n.png" alt="" width={200} height={49} />
                           <div className="mt-[20px]">
                             <p className="text-[14px] text-text dark:text-white">
                               Want To Know More
@@ -169,7 +169,7 @@ export default function Main() {
                                   src="/react.png"
                                   alt=""
                                   width={50}
-                                  height={50}
+                                  height={52}
                                 />
                               </span>
                               <span className="boxShadow rounded-lg p-[20px] dark:bg-btn dark:shadow-none">
@@ -177,7 +177,7 @@ export default function Main() {
                                   src="/nextjs.png"
                                   alt=""
                                   width={50}
-                                  height={50}
+                                  height={52}
                                 />
                               </span>
                               <span className="boxShadow rounded-lg p-[20px] dark:bg-btn dark:shadow-none">
@@ -185,7 +185,7 @@ export default function Main() {
                                   src="/js.png"
                                   alt=""
                                   width={50}
-                                  height={50}
+                                  height={52}
                                 />
                               </span>
                             </div>
@@ -232,7 +232,7 @@ export default function Main() {
                                   src="/image-1.png"
                                   alt=""
                                   className="transition-all duration-300 hover:scale-[110%]"
-                                  height={200}
+                                  height={147}
                                   width={200}
                                 />
                               </div>
@@ -242,7 +242,7 @@ export default function Main() {
                                 <Image
                                   src="/image-2.png"
                                   alt=""
-                                  height={200}
+                                  height={147}
                                   width={200}
                                   className="transition-all duration-300 hover:scale-[110%]"
                                 />
