@@ -1,7 +1,6 @@
 import Footer from "@/components/common/Footer";
-import Header from "@/components/home/Header";
 import Main from "@/components/home/Main";
-import Sidebar from "@/components/home/Sidebar";
+import Sidebar from "@/components/common/Sidebar";
 
 
 
@@ -9,7 +8,6 @@ export default function Home() {
   return (
     <>
       <div className="dark">
-        <Header />
         <Sidebar />
         <Main />
         <Footer />

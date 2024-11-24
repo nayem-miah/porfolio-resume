@@ -1,15 +1,14 @@
-import Image from "next/image";
-import Link from "next/link";
-import SidebarLeft from "../common/SidebarLeft";
-export default function Main() {
-  return (
-    <>
-      <section>
+import SidebarLeft from "@/components/common/SidebarLeft";
+
+
+export default function page() {
+    return (
+        <section>
         <div className="container mx-auto">
           <div className="grid grid-cols-12">
             <SidebarLeft />
             <div className="col-span-12 lg:col-span-9 lg:ml-[30px]">
-              <div className="main__body">
+              {/* <div className="main__body">
                 <section className="mt-[60px]">
                   <div className="rounded-xl bg-white p-[30px] dark:bg-card">
                     <div>
@@ -200,11 +199,11 @@ export default function Main() {
                     </div>
                   </div>
                 </section>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
       </section>
-    </>
-  );
-}
+    )
+  }
+  

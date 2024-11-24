@@ -9,7 +9,7 @@ export default function Header() {
         <div className="container mx-auto pt-[30px]">
           <div className="flex justify-between rounded-[10px] bg-white py-[20px] dark:bg-card">
             <div className="logo flex items-center px-[30px]">
-              <Link href="#">
+              <Link href="/">
                 <Image src="/n.png" alt="logo" width={200} height={49} />
               </Link>
             </div>
@@ -19,7 +19,7 @@ export default function Header() {
                   <Link
                     aria-current="page"
                     className="font-semibold text-theme"
-                    href="#"
+                    href="/"
                   >
                     Home
                   </Link>
