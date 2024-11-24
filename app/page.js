@@ -3,7 +3,7 @@ import Header from "@/components/home/Header";
 import Main from "@/components/home/Main";
 import Sidebar from "@/components/home/Sidebar";
 
-import Image from "next/image";
+
 
 export default function Home() {
   return (
