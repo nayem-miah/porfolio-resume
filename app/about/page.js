@@ -182,64 +182,48 @@ export default function page() {
                             <div className="mt-[20px] w-full">
                               <div className="mb-2 flex items-center justify-between gap-4">
                                 <p className="block antialiased font-sans text-[16px] font-medium text-btn dark:text-white">
-                                  TypeScript
+                                  TailwindCSS
                                 </p>
                                 <h6 className="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-btn dark:text-white">
-                                  60%
+                                  80%
                                 </h6>
                               </div>
                               <div className="flex flex-start overflow-hidden w-full font-sans rounded-full text-xs font-medium h-3.5 progress border border-theme/20 bg-theme/10 p-1">
                                 <div
                                   className="flex justify-center items-center h-full overflow-hidden break-all rounded-full bg-blue-500 text-white"
-                                  style={{ width: "60%" }}
+                                  style={{ width: "80%" }}
                                 ></div>
                               </div>
                             </div>
                             <div className="mt-[20px] w-full">
                               <div className="mb-2 flex items-center justify-between gap-4">
                                 <p className="block antialiased font-sans text-[16px] font-medium text-btn dark:text-white">
-                                  PHP
+                                  Python
                                 </p>
                                 <h6 className="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-btn dark:text-white">
-                                  65%
+                                  80%
                                 </h6>
                               </div>
                               <div className="flex flex-start overflow-hidden w-full font-sans rounded-full text-xs font-medium h-3.5 progress border border-theme/20 bg-theme/10 p-1">
                                 <div
                                   className="flex justify-center items-center h-full overflow-hidden break-all rounded-full bg-blue-500 text-white"
-                                  style={{ width: "65%" }}
+                                  style={{ width: "80%" }}
                                 ></div>
                               </div>
                             </div>
                             <div className="mt-[20px] w-full">
                               <div className="mb-2 flex items-center justify-between gap-4">
                                 <p className="block antialiased font-sans text-[16px] font-medium text-btn dark:text-white">
-                                  Figma
+                                  Django
                                 </p>
                                 <h6 className="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-btn dark:text-white">
-                                  85%
+                                  80%
                                 </h6>
                               </div>
                               <div className="flex flex-start overflow-hidden w-full font-sans rounded-full text-xs font-medium h-3.5 progress border border-theme/20 bg-theme/10 p-1">
                                 <div
                                   className="flex justify-center items-center h-full overflow-hidden break-all rounded-full bg-blue-500 text-white"
-                                  style={{ width: "85%" }}
-                                ></div>
-                              </div>
-                            </div>
-                            <div className="mt-[20px] w-full">
-                              <div className="mb-2 flex items-center justify-between gap-4">
-                                <p className="block antialiased font-sans text-[16px] font-medium text-btn dark:text-white">
-                                  Google Ads Campaign
-                                </p>
-                                <h6 className="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-btn dark:text-white">
-                                  75%
-                                </h6>
-                              </div>
-                              <div className="flex flex-start overflow-hidden w-full font-sans rounded-full text-xs font-medium h-3.5 progress border border-theme/20 bg-theme/10 p-1">
-                                <div
-                                  className="flex justify-center items-center h-full overflow-hidden break-all rounded-full bg-blue-500 text-white"
-                                  style={{ width: "75%" }}
+                                  style={{ width: "80%" }}
                                 ></div>
                               </div>
                             </div>

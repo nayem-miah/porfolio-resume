@@ -4,6 +4,7 @@ import "./style.css";
 import "./custom.css";
 import Header from "@/components/common/Header";
 import Sidebar from "@/components/common/Sidebar";
+import Footer from "@/components/common/Footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,6 +32,7 @@ export default function RootLayout({ children }) {
         <Header/>
         <Sidebar/>
         {children}
+        <Footer/>
       </body>
     </html>
   );

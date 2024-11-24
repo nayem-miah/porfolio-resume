@@ -1,8 +1,5 @@
-import Footer from "@/components/common/Footer";
 import Main from "@/components/home/Main";
 import Sidebar from "@/components/common/Sidebar";
-
-
 
 export default function Home() {
   return (
@@ -10,7 +7,6 @@ export default function Home() {
       <div className="dark">
         <Sidebar />
         <Main />
-        <Footer />
       </div>
 
       {/* <style type="text/css" data-typed-js-css="true">
