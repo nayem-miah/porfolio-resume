@@ -1,0 +1,74 @@
+/*
+Author       : amitjs
+Template Name: NetGrid - React Portfolio Template
+Version      : 1.0.1
+*/
+
+/* Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800;900&display=swap");
+
+/* Reset Css */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: #252525;
+  color: #fff;
+  font-size: 15px;
+}
+
+p {
+  line-height: 26px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Bebas Neue", sans-serif;
+}
+
+.progress .break-all {
+  background: #2ff093 !important;
+}
+
+.ql-container {
+  height: 300px !important;
+}
+
+.rich-text h1,
+.rich-text h2,
+.rich-text h3,
+.rich-text h4,
+.rich-text h5,
+.rich-text h6 {
+  font-family: "Inter", sans-serif;
+}
+.rich-text h1 {
+  font-size: 36px;
+}
+.rich-text h2 {
+  font-size: 30px;
+}
+.rich-text h3 {
+  font-size: 24px;
+}
+.rich-text h4 {
+  font-size: 18px;
+}
+.rich-text h5,
+.rich-text h6 {
+  font-size: 16px;
+}
+.rich-text {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  white-space: normal !important;
+}
+
