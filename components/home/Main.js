@@ -37,7 +37,7 @@ export default function Main() {
                     <div className="grid grid-cols-12 gap-[30px]">
                       <div className="col-span-12 md:col-span-5">
                         <div className="rounded-xl bg-white p-[30px] dark:bg-card">
-                          <Image src="/n.png" alt="" width={200} height={49} />
+                          <Image src="/logo.png" alt="" width={200} height={49} />
                           <div className="mt-[20px]">
                             <p className="text-[14px] text-text dark:text-white">
                               Want To Know More
