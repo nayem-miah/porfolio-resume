@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import Image from "next/image";
 import Link from "next/link";
 import TypingAnimate from "./TypingAnimate";
@@ -23,7 +23,7 @@ export default function Header() {
                     href="/"
                     className={`font-semibold ${
                       path === "/"
-                        ? "text-theme"
+                      ? "text-theme"
                         : "text-text hover:text-btn dark:hover:text-white"
                     }`}
                   >
@@ -35,7 +35,7 @@ export default function Header() {
                     href="/about"
                     className={`font-semibold ${
                       path === "/about"
-                        ? "text-theme"
+                     ? "text-theme"
                         : "text-text hover:text-btn dark:hover:text-white"
                     }`}
                   >

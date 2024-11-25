@@ -21,7 +21,7 @@ export default function Sidebar() {
                   </svg>
                 </button>
                 <div>
-                  <img src="/n.png" alt="" />
+                  <img src="/logo.png" alt="" />
                 </div>
               </div>
               <div className="my-[30px] border-t border-[#ddd] dark:border-btn"></div>
