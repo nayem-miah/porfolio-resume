@@ -3,8 +3,6 @@
 @tailwind utilities;
 
 @layer base {
- 
-
   /* Reset Css */
   * {
     margin: 0;
@@ -81,7 +79,7 @@
     hyphens: auto;
     white-space: normal !important;
   }
- pre{
+  pre {
     border: 1px solid #2ff093;
     padding: 20px;
     border-radius: 14px;
@@ -89,57 +87,46 @@
     overflow: auto;
   }
   .text-theme {
-    --tw-text-opacity: 1!important;
-    color: rgb(47 240 147/var(--tw-text-opacity))!important
+    --tw-text-opacity: 1 !important;
+    color: rgb(47 240 147 / var(--tw-text-opacity)) !important;
   }
 
   .bg-btn {
-    --tw-bg-opacity: 1!important;
-    background-color: rgb(41 40 45/var(--tw-bg-opacity))!important
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(41 40 45 / var(--tw-bg-opacity)) !important;
+  }
+
+  .bg-btn\/60 {
+    background-color: rgba(41, 40, 45, 0.6) !important;
+  }
+
+  .bg-btn\/70 {
+    background-color: rgba(41, 40, 45, 0.7) !important;
+  }
+
+  .bg-card {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(29 28 34 / var(--tw-bg-opacity)) !important;
+  }
+
+  .bg-theme {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(47 240 147 / var(--tw-bg-opacity)) !important;
+  }
+
+  .bg-theme\/10 {
+    background-color: rgba(47, 240, 147, 0.1) !important;
+  }
+
+  .text-btn {
+    color: rgb(41 40 45 / var(--tw-text-opacity)) !important;
+  }
+
+  .text-current {
+    color: currentColor !important;
+  }
+  .text-brown-900,
+  .text-btn {
+    --tw-text-opacity: 1 !important;
+  }
 }
-
-.bg-btn\/60 {
-    background-color: rgba(41,40,45,.6)!important
-}
-
-.bg-btn\/70 {
-    background-color: rgba(41,40,45,.7)!important
-}
-
-.bg-card {
-    --tw-bg-opacity: 1!important;
-    background-color: rgb(29 28 34/var(--tw-bg-opacity))!important
-}
-
-.bg-theme {
-  --tw-bg-opacity: 1!important;
-  background-color: rgb(47 240 147/var(--tw-bg-opacity))!important
-}
-
-.bg-theme\/10 {
-  background-color: rgba(47,240,147,.1)!important
-}
-
-
-
-.text-btn {
-  color: rgb(41 40 45/var(--tw-text-opacity))!important
-}
-
-.text-current {
-  color: currentColor!important
-}
-.text-brown-900,.text-btn {
-  --tw-text-opacity: 1!important
-}
-
-
-
-
-
-
-}
-
-
-
-

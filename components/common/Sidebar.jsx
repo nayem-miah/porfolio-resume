@@ -21,7 +21,7 @@ export default function Sidebar() {
                   </svg>
                 </button>
                 <div>
-                  <img src="/assets/images/logo.svg" alt="" />
+                  <img src="/n.png" alt="" />
                 </div>
               </div>
               <div className="my-[30px] border-t border-[#ddd] dark:border-btn"></div>
@@ -41,7 +41,7 @@ export default function Sidebar() {
                       className="inline-block py-[8px] text-btn transition-all duration-300 dark:text-white dark:hover:text-theme"
                       href="/about"
                     >
-                      About Us
+                      About Me
                     </a>
                   </li>
                   <li className="text-[18px] font-semibold">
@@ -96,7 +96,7 @@ export default function Sidebar() {
                     </p>
                   </div>
                   <div>
-                    <img src="/assets/images/icon/sun.svg" alt="" />
+                    <img src="/sun.svg" alt="" />
                   </div>
                 </div>
               </button>

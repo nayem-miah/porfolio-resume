@@ -10,7 +10,7 @@ export default function Header() {
           <div className="flex justify-between rounded-[10px] bg-white py-[20px] dark:bg-card">
             <div className="logo flex items-center px-[30px]">
               <Link href="/">
-                <Image src="/n.png" alt="logo" width={200} height={49} />
+                <Image src="/logo.png" alt="logo" width={180} height={39} />
               </Link>
             </div>
             <menu className="hidden items-center md:flex">
@@ -29,7 +29,7 @@ export default function Header() {
                     className="font-semibold text-text transition-all duration-300 hover:text-btn dark:hover:text-white"
                     href="/about"
                   >
-                    About Us
+                    About Me
                   </Link>
                 </li>
                 <li className="w-[100px]">

@@ -44,7 +44,7 @@ export default function Main() {
                             </p>
                             <Link href="/about">
                               <h3 className="mt-[5px] inline-block text-[26px] tracking-[6px] text-btn dark:text-white">
-                                About Us
+                                About Me
                               </h3>
                             </Link>
                           </div>
@@ -97,6 +97,7 @@ export default function Main() {
                               </h2>
                               <p className="text-text dark:text-white">
                                 Years of <br />
+                                Experience
                               </p>
                             </div>
                             <div className="col-span-6">

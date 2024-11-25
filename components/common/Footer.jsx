@@ -11,7 +11,7 @@ export default function Footer() {
               rights reserved
             </p>
             <div className="mt-[20px] flex justify-center text-center">
-              <Image src="/n.png" height={49} width={200} alt="logo" />
+              <Image src="/logo.png" height={49} width={200} alt="logo" />
             </div>
           </div>
         </div>
