@@ -1,4 +1,3 @@
-import CountExpe from "./CountExpe";
 
 export default function SelfExplain() {
   return (
@@ -19,7 +18,6 @@ export default function SelfExplain() {
                 me today, and lets bring your vision to life with the power of
                 Full stack development.
               </p>
-               <CountExpe/>
             </div>
           </div>
         </div>

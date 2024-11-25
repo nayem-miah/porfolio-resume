@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import SidebarLeft from "../common/SidebarLeft";
+import CountExpe from "../common/CountExpe";
 export default function Main() {
   return (
     <>
@@ -39,11 +40,11 @@ export default function Main() {
                         <div className="rounded-xl bg-white p-[30px] dark:bg-card">
                           <Image src="/logo.png" alt="" width={200} height={49} />
                           <div className="mt-[20px]">
-                            <p className="text-[14px] text-text dark:text-white">
+                            <p className="text-[14px] hover:text-theme text-text dark:text-white">
                               Want To Know More
                             </p>
-                            <Link href="/about">
-                              <h3 className="mt-[5px] inline-block text-[26px] tracking-[6px] text-btn dark:text-white">
+                            <Link className="hover:text-theme" href="/about">
+                              <h3 className= " mt-[5px] inline-block text-[26px] tracking-[6px] text-btn dark:text-white">
                                 About Me
                               </h3>
                             </Link>
@@ -81,7 +82,7 @@ export default function Main() {
                               <p className="text-[14px] text-text dark:text-white">
                                 Specialization
                               </p>
-                              <Link href="/service">
+                              <Link className="hover:text-theme" href="/service">
                                 <h3 className="mt-[5px] inline-block text-[26px] tracking-[6px] text-btn dark:text-white">
                                   Services Offer
                                 </h3>
@@ -93,7 +94,7 @@ export default function Main() {
                           <div className="grid grid-cols-12 pb-1">
                             <div className="col-span-6">
                               <h2 className="text-[50px] font-semibold text-btn dark:text-theme">
-                                <div>1+</div>
+                                <div><CountExpe targetValue={2} /></div>
                               </h2>
                               <p className="text-text dark:text-white">
                                 Years of <br />
@@ -102,7 +103,7 @@ export default function Main() {
                             </div>
                             <div className="col-span-6">
                               <h2 className="text-[50px] font-semibold text-btn dark:text-theme">
-                                <div>50+</div>
+                                <div><CountExpe targetValue={50} /></div>
                               </h2>
                               <p className="text-text dark:text-white">
                                 Project <br />
@@ -142,7 +143,7 @@ export default function Main() {
                             <p className="text-[14px] text-text dark:text-white">
                               Showcase View
                             </p>
-                            <Link href="/projects/1">
+                            <Link className="hover:text-theme" href="/projects/1">
                               <h3 className="mt-[5px] inline-block text-[26px] tracking-[6px] text-btn dark:text-white">
                                 Projects
                               </h3>
@@ -154,7 +155,7 @@ export default function Main() {
                             <p className="text-[14px] text-btn">
                               Visit Our Blog
                             </p>
-                            <Link href="/blog/1">
+                            <Link className="hover:text-theme" href="/blog/1">
                               <h3 className="mt-[5px] inline-block text-[26px] tracking-[6px] text-btn">
                                 Blog
                               </h3>
@@ -164,7 +165,7 @@ export default function Main() {
                             <p className="text-[14px] text-text dark:text-white">
                               Let’s work
                             </p>
-                            <Link href="/contact">
+                            <Link className="hover:text-theme" href="/contact">
                               <h3 className="mt-[5px] inline-block text-[26px] tracking-[6px] text-btn dark:text-white">
                                 Contact
                               </h3>
@@ -182,7 +183,7 @@ export default function Main() {
                               <p className="text-[14px] text-white">
                                 What Client Says?
                               </p>
-                              <Link href="/testimonial">
+                              <Link className="hover:text-theme" href="/testimonial">
                                 <h3 className="mt-[5px] text-[26px] tracking-[6px] text-white">
                                   Testimonials
                                 </h3>

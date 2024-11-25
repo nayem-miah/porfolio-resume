@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Experience() {
   return (
     <>
@@ -10,18 +12,13 @@ export default function Experience() {
               </h2>
               <div>
                 <div className="mt-[20px]">
-                  <p className="text-[14px] text-text">2023 - Present</p>
-                  <p className="mt-[5px] text-[16px] font-semibold text-btn dark:text-white">
-                    Co Instructor (MERN || Next JS &amp; Prisma)
+                  <p className="text-[14px] text-text">
+                    Six months of internship
                   </p>
-                  <p className="text-[12px] text-text">Ostad Limited</p>
-                </div>
-                <div className="mt-[20px]">
-                  <p className="text-[14px] text-text">2018 - 2023</p>
                   <p className="mt-[5px] text-[16px] font-semibold text-btn dark:text-white">
-                    Full stack Web Developer (MERN)
+                    Front-End Developer (React || Next JS &amp; MongoDB)
                   </p>
-                  <p className="text-[12px] text-text">Go-Lang co (USA)</p>
+                  <Link href='https://agamilabs.com/' target="_blank" className="text-[12px] hover:text-theme text-text">Agamilabs Limited</Link>
                 </div>
               </div>
             </div>
@@ -34,23 +31,26 @@ export default function Experience() {
                 EDUCATION
               </h2>
               <div>
+       
                 <div className="mt-[20px]">
-                  <p className="text-[14px] text-text">2015 - Present</p>
+                  <p className="text-[14px] text-text">Jan-2024 - July-2024 7 months</p>
                   <p className="mt-[5px] text-[16px] font-semibold text-btn dark:text-white">
-                    Research on Software &amp; Web Application
+                    Reactive Accelerator - Course &amp; Web Application
                   </p>
                   <p className="text-[12px] text-text">
-                    Learn With Rabbil Hasan || Udemy || Youtube
+                     <Link href='https://learnwithsumit.com/rnext' target="_blank" className="text-[12px] hover:text-theme text-text"> Learn with Sumit</Link> average marks 85%. Topics advanced JS,
+                    React,NextJs, Tailwindcss, Server component, SSR etc.
                   </p>
+           
                 </div>
                 <div className="mt-[20px]">
-                  <p className="text-[14px] text-text">2012 - 2015</p>
+                  <p className="text-[14px] text-text">2019 - 2024</p>
                   <p className="mt-[5px] text-[16px] font-semibold text-btn dark:text-white">
-                    Bachelor of Business Studies (BBS)
+                    Bachelor of Arts Studies (BA) In Persian Literature
                   </p>
-                  <p className="text-[12px] text-text">
-                    National University, Bangladesh
-                  </p>
+                  <Link href='https://admission.cu.ac.bd/' target="_blank" className="text-[12px] text-text hover:text-theme">
+                   University of Chittagong
+                  </Link>
                 </div>
               </div>
             </div>

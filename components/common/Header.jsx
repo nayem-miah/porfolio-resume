@@ -1,8 +1,11 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import TypingAnimate from "./TypingAnimate";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
+  const path = usePathname();
   return (
     <>
       <header>
@@ -17,25 +20,36 @@ export default function Header() {
               <ul className="flex gap-4">
                 <li>
                   <Link
-                    aria-current="page"
-                    className="font-semibold text-theme"
                     href="/"
+                    className={`font-semibold ${
+                      path === "/"
+                        ? "text-theme"
+                        : "text-text hover:text-btn dark:hover:text-white"
+                    }`}
                   >
                     Home
                   </Link>
                 </li>
                 <li>
                   <Link
-                    className="font-semibold text-text transition-all duration-300 hover:text-btn dark:hover:text-white"
                     href="/about"
+                    className={`font-semibold ${
+                      path === "/about"
+                        ? "text-theme"
+                        : "text-text hover:text-btn dark:hover:text-white"
+                    }`}
                   >
                     About Me
                   </Link>
                 </li>
                 <li className="w-[100px]">
                   <Link
-                    className="font-semibold text-text transition-all duration-300 hover:text-btn dark:hover:text-white"
                     href="/contact"
+                    className={`font-semibold ${
+                      path === "/contact"
+                        ? "text-theme"
+                        : "text-text hover:text-btn dark:hover:text-white"
+                    }`}
                   >
                     <TypingAnimate />
                   </Link>
