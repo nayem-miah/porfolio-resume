@@ -1,10 +1,14 @@
-'use client'
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import TypingAnimate from "./TypingAnimate";
 import { usePathname } from "next/navigation";
+import { useContext } from "react";
+import { SidebarContext } from "@/providers/SidebarSwitchProvider";
 
 export default function Header() {
+  const { setSidebar } = useContext(SidebarContext);
+
   const path = usePathname();
   return (
     <>
@@ -23,7 +27,7 @@ export default function Header() {
                     href="/"
                     className={`font-semibold ${
                       path === "/"
-                      ? "text-theme"
+                        ? "text-theme"
                         : "text-text hover:text-btn dark:hover:text-white"
                     }`}
                   >
@@ -35,7 +39,7 @@ export default function Header() {
                     href="/about"
                     className={`font-semibold ${
                       path === "/about"
-                     ? "text-theme"
+                        ? "text-theme"
                         : "text-text hover:text-btn dark:hover:text-white"
                     }`}
                   >
@@ -68,7 +72,7 @@ export default function Header() {
                     <Image src="/sun.svg" alt="sun" width={30} height={30} />
                   </div>
                 </button>
-                <button className="rounded-full border border-[#919295] p-[10px] text-[25px]">
+                <button onClick={()=>setSidebar('left-0')} className="rounded-full border border-[#919295] p-[10px] text-[25px]">
                   <svg
                     stroke="currentColor"
                     fill="currentColor"

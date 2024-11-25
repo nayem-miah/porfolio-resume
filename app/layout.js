@@ -5,6 +5,8 @@ import "./custom.css";
 import Header from "@/components/common/Header";
 import Sidebar from "@/components/common/Sidebar";
 import Footer from "@/components/common/Footer";
+import { SidebarProvider } from "@/providers/SidebarSwitchProvider";
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -25,14 +27,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} dark antialiased`}
-      >
-        <Header />
-        <Sidebar />
-        {children}
-        <Footer />
-      </body>
+      <SidebarProvider>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} dark antialiased`}
+        >
+          <Header />
+          <Sidebar />
+          {children}
+          <Footer />
+        </body>
+      </SidebarProvider>
     </html>
   );
 }
