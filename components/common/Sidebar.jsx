@@ -5,77 +5,60 @@ import SidebarClose from "./SidebarClose";
 import SidebarAddCss from "./SidebarAddCss";
 
 export default function Sidebar() {
-
-
   return (
     <>
       <SidebarAddCss>
         <div className="ml-auto h-screen w-[300px] bg-white px-[30px] pt-[60px] dark:bg-card">
           <div className="relative flex justify-center">
             <SidebarClose />
-            <div>
+            <Link href="/">
               <Image src="/logo.png" alt="logo" width={180} height={39} />
-            </div>
+            </Link>
           </div>
           <div className="my-[30px] border-t border-[#ddd] dark:border-btn"></div>
           <nav className="mt-[30px]">
             <ul>
               <li className="text-[18px] font-semibold">
-                <a
+                <Link
+                  href="/"
                   aria-current="page"
                   className="inline-block py-[8px] text-theme dark:text-theme"
-                  href="#"
                 >
                   Home
-                </a>
+                </Link>
               </li>
               <li className="text-[18px] font-semibold">
-                <a
+                <Link
                   className="inline-block py-[8px] text-btn transition-all duration-300 dark:text-white dark:hover:text-theme"
                   href="/about"
                 >
                   About Me
-                </a>
+                </Link>
               </li>
               <li className="text-[18px] font-semibold">
-                <a
+                <Link
                   className="inline-block py-[8px] text-btn transition-all duration-300 dark:text-white dark:hover:text-theme"
-                  href="/projects/1"
+                  href="/projects"
                 >
                   Projects
-                </a>
+                </Link>
               </li>
               <li className="text-[18px] font-semibold">
-                <a
+                <Link
                   className="inline-block py-[8px] text-btn transition-all duration-300 dark:text-white dark:hover:text-theme"
-                  href="/blog/1"
+                  href="/blog"
                 >
                   Blog
-                </a>
+                </Link>
               </li>
+
               <li className="text-[18px] font-semibold">
-                <a
-                  className="inline-block py-[8px] text-btn transition-all duration-300 dark:text-white dark:hover:text-theme"
-                  href="/service"
-                >
-                  Services
-                </a>
-              </li>
-              <li className="text-[18px] font-semibold">
-                <a
-                  className="inline-block py-[8px] text-btn transition-all duration-300 dark:text-white dark:hover:text-theme"
-                  href="/testimonial"
-                >
-                  Testimonial
-                </a>
-              </li>
-              <li className="text-[18px] font-semibold">
-                <a
+                <Link
                   className="inline-block py-[8px] text-btn transition-all duration-300 dark:text-white dark:hover:text-theme"
                   href="/contact"
                 >
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
