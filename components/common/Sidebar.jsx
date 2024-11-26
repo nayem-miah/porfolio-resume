@@ -114,9 +114,7 @@ export default function Sidebar() {
           </button>
           <div className="contact absolute bottom-[30px] mt-[10px]">
             <div>
-              <p className="text-[20px] font-semibold text-btn dark:text-white">
-                Follow Me:
-              </p>
+       
               <div className="mt-[20px] flex gap-3">
                 <Link
                   href="https://www.facebook.com/nayemmiahcu"
