@@ -25,8 +25,10 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="en">
+      
       <SidebarProvider>
         <body
           className={`${geistSans.variable} ${geistMono.variable} dark antialiased`}

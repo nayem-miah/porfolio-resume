@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 export default function SidebarLeft() {
+
   return (
     <>
       <div className="col-span-12 lg:col-span-3">
