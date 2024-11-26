@@ -25,7 +25,7 @@ export const metadata = {
     "Passion for coding, Self learning capability, Hard working, Profound Analytical ability",
   openGraph: {
     images: [
-      "https://images.pexels.com/photos/1350789/pexels-photo-1350789.jpeg",
+      "/nayem.png",
     ],
   },
 };
