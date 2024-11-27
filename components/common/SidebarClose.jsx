@@ -6,7 +6,6 @@ import { useContext } from "react";
 export default function SidebarClose() {
   const { setSidebar } = useContext(SidebarContext);
 
-
   return (
     <>
       <button

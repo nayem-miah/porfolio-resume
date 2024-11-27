@@ -3,8 +3,10 @@ import Link from "next/link";
 
 import SidebarClose from "./SidebarClose";
 import SidebarAddCss from "./SidebarAddCss";
+import LinkComponent from "./LinkComponent";
 
 export default function Sidebar() {
+
   return (
     <>
       <SidebarAddCss>
@@ -18,47 +20,37 @@ export default function Sidebar() {
           <div className="my-[30px] border-t border-[#ddd] dark:border-btn"></div>
           <nav className="mt-[30px]">
             <ul>
-              <li className="text-[18px] font-semibold">
-                <Link
-                  href="/"
-                  aria-current="page"
-                  className="inline-block py-[8px] text-theme dark:text-theme"
-                >
-                  Home
-                </Link>
+              <li className="text-[18px] py-[8px] font-semibold">
+                <LinkComponent name={"Home"} pathName={"/"} sidebar={true} />
               </li>
-              <li className="text-[18px] font-semibold">
-                <Link
-                  className="inline-block py-[8px] text-btn transition-all duration-300 dark:text-white dark:hover:text-theme"
-                  href="/about"
-                >
-                  About Me
-                </Link>
+              <li className="text-[18px] py-[8px] font-semibold">
+                <LinkComponent
+                  name={"About Me"}
+                  pathName={"/about"}
+                  sidebar={true}
+                />
               </li>
-              <li className="text-[18px] font-semibold">
-                <Link
-                  className="inline-block py-[8px] text-btn transition-all duration-300 dark:text-white dark:hover:text-theme"
-                  href="/projects"
-                >
-                  Projects
-                </Link>
+              <li className="text-[18px] py-[8px] font-semibold">
+                <LinkComponent
+                  name={"Projects"}
+                  pathName={"/projects"}
+                  sidebar={true}
+                />
               </li>
-              <li className="text-[18px] font-semibold">
-                <Link
-                  className="inline-block py-[8px] text-btn transition-all duration-300 dark:text-white dark:hover:text-theme"
-                  href="/blog"
-                >
-                  Blog
-                </Link>
+              <li className="text-[18px] py-[8px] font-semibold">
+                <LinkComponent
+                  name={"Blog"}
+                  pathName={"/blog"}
+                  sidebar={true}
+                />
               </li>
 
-              <li className="text-[18px] font-semibold">
-                <Link
-                  className="inline-block py-[8px] text-btn transition-all duration-300 dark:text-white dark:hover:text-theme"
-                  href="/contact"
-                >
-                  Contact
-                </Link>
+              <li className="text-[18px] py-[8px] font-semibold">
+                <LinkComponent
+                  name={"Contact"}
+                  pathName={"/contact"}
+                  sidebar={true}
+                />
               </li>
             </ul>
           </nav>

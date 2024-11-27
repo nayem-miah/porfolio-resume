@@ -1,15 +1,10 @@
-"use client";
 import Image from "next/image";
 import Link from "next/link";
-import TypingAnimate from "./TypingAnimate";
-import { usePathname } from "next/navigation";
-import { useContext } from "react";
-import { SidebarContext } from "@/providers/SidebarSwitchProvider";
+
+import LinkComponent from "./LinkComponent";
+import SidebarOpen from "./SidebarOpen";
 
 export default function Header() {
-  const { setSidebar } = useContext(SidebarContext);
-
-  const path = usePathname();
   return (
     <>
       <header>
@@ -23,40 +18,13 @@ export default function Header() {
             <menu className="hidden items-center md:flex">
               <ul className="flex gap-4">
                 <li>
-                  <Link
-                    href="/"
-                    className={`font-semibold ${
-                      path === "/"
-                        ? "text-theme"
-                        : "text-text hover:text-btn dark:hover:text-white"
-                    }`}
-                  >
-                    Home
-                  </Link>
+                  <LinkComponent name={"Home"} pathName={"/"} />
                 </li>
                 <li>
-                  <Link
-                    href="/about"
-                    className={`font-semibold ${
-                      path === "/about"
-                        ? "text-theme"
-                        : "text-text hover:text-btn dark:hover:text-white"
-                    }`}
-                  >
-                    About Me
-                  </Link>
+                  <LinkComponent name={"About Me"} pathName={"/about"} />
                 </li>
                 <li className="w-[100px]">
-                  <Link
-                    href="/contact"
-                    className={`font-semibold ${
-                      path === "/contact"
-                        ? "text-theme"
-                        : "text-text hover:text-btn dark:hover:text-white"
-                    }`}
-                  >
-                    <TypingAnimate />
-                  </Link>
+                  <LinkComponent pathName={"/contact"} />
                 </li>
               </ul>
             </menu>
@@ -72,20 +40,7 @@ export default function Header() {
                     <Image src="/sun.svg" alt="sun" width={30} height={30} />
                   </div>
                 </button>
-                <button onClick={()=>setSidebar('left-0')} className="rounded-full border border-[#919295] p-[10px] text-[25px]">
-                  <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    strokeWidth="0"
-                    viewBox="0 0 24 24"
-                    className="text-text dark:text-text"
-                    height="1em"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M4 6h16v2H4zm4 5h12v2H8zm5 5h7v2h-7z"></path>
-                  </svg>
-                </button>
+                <SidebarOpen />
               </div>
             </div>
           </div>
