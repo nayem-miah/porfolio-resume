@@ -20,12 +20,12 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Home|| Nayem",
+  title: "Home || Nayem",
   description:
     "Passion for coding, Self learning capability, Hard working, Profound Analytical ability",
   openGraph: {
     images: [
-      "/nayem.png",
+      "/og.jpg",
     ],
   },
 };
