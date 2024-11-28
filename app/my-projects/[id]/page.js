@@ -1,5 +1,5 @@
 import SidebarLeft from "@/components/common/SidebarLeft";
-import { getProjectById } from "@/queries";
+import { getProjectById, getProjects } from "@/queries";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -92,4 +92,13 @@ export default async function page({ params }) {
       </div>
     </section>
   );
+}
+
+
+export async function generateStaticParams() {
+  const prjects = await getProjects();
+
+  return prjects.map((project) => ({
+    id: project.id.toString(),
+  }));
 }
