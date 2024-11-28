@@ -130,6 +130,18 @@
     --tw-text-opacity: 1 !important;
   }
 
+  .bg-normal{
+      background: #ecf0f3;
+      color: #fff;
+      font-family: Inter,sans-serif;
+      font-size: 15px
+  }
 
+  .bg-dark{
+    background: #252525;
+    color: #fff;
+    font-family: Inter,sans-serif;
+    font-size: 15px
+}
 
 }

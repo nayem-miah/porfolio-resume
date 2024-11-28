@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import "./style.css";
 import "./custom.css";
+import "./globals.css";
 
 import Header from "@/components/common/Header";
 import Sidebar from "@/components/common/Sidebar";
@@ -33,7 +34,7 @@ export default function RootLayout({ children }) {
     <html suppressHydrationWarning lang="en">
       <SidebarProvider>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-normal dark:bg-dark`}
         >
           <Providers>
             <Header />
