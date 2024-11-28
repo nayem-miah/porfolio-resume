@@ -24,10 +24,10 @@ export default function Main() {
                         Specialist
                       </h2>
                       <p className="mt-[15px] text-text">
-                        Aspiring Front-End Developer with six months of
+                         An aspiring Front-End Developer with six months of
                         internship experience, specializing in React, Next.js,
                         and Django. Passionate about creating responsive and
-                        dynamic user interfaces, I developed my skills through
+                        dynamic user interfaces, I’ve developed my skills through documentations,
                         personal projects and online courses. Eager to
                         contribute to a collaborative team and grow my technical
                         expertise.
