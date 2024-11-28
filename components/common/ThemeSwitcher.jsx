@@ -1,11 +1,14 @@
 "use client";
+import { SidebarContext } from "@/providers/SidebarSwitchProvider";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useContext } from "react";
 
 export default function ThemeSwitcher({ isMobile }) {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const { setSidebar } = useContext(SidebarContext);
 
   const handleThemeSwitch = () => {
     if (theme === "dark") {
@@ -13,6 +16,7 @@ export default function ThemeSwitcher({ isMobile }) {
     } else {
       setTheme("dark");
     }
+    setSidebar("left-[100%]")
   };
 
   useEffect(() => {
