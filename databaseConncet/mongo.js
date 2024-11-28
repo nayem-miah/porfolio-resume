@@ -18,8 +18,7 @@ export async function dbConnect() {
   if (mongoose.connection.readyState === 0) {
     try {
       await mongoose.connect(process.env.MONGODB_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
+        useUnifiedTopology: true, // Keep this to ensure stable connection management
         serverSelectionTimeoutMS: 10000, // 10 seconds timeout
       });
       console.log("Connected to MongoDB!");
