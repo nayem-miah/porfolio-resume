@@ -4,9 +4,9 @@ import Link from "next/link";
 import SidebarClose from "./SidebarClose";
 import SidebarAddCss from "./SidebarAddCss";
 import LinkComponent from "./LinkComponent";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 export default function Sidebar() {
-
   return (
     <>
       <SidebarAddCss>
@@ -54,20 +54,7 @@ export default function Sidebar() {
               </li>
             </ul>
           </nav>
-          <button className="my-[30px] inline-block cursor-pointer">
-            <div className="flex items-center gap-4 md:hidden">
-              <div>
-                <p>
-                  <span className="text-btn dark:text-theme">Dark</span>
-                  <span className="text-btn dark:text-white"> / </span>
-                  <span className="text-theme dark:text-white">Light</span>
-                </p>
-              </div>
-              <div>
-                <Image src="/sun.svg" alt="sun" width={30} height={30} />
-              </div>
-            </div>
-          </button>
+          <ThemeSwitcher isMobile={true} />
           <div className="contact absolute bottom-[30px] mt-[10px]">
             <div>
               <div className="mt-[20px] flex gap-3">
