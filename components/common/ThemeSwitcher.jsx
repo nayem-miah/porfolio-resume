@@ -24,39 +24,21 @@ export default function ThemeSwitcher({ isMobile }) {
   }
   return (
     <>
-      {isMobile ? (
-        <button
-          onClick={handleThemeSwitch}
-          className="my-[30px] inline-block cursor-pointer"
-        >
-          <div className="flex items-center gap-4 md:hidden">
-            <div>
-              <p>
-                <span className="text-btn dark:text-theme">Dark</span>
-                <span className="text-btn dark:text-white"> / </span>
-                <span className="text-theme dark:text-white">Light</span>
-              </p>
-            </div>
-            <div>
-              <Image src="/sun.svg" alt="sun" width={30} height={30} />
-            </div>
-          </div>
-        </button>
-      ) : (
-        <button
-          onClick={handleThemeSwitch}
-          className="hidden items-center gap-3 md:flex"
-        >
-          <p>
-            <span className="text-btn dark:text-theme">Dark</span>
-            <span className="text-btn dark:text-white"> / </span>
-            <span className="text-theme dark:text-white">Light</span>
-          </p>
-          <div>
-            <Image src="/sun.svg" alt="sun" width={30} height={30} />
-          </div>
-        </button>
-      )}
+      <button
+        onClick={handleThemeSwitch}
+        className={`${
+          isMobile
+            ? "my-[30px] inline-block cursor-pointer flex items-center gap-4"
+            : "hidden md:flex items-center gap-3 cursor-pointer"
+        }`}
+      >
+        <p>
+          <span className="text-btn dark:text-theme">Dark</span>
+          <span className="text-btn dark:text-white"> / </span>
+          <span className="text-theme dark:text-white">Light</span>
+        </p>
+        <Image src="/sun.svg" alt="sun" width={30} height={30} />
+      </button>
     </>
   );
 }

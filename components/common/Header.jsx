@@ -31,18 +31,8 @@ export default function Header() {
             </menu>
             <div className="flex items-center">
               <div className="flex items-center gap-4 px-[30px]">
-                {/* <button className="hidden items-center gap-3 md:flex">
-                  <p>
-                    <span className="text-btn dark:text-theme">Dark</span>
-                    <span className="text-btn dark:text-white"> / </span>
-                    <span className="text-theme dark:text-white">Light</span>
-                  </p>
-                  <div>
-                    <Image src="/sun.svg" alt="sun" width={30} height={30} />
-                  </div>
-                </button> */}
-
-                <ThemeSwitcher/>
+  
+                <ThemeSwitcher isMobile={false}/>
                 <SidebarOpen />
               </div>
             </div>
