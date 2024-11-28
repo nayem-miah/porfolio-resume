@@ -1,7 +1,8 @@
 import SidebarLeft from "@/components/common/SidebarLeft";
 import Image from "next/image";
 
-export default function page({params: {id}}) {
+export default async function page({params}) {
+  const { id } = await params
 
   console.log('id..................',id)
   return (
