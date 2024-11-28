@@ -75,7 +75,7 @@ export default async function page({ params }) {
                       <p className="text-[14px] text-text">Live Link:</p>
                       <div className="mt-[15px]">
                         <Link
-                          className="boxShadow bg-green-400 dark:bg-theme rounded-lg  px-[14px] py-[10px] text-[14px] text-white transition duration-300 hover:text-btn dark:bg-btn dark:shadow-none dark:hover:text-theme"
+                          className="boxShadow bg-green-400 dark:bg-lime-600 rounded-lg  px-[14px] py-[10px] text-[14px] text-white transition duration-300 hover:text-btn dark:bg-btn dark:shadow-none dark:hover:text-theme"
                           href={project?.link}
                           target="_blank"
                         >
