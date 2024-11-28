@@ -11,12 +11,13 @@ export default function ThemeSwitcher({ isMobile }) {
   const { setSidebar } = useContext(SidebarContext);
 
   const handleThemeSwitch = () => {
+    setSidebar("left-[100%]")
     if (theme === "dark") {
       setTheme("light");
     } else {
       setTheme("dark");
     }
-    setSidebar("left-[100%]")
+    
   };
 
   useEffect(() => {
