@@ -201,7 +201,12 @@ img,video {
     padding: 0
 }
 
-
+body {
+    background: #252525;
+    color: #fff;
+    font-family: Inter,sans-serif;
+    font-size: 15px
+}
 
 p {
     line-height: 26px
@@ -2255,7 +2260,7 @@ pre {
     background-color: rgba(96,125,139,.2)!important
 }
 
-.light {
+.bg-bodyWhite {
     --tw-bg-opacity: 1!important;
     background-color: rgb(236 240 243/var(--tw-bg-opacity))!important
 }
