@@ -1,8 +1,11 @@
 import SidebarLeft from "@/components/common/SidebarLeft";
+import { getProjects } from "@/queries";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function page() {
+export default async function page() {
+  const projects = await getProjects();
+
   return (
     <section>
       <div className="container mx-auto">
@@ -25,102 +28,36 @@ export default function page() {
                     </p>
                     <div className="mt-[60px]">
                       <div className="grid grid-cols-12 md:gap-[30px]">
-                        <div className="col-span-12 mb-[40px] md:col-span-6 md:mb-0">
-                          <div className="boxShadow group rounded-xl bg-white p-[20px] dark:bg-btn dark:shadow-none">
-                            <div className="overflow-hidden rounded-lg drop-shadow-lg">
-                              <Image
-                                className="transition-all duration-500 group-hover:scale-[110%]"
-                                src="/project/project.jpg"
-                                width={400}
-                                height={400}
-                                alt=""
-                              />
+                        {projects.map((project) => (
+                          <>
+                            <div
+                              key={project?.id}
+                              className="col-span-12 mb-[40px] md:col-span-6 md:mb-0"
+                            >
+                              <div className="boxShadow group rounded-xl bg-white p-[20px] dark:bg-btn dark:shadow-none">
+                                <div className="overflow-hidden rounded-lg drop-shadow-lg">
+                                  <Image
+                                    className="transition-all duration-500 group-hover:scale-[110%]"
+                                    src={`/project/${project?.image}`}
+                                    width={500}
+                                    height={500}
+                                    alt=""
+                                  />
+                                </div>
+                                <div className="mb-[10px] mt-[20px]">
+                                  <p className="text-[16px] text-text">
+                                    {project?.category}
+                                  </p>
+                                  <Link href={`/my-projects/${project?.id}`}>
+                                    <h2 className="mt-[14px] inline-block text-[30px] leading-[40px] text-btn transition-all duration-300 hover:text-theme dark:text-white dark:hover:text-theme">
+                                      {project?.title}
+                                    </h2>
+                                  </Link>
+                                </div>
+                              </div>
                             </div>
-                            <div className="mb-[10px] mt-[20px]">
-                              <p className="text-[16px] text-text">
-                                MERN, Sales Management
-                              </p>
-                              <Link href="/my-projects/1">
-                                <h2 className="mt-[14px] inline-block text-[30px] leading-[40px] text-btn transition-all duration-300 hover:text-theme dark:text-white dark:hover:text-theme">
-                                  Sales Management System - MERN, A
-                                  full-featured sales management system
-                                </h2>
-                              </Link>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-span-12 mb-[40px] md:col-span-6 md:mb-0">
-                          <div className="boxShadow group rounded-xl bg-white p-[20px] dark:bg-btn dark:shadow-none">
-                            <div className="overflow-hidden rounded-lg drop-shadow-lg">
-                              <Image
-                                className="transition-all duration-500 group-hover:scale-[110%]"
-                                src="/project/project.jpg"
-                                width={400}
-                                height={400}
-                                alt=""
-                              />
-                            </div>
-                            <div className="mb-[10px] mt-[20px]">
-                              <p className="text-[16px] text-text">
-                                Portfolio, NEXT Js, CMS
-                              </p>
-                              <Link href="/my-projects/1">
-                                <h2 className="mt-[14px] inline-block text-[30px] leading-[40px] text-btn transition-all duration-300 hover:text-theme dark:text-white dark:hover:text-theme">
-                                  NEXT.js CMS Portfolio Website, A fully
-                                  customizable portfolio website
-                                </h2>
-                              </Link>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-span-12 mb-[40px] md:col-span-6 md:mb-0">
-                          <div className="boxShadow group rounded-xl bg-white p-[20px] dark:bg-btn dark:shadow-none">
-                            <div className="overflow-hidden rounded-lg drop-shadow-lg">
-                              <Image
-                                className="transition-all duration-500 group-hover:scale-[110%]"
-                                src="/project/project.jpg"
-                                width={400}
-                                height={400}
-                                alt=""
-                              />
-                            </div>
-                            <div className="mb-[10px] mt-[20px]">
-                              <p className="text-[16px] text-text">
-                                E-Commerce, MERN
-                              </p>
-                              <Link href="/my-projects/1">
-                                <h2 className="mt-[14px] inline-block text-[30px] leading-[40px] text-btn transition-all duration-300 hover:text-theme dark:text-white dark:hover:text-theme">
-                                  E-Commerce MERN, E-commerce platform built
-                                  using the MERN
-                                </h2>
-                              </Link>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-span-12 mb-[40px] md:col-span-6 md:mb-0">
-                          <div className="boxShadow group rounded-xl bg-white p-[20px] dark:bg-btn dark:shadow-none">
-                            <div className="overflow-hidden rounded-lg drop-shadow-lg">
-                              <Image
-                                className="transition-all duration-500 group-hover:scale-[110%]"
-                                src="/project/project.jpg"
-                                width={400}
-                                height={400}
-                                alt=""
-                              />
-                            </div>
-                            <div className="mb-[10px] mt-[20px]">
-                              <p className="text-[16px] text-text">
-                                MERN, Inventory
-                              </p>
-                              <Link href="/my-projects/1">
-                                <h2 className="mt-[14px] inline-block text-[30px] leading-[40px] text-btn transition-all duration-300 hover:text-theme dark:text-white dark:hover:text-theme">
-                                  Merchandise Management System - MERN,
-                                  Including customer and supplier
-                                </h2>
-                              </Link>
-                            </div>
-                          </div>
-                        </div>
+                          </>
+                        ))}
                       </div>
                     </div>
                   </div>
