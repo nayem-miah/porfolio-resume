@@ -4,7 +4,7 @@ import Sidebar from "@/components/common/Sidebar";
 export default function Home() {
   return (
     <>
-      <div className="dark">
+      <div>
         <Sidebar />
         <Main />
       </div>

@@ -1,12 +1,12 @@
 import localFont from "next/font/local";
-import "./globals.css";
+// import "./globals.css";
 import "./style.css";
-import "./custom.css";
+// import "./custom.css";
 import Header from "@/components/common/Header";
 import Sidebar from "@/components/common/Sidebar";
 import Footer from "@/components/common/Footer";
 import { SidebarProvider } from "@/providers/SidebarSwitchProvider";
-
+import { Providers } from "@/providers/Providers";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,25 +24,23 @@ export const metadata = {
   description:
     "Passion for coding, Self learning capability, Hard working, Profound Analytical ability",
   openGraph: {
-    images: [
-      "/og.jpg",
-    ],
+    images: ["/og.jpg"],
   },
 };
 
 export default function RootLayout({ children }) {
-
   return (
-    <html lang="en">
-      
+    <html suppressHydrationWarning lang="en">
       <SidebarProvider>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} dark antialiased`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <Header />
-          <Sidebar />
-          {children}
-          <Footer />
+          <Providers>
+            <Header />
+            <Sidebar />
+            {children}
+            <Footer />
+          </Providers>
         </body>
       </SidebarProvider>
     </html>

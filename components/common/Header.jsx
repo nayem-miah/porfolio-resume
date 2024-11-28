@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import LinkComponent from "./LinkComponent";
 import SidebarOpen from "./SidebarOpen";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 export default function Header() {
   return (
@@ -30,7 +31,7 @@ export default function Header() {
             </menu>
             <div className="flex items-center">
               <div className="flex items-center gap-4 px-[30px]">
-                <button className="hidden items-center gap-3 md:flex">
+                {/* <button className="hidden items-center gap-3 md:flex">
                   <p>
                     <span className="text-btn dark:text-theme">Dark</span>
                     <span className="text-btn dark:text-white"> / </span>
@@ -39,7 +40,9 @@ export default function Header() {
                   <div>
                     <Image src="/sun.svg" alt="sun" width={30} height={30} />
                   </div>
-                </button>
+                </button> */}
+
+                <ThemeSwitcher/>
                 <SidebarOpen />
               </div>
             </div>

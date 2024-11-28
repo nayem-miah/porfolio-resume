@@ -9,12 +9,12 @@
     padding: 0;
   }
 
-  body {
+  /* body {
     font-family: "Inter", sans-serif;
     background: #252525;
     color: #fff;
     font-size: 15px;
-  }
+  } */
 
   p {
     line-height: 26px;
@@ -129,4 +129,7 @@
   .text-btn {
     --tw-text-opacity: 1 !important;
   }
+
+
+
 }

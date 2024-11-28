@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 export default function TypingAnimate() {
-  const texts = ["Need help?", "Contact now", "Hire Me!"]; // Array of texts
+  const texts = ["Need help?", "Contact", "Hire Me!"]; // Array of texts
   const [currentTextIndex, setCurrentTextIndex] = useState(0); // Tracks the current text index
   const [displayedText, setDisplayedText] = useState(""); // Text displayed on the screen
   const [isDeleting, setIsDeleting] = useState(false); // Typing or deleting state
