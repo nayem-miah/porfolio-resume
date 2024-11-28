@@ -33,7 +33,7 @@ export default function Sidebar() {
               <li className="text-[18px] py-[8px] font-semibold">
                 <LinkComponent
                   name={"Projects"}
-                  pathName={"/projects"}
+                  pathName={"/my-projects"}
                   sidebar={true}
                 />
               </li>

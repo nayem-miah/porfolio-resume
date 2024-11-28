@@ -1,5 +1,6 @@
 import SidebarLeft from "@/components/common/SidebarLeft";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function page() {
   return (
@@ -27,79 +28,101 @@ export default function page() {
                         <div className="col-span-12 mb-[40px] md:col-span-6 md:mb-0">
                           <div className="boxShadow group rounded-xl bg-white p-[20px] dark:bg-btn dark:shadow-none">
                             <div className="overflow-hidden rounded-lg drop-shadow-lg">
-                            <Image className="transition-all duration-500 group-hover:scale-[110%]" src="/project/project.jpg" width={400} height={400} alt="" />
+                              <Image
+                                className="transition-all duration-500 group-hover:scale-[110%]"
+                                src="/project/project.jpg"
+                                width={400}
+                                height={400}
+                                alt=""
+                              />
                             </div>
                             <div className="mb-[10px] mt-[20px]">
                               <p className="text-[16px] text-text">
                                 MERN, Sales Management
                               </p>
-                              <a href="/projects-details/67053b6fee81af8a31af91e8">
+                              <Link href="/my-projects/1">
                                 <h2 className="mt-[14px] inline-block text-[30px] leading-[40px] text-btn transition-all duration-300 hover:text-theme dark:text-white dark:hover:text-theme">
                                   Sales Management System - MERN, A
                                   full-featured sales management system
                                 </h2>
-                              </a>
+                              </Link>
                             </div>
                           </div>
                         </div>
                         <div className="col-span-12 mb-[40px] md:col-span-6 md:mb-0">
                           <div className="boxShadow group rounded-xl bg-white p-[20px] dark:bg-btn dark:shadow-none">
                             <div className="overflow-hidden rounded-lg drop-shadow-lg">
-                            <Image className="transition-all duration-500 group-hover:scale-[110%]" src="/project/project.jpg" width={400} height={400} alt="" />
+                              <Image
+                                className="transition-all duration-500 group-hover:scale-[110%]"
+                                src="/project/project.jpg"
+                                width={400}
+                                height={400}
+                                alt=""
+                              />
                             </div>
                             <div className="mb-[10px] mt-[20px]">
                               <p className="text-[16px] text-text">
                                 Portfolio, NEXT Js, CMS
                               </p>
-                              <a href="/projects-details/67053acaee81af8a31af91e2">
+                              <Link href="/my-projects/1">
                                 <h2 className="mt-[14px] inline-block text-[30px] leading-[40px] text-btn transition-all duration-300 hover:text-theme dark:text-white dark:hover:text-theme">
                                   NEXT.js CMS Portfolio Website, A fully
                                   customizable portfolio website
                                 </h2>
-                              </a>
+                              </Link>
                             </div>
                           </div>
                         </div>
                         <div className="col-span-12 mb-[40px] md:col-span-6 md:mb-0">
                           <div className="boxShadow group rounded-xl bg-white p-[20px] dark:bg-btn dark:shadow-none">
                             <div className="overflow-hidden rounded-lg drop-shadow-lg">
-                              <Image className="transition-all duration-500 group-hover:scale-[110%]" src="/project/project.jpg" width={400} height={400} alt="" />
+                              <Image
+                                className="transition-all duration-500 group-hover:scale-[110%]"
+                                src="/project/project.jpg"
+                                width={400}
+                                height={400}
+                                alt=""
+                              />
                             </div>
                             <div className="mb-[10px] mt-[20px]">
                               <p className="text-[16px] text-text">
                                 E-Commerce, MERN
                               </p>
-                              <a href="/projects-details/67053a07ee81af8a31af91d7">
+                              <Link href="/my-projects/1">
                                 <h2 className="mt-[14px] inline-block text-[30px] leading-[40px] text-btn transition-all duration-300 hover:text-theme dark:text-white dark:hover:text-theme">
                                   E-Commerce MERN, E-commerce platform built
                                   using the MERN
                                 </h2>
-                              </a>
+                              </Link>
                             </div>
                           </div>
                         </div>
                         <div className="col-span-12 mb-[40px] md:col-span-6 md:mb-0">
                           <div className="boxShadow group rounded-xl bg-white p-[20px] dark:bg-btn dark:shadow-none">
                             <div className="overflow-hidden rounded-lg drop-shadow-lg">
-
-                              <Image className="transition-all duration-500 group-hover:scale-[110%]" src="/project/project.jpg" width={400} height={400} alt="" />
+                              <Image
+                                className="transition-all duration-500 group-hover:scale-[110%]"
+                                src="/project/project.jpg"
+                                width={400}
+                                height={400}
+                                alt=""
+                              />
                             </div>
                             <div className="mb-[10px] mt-[20px]">
                               <p className="text-[16px] text-text">
                                 MERN, Inventory
                               </p>
-                              <a href="/projects-details/670538c5ee81af8a31af91ae">
+                              <Link href="/my-projects/1">
                                 <h2 className="mt-[14px] inline-block text-[30px] leading-[40px] text-btn transition-all duration-300 hover:text-theme dark:text-white dark:hover:text-theme">
                                   Merchandise Management System - MERN,
                                   Including customer and supplier
                                 </h2>
-                              </a>
+                              </Link>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-            
                   </div>
                 </div>
               </section>
