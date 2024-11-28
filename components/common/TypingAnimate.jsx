@@ -52,7 +52,7 @@ export default function TypingAnimate() {
     );
 
     return () => clearTimeout(timeout); // Cleanup timeout
-  }, [displayedText, isDeleting, currentTextIndex]);
+  }, [displayedText, isDeleting, currentTextIndex, texts]);
 
   return (
     <>

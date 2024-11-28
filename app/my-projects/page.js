@@ -28,35 +28,33 @@ export default async function page() {
                     </p>
                     <div className="mt-[60px]">
                       <div className="grid grid-cols-12 md:gap-[30px]">
-                        {projects.map((project, key) => (
-                          <>
-                            <div
-                              key={key}
-                              className="col-span-12 mb-[40px] md:col-span-6 md:mb-0"
-                            >
-                              <div className="boxShadow group rounded-xl bg-white p-[20px] dark:bg-btn dark:shadow-none">
-                                <div className="overflow-hidden rounded-lg drop-shadow-lg">
-                                  <Image
-                                    className="transition-all duration-500 group-hover:scale-[110%]"
-                                    src={`/project/${project?.image}`}
-                                    width={500}
-                                    height={500}
-                                    alt=""
-                                  />
-                                </div>
-                                <div className="mb-[10px] mt-[20px]">
-                                  <p className="text-[16px] text-text">
-                                    {project?.category}
-                                  </p>
-                                  <Link href={`/my-projects/${project?.id}`}>
-                                    <h2 className="mt-[14px] inline-block text-[30px] leading-[40px] text-btn transition-all duration-300 hover:text-theme dark:text-white dark:hover:text-theme">
-                                      {project?.title}
-                                    </h2>
-                                  </Link>
-                                </div>
+                        {projects.map((project) => (
+                          <div
+                            key={project?.id}
+                            className="col-span-12 mb-[40px] md:col-span-6 md:mb-0"
+                          >
+                            <div className="boxShadow group rounded-xl bg-white p-[20px] dark:bg-btn dark:shadow-none">
+                              <div className="overflow-hidden rounded-lg drop-shadow-lg">
+                                <Image
+                                  className="transition-all duration-500 group-hover:scale-[110%]"
+                                  src={`/project/${project?.image}`}
+                                  width={500}
+                                  height={500}
+                                  alt={`${project?.title} image`}
+                                />
+                              </div>
+                              <div className="mb-[10px] mt-[20px]">
+                                <p className="text-[16px] text-text">
+                                  {project?.category}
+                                </p>
+                                <Link href={`/my-projects/${project?.id}`}>
+                                  <h2 className="mt-[14px] inline-block text-[30px] leading-[40px] text-btn transition-all duration-300 hover:text-theme dark:text-white dark:hover:text-theme">
+                                    {project?.title}
+                                  </h2>
+                                </Link>
                               </div>
                             </div>
-                          </>
+                          </div>
                         ))}
                       </div>
                     </div>
