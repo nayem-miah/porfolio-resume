@@ -28,10 +28,10 @@ export default async function page() {
                     </p>
                     <div className="mt-[60px]">
                       <div className="grid grid-cols-12 md:gap-[30px]">
-                        {projects.map((project) => (
+                        {projects.map((project, key) => (
                           <>
                             <div
-                              key={project?.id}
+                              key={key}
                               className="col-span-12 mb-[40px] md:col-span-6 md:mb-0"
                             >
                               <div className="boxShadow group rounded-xl bg-white p-[20px] dark:bg-btn dark:shadow-none">
