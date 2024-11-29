@@ -143,7 +143,7 @@ export default function Main() {
                             <p className="text-[14px] text-text dark:text-white">
                               Showcase View
                             </p>
-                            <Link className="hover:text-theme" href="/projects/1">
+                            <Link className="hover:text-theme" href="/my-projects">
                               <h3 className="mt-[5px] inline-block text-[26px] tracking-[6px] text-btn dark:text-white">
                                 Projects
                               </h3>
