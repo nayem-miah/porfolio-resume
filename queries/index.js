@@ -20,3 +20,4 @@ export async function getProjectById(id) {
 
   return replaceMongoIdInObject(project);
 }
+

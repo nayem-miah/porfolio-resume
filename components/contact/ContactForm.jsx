@@ -6,14 +6,10 @@ import ContactButton from "./ContactButton";
 export default function ContactForm() {
   const [message, setMessage] = useState(null);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+  const handleSubmit = async (formData) => {
+    const data = Object.fromEntries(formData);
 
-    const name = formData.get("name");
-    const email = formData.get("email");
-    const websiteLink = formData.get("websiteLink");
-    const message = formData.get("message");
+    const { name, email, websiteLink, message } = data;
 
     const res = await fetch("/api/contact", {
       method: "POST",
@@ -48,12 +44,7 @@ export default function ContactForm() {
           <div className="mb-[30px] mt-[30px]">
             <div>
               <div>
-                <form
-                  method="post"
-                  autoComplete="off"
-                  action="#"
-                  onSubmit={handleSubmit}
-                >
+                <form autoComplete="off" action={handleSubmit}>
                   <div className="grid w-full gap-[20px] md:flex">
                     <div className="md:w-1/2">
                       <input
@@ -94,13 +85,12 @@ export default function ContactForm() {
                   </div>
                   <div>
                     <div className="mb-6 mt-[20px] flex items-start">
-                    <p className="text-theme">{message}</p>
+                      <p className="text-theme">{message}</p>
                     </div>
                   </div>
-               
+
                   <div className="mb-[30px]">
-                   
-                 <ContactButton/>
+                    <ContactButton />
                   </div>
                 </form>
               </div>
