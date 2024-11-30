@@ -1,4 +1,39 @@
+"use client";
+
+import { useState } from "react";
+
 export default function ContactForm() {
+  const [message, setMessage] = useState(null);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const websiteLink = formData.get("websiteLink");
+    const message = formData.get("message");
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+
+      body: JSON.stringify({
+        name,
+        email,
+        websiteLink,
+        message,
+      }),
+    });
+
+    if (res.status === 201) {
+      setMessage("Message was sent successfully!!");
+    } else {
+      setMessage("Message failed!!");
+    }
+  };
   return (
     <>
       <div className="rounded-xl bg-white p-[30px] dark:bg-card">
@@ -12,13 +47,20 @@ export default function ContactForm() {
           <div className="mb-[30px] mt-[30px]">
             <div>
               <div>
-                <div>
+                <form
+                  method="post"
+                  autoComplete="off"
+                  action="#"
+                  onSubmit={handleSubmit}
+                >
                   <div className="grid w-full gap-[20px] md:flex">
                     <div className="md:w-1/2">
                       <input
+                        required
                         className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
                         type="text"
                         placeholder="Full Name:"
+                        name="name"
                       />
                     </div>
                     <div className="md:w-1/2">
@@ -26,6 +68,8 @@ export default function ContactForm() {
                         className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
                         type="email"
                         placeholder="Your Email:"
+                        name="email"
+                        required
                       />
                     </div>
                   </div>
@@ -33,13 +77,14 @@ export default function ContactForm() {
                     <input
                       className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
                       type="text"
-                      placeholder="Website Link:"
+                      placeholder="Website Link(optional):"
+                      name="websiteLink"
                     />
                   </div>
                   <div className="mt-[20px]">
                     <textarea
                       placeholder="Write your Massage here:"
-                      name=""
+                      name="message"
                       id=""
                       cols="30"
                       rows="6"
@@ -48,31 +93,17 @@ export default function ContactForm() {
                   </div>
                   <div>
                     <div className="mb-6 mt-[20px] flex items-start">
-                      <div className="flex h-5 items-center">
-                        <input
-                          id="remember"
-                          aria-describedby="remember"
-                          type="checkbox"
-                          className="h-4 w-4 rounded bg-btn"
-                        />
-                      </div>
-                      <div className="ml-3 text-sm">
-                        <label
-                          htmlFor="remember"
-                          className="font-medium text-text"
-                        >
-                          Save my name, email, and website in this browser for
-                          the next time I comment.
-                        </label>
-                      </div>
+                    <p className="text-theme">{message}</p>
                     </div>
                   </div>
+               
                   <div className="mb-[30px]">
+                   
                     <button className="rounded-full border-2 border-theme bg-theme px-[30px] py-[10px] font-medium text-btn transition-all duration-300 dark:hover:bg-transparent dark:hover:text-theme">
                       Send Massage
                     </button>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
           </div>
