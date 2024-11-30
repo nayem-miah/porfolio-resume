@@ -39,7 +39,7 @@ export default function ContactForm() {
             Let’s Chat<span className="text-theme">!</span>
           </h1>
           <p className="text-[14px] text-text">
-            Feel free to contact us through Facebook if you prefer!
+            Feel free to contact me through Facebook if you prefer!
           </p>
           <div className="mb-[30px] mt-[30px]">
             <div>
