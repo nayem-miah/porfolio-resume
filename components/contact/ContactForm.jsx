@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ContactButton from "./ContactButton";
 
 export default function ContactForm() {
   const [message, setMessage] = useState(null);
@@ -99,9 +100,7 @@ export default function ContactForm() {
                
                   <div className="mb-[30px]">
                    
-                    <button className="rounded-full border-2 border-theme bg-theme px-[30px] py-[10px] font-medium text-btn transition-all duration-300 dark:hover:bg-transparent dark:hover:text-theme">
-                      Send Massage
-                    </button>
+                 <ContactButton/>
                   </div>
                 </form>
               </div>
