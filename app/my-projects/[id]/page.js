@@ -6,6 +6,7 @@ import Link from "next/link";
 export default async function page({ params }) {
   const { id } = await params;
   const project = await getProjectById(id);
+
   return (
     <section>
       <div className="container mx-auto">
@@ -42,6 +43,24 @@ export default async function page({ params }) {
                         <div className="mt-[20px]">
                           <div className="rich-text text-text dark:text-gray-400">
                             <p>{project?.description}</p>
+                          </div>
+                        </div>
+                        <br/>
+
+                        <div className="h-auto w-full overflow-hidden rounded-lg">
+                          <Image
+                            src={`/project/${project?.overviewImage}`}
+                            width={500}
+                            height={500}
+                            className="h-full w-full rounded-xl object-cover"
+                            alt="overviewImage"
+                          />
+                        </div>
+                      
+                        <br/>
+                        <div className="mt-[20px]">
+                          <div className="rich-text text-text dark:text-gray-400">
+                            <p>{project?.conclusion}</p>
                           </div>
                         </div>
                       </div>
@@ -93,7 +112,6 @@ export default async function page({ params }) {
     </section>
   );
 }
-
 
 export async function generateStaticParams() {
   const prjects = await getProjects();
