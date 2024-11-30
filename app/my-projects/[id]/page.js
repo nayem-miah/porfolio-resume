@@ -40,12 +40,23 @@ export default async function page({ params }) {
                         <h2 className="text-[32px] text-btn dark:text-white">
                           {project?.title}
                         </h2>
+
+                        <div className="mt-[15px]">
+                          <Link
+                            className="boxShadow bg-green-400 dark:bg-lime-600 rounded-lg  px-[14px] py-[10px] text-[14px] text-white transition duration-300 hover:text-btn dark:bg-btn dark:shadow-none dark:hover:text-theme"
+                            href={project?.link}
+                            target="_blank"
+                          >
+                            Live View
+                          </Link>
+                        </div>
+
                         <div className="mt-[20px]">
                           <div className="rich-text text-text dark:text-gray-400">
                             <p>{project?.description}</p>
                           </div>
                         </div>
-                        <br/>
+                        <br />
 
                         <div className="h-auto w-full overflow-hidden rounded-lg">
                           <Image
@@ -56,8 +67,8 @@ export default async function page({ params }) {
                             alt="overviewImage"
                           />
                         </div>
-                      
-                        <br/>
+
+                        <br />
                         <div className="mt-[20px]">
                           <div className="rich-text text-text dark:text-gray-400">
                             <p>{project?.conclusion}</p>
