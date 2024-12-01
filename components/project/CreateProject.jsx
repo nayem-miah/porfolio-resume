@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import CreatingButton from "./CreatingButton";
+import CreatingButton from "../blogs/CreatingButton";
 
-export default function CreateBlog() {
+export default function CreateProject() {
   const [image, setImage] = useState(null);
   const [overviewImage, setOverviewImage] = useState(null);
   const [message, setMessage] = useState("");
@@ -44,13 +44,14 @@ export default function CreateBlog() {
 
   const handleFormSubmit = async (formData) => {
     const data = Object.fromEntries(formData);
-    const { title, category, description, conclusion } = data;
+    const { title, category, description, conclusion, liveLink, client } = data;
 
     try {
       const imageUrl = await handleImageUpload(image);
       const overviewImageUrl = await handleImageUpload(overviewImage);
-
-      const response = await fetch("/api/createBlog", {
+      
+      console.log( title, category, description, conclusion, liveLink, client,imageUrl,overviewImageUrl)
+      const response = await fetch("/api/createProject", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -58,13 +59,15 @@ export default function CreateBlog() {
           category,
           description,
           conclusion,
+          link:liveLink,
+          client,
           image: imageUrl,
           overviewImage: overviewImageUrl,
         }),
       });
 
       if (response.status === 201) {
-        setMessage("Blog was created successfully!");
+        setMessage("Project was created successfully!");
         setImage(null);
         setOverviewImage(null);
       } else {
@@ -85,7 +88,7 @@ export default function CreateBlog() {
             className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
             type="text"
             name="title"
-            placeholder="Blog Title"
+            placeholder="Project Title"
           />
           <input
             className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
@@ -97,15 +100,29 @@ export default function CreateBlog() {
             className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
             name="description"
             rows="6"
-            placeholder="Blog Description"
+            placeholder="Project Description"
             required
           ></textarea>
           <textarea
             className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
             name="conclusion"
             rows="4"
-            placeholder="Blog Conclusion (optional)"
+            placeholder="Conclusion (optional)"
           ></textarea>
+
+          <input
+            className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
+            type="text"
+            name="liveLink"
+            placeholder="Live Link"
+          />
+
+          <input
+            className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
+            type="text"
+            name="client"
+            placeholder="client"
+          />
 
           {/* File input and preview for image */}
           <div className="flex items-center space-x-4">
@@ -145,7 +162,7 @@ export default function CreateBlog() {
             )}
           </div>
         </div>
-        <CreatingButton />
+        <CreatingButton project={true} />
         {message && <p className="mt-4 text-center text-theme">{message}</p>}
       </form>
     </>

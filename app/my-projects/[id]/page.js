@@ -1,5 +1,6 @@
 import SidebarLeft from "@/components/common/SidebarLeft";
 import { getProjectById, getProjects } from "@/queries";
+import formatDateTime from "@/utils/dateTimeConverter";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -28,13 +29,15 @@ export default async function page({ params }) {
                     </p>
                     <div className="mt-[60px]">
                       <div className="h-auto w-full overflow-hidden rounded-lg">
-                        <Image
-                          src={`/project/${project?.image}`}
-                          width={500}
-                          height={500}
-                          className="h-full w-full rounded-xl object-cover"
-                          alt="p"
-                        />
+                        {project?.image && (
+                          <Image
+                            src={project?.image}
+                            width={500}
+                            height={500}
+                            className="h-full w-full rounded-xl object-cover"
+                            alt="p"
+                          />
+                        )}
                       </div>
                       <div className="mt-[40px]">
                         <h2 className="text-[32px] text-btn dark:text-white">
@@ -59,13 +62,15 @@ export default async function page({ params }) {
                         <br />
 
                         <div className="h-auto w-full overflow-hidden rounded-lg">
-                          <Image
-                            src={`/project/${project?.overviewImage}`}
-                            width={500}
-                            height={500}
-                            className="h-full w-full rounded-xl object-cover"
-                            alt="overviewImage"
-                          />
+                          {project?.overviewImage && (
+                            <Image
+                              src={project?.overviewImage}
+                              width={500}
+                              height={500}
+                              className="h-full w-full rounded-xl object-cover"
+                              alt="overviewImage"
+                            />
+                          )}
                         </div>
 
                         <br />
@@ -98,7 +103,7 @@ export default async function page({ params }) {
                     <div>
                       <p className="text-[14px] text-text">Time frame:</p>
                       <p className="mt-[6px] text-[18px] font-semibold text-btn dark:text-white">
-                        {project?.time}
+                        {formatDateTime(project?.time)}
                       </p>
                     </div>
                     <div>

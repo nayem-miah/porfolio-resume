@@ -32,10 +32,13 @@ const projectSchema = new Schema({
     required: false,
     type: String,
   },
+  
   time: {
     required: false,
-    type: String,
+    type: Date,
+    default: Date.now
   },
+ 
   link: {
     required: false,
     type: String,

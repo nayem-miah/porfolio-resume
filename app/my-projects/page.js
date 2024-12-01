@@ -35,13 +35,15 @@ export default async function page() {
                           >
                             <div className="boxShadow group rounded-xl bg-white p-[20px] dark:bg-btn dark:shadow-none">
                               <div className="overflow-hidden rounded-lg drop-shadow-lg">
-                                <Image
-                                  className="transition-all duration-500 group-hover:scale-[110%]"
-                                  src={`/project/${project?.image}`}
-                                  width={500}
-                                  height={500}
-                                  alt={`${project?.title} image`}
-                                />
+                                {project?.image && (
+                                  <Image
+                                    className="transition-all duration-500 group-hover:scale-[110%]"
+                                    src={project?.image}
+                                    width={500}
+                                    height={500}
+                                    alt={`${project?.title} image`}
+                                  />
+                                )}
                               </div>
                               <div className="mb-[10px] mt-[20px]">
                                 <p className="text-[16px] text-text">
