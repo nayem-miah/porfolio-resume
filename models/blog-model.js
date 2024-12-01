@@ -36,7 +36,8 @@ const blogSchema = new Schema({
 
   pubshied: {
     required: false,
-    type: String
+    type: Date,
+    default: Date.now
   },
  
 });
