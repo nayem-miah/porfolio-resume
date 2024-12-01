@@ -155,7 +155,7 @@ export default function Main() {
                             <p className="text-[14px] text-btn">
                               Visit Our Blog
                             </p>
-                            <Link className="hover:text-theme" href="/blog/1">
+                            <Link className="hover:text-theme" href="/blog">
                               <h3 className="mt-[5px] inline-block text-[26px] tracking-[6px] text-btn">
                                 Blog
                               </h3>

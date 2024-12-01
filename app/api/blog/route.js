@@ -8,8 +8,6 @@ export const POST = async (request) => {
   await dbConnect();
   const blogData = await request.json();
 
-  console.log('blogData server........',blogData)
-
   try {
     await blogModel.create(blogData);
     return new NextResponse("Blog was created!", {

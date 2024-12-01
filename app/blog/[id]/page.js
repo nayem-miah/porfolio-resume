@@ -5,6 +5,7 @@ import Image from "next/image";
 export default async function page({ params }) {
   const { id } = await params;
   const blog = await getBlogById(id);
+
   return (
     <section>
       <div className="container mx-auto">
@@ -15,21 +16,23 @@ export default async function page({ params }) {
               <section className="mt-[60px]">
                 <div className="rounded-xl bg-white p-[30px] dark:bg-card">
                   <div className="h-auto w-full overflow-hidden rounded-lg">
-                    <Image
-                      src="/download.png"
-                      width={800}
-                      height={550}
-                      alt="blog-detail"
-                    />
+                    {blog?.image && (
+                      <Image
+                        src={blog?.image}
+                        width={800}
+                        height={550}
+                        alt="blog-detail"
+                      />
+                    )}
                   </div>
                   <div className="title mt-[40px]">
                     <h2 className="text-[26px] leading-[36px] text-btn dark:text-white md:text-[32px] md:leading-[42px]">
-                     {blog?.title}
+                      {blog?.title}
                     </h2>
                   </div>
                   <div className="flex gap-4">
                     <div className="mt-[16px] inline-block rounded-full bg-white px-[15px] py-[3px] text-[12px] text-text drop-shadow-md dark:bg-btn dark:text-theme">
-                  {blog?.published}
+                      {blog?.published}
                     </div>
                     <div className="mt-[16px] inline-block rounded-full bg-white px-[15px] py-[3px] text-[12px] text-text drop-shadow-md dark:bg-btn dark:text-theme">
                       0 Comments
@@ -37,7 +40,7 @@ export default async function page({ params }) {
                   </div>
                   <div className="rich-text mt-[30px] text-text dark:text-gray-100">
                     <p> {blog?.description} </p>
-                    <br/>
+                    <br />
                     <p> {blog?.conclusion} </p>
                   </div>
                   <div className="mt-[30px]">
@@ -46,7 +49,6 @@ export default async function page({ params }) {
                         <p className="text-[18px] font-semibold text-btn dark:text-white">
                           By Nayem
                         </p>
-                        
                       </div>
                       <div className="mt-[20px] md:mt-0">
                         <div className="flex justify-center gap-3">

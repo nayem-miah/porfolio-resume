@@ -6,13 +6,15 @@ export default function BlogList({ blog }) {
     <>
       <div className="group relative mb-[10px]">
         <div className="h-auto w-full overflow-hidden rounded-xl drop-shadow-lg">
-          <Image
-            alt=""
-            className="h-full w-full object-cover transition-all duration-500 group-hover:scale-[108%]"
-            src="/download.png"
-            width={400}
-            height={400}
-          />
+          {blog?.image && (
+            <Image
+              alt=""
+              className="h-full w-full object-cover transition-all duration-500 group-hover:scale-[108%]"
+              src={blog?.image}
+              width={400}
+              height={200}
+            />
+          )}
         </div>
         <div className="mt-[20px]">
           <div className="flex gap-4">
