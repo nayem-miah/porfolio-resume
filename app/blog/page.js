@@ -1,6 +1,8 @@
+import BlogList from "@/components/blogs/BlogList";
 import SidebarLeft from "@/components/common/SidebarLeft";
-import Image from "next/image";
-export default function page() {
+import { getBlogs } from "@/queries";
+export default async function page() {
+  const blogs = await getBlogs();
   return (
     <section>
       <div className="container mx-auto">
@@ -26,13 +28,13 @@ export default function page() {
                       <div className="col-span-12 md:col-span-6">
                         <div className="mt-[30px]">
                           <div
-                            className="flex max-w-md items-center rounded-lg bg-white drop-shadow-md dark:shadow-none"
+                            className="flex max-w-md items-center rounded-lg bg-white dark:bg-dark drop-shadow-md dark:shadow-none"
                             x-data="{ search: '' }"
                           >
                             <div className="w-full">
                               <input
                                 type="search"
-                                className="w-full rounded-full px-4 py-1 text-text focus:outline-none"
+                                className="w-full rounded-full px-4 py-1 text-text bg-white  focus:outline-none"
                                 placeholder="search"
                                 x-model="search"
                               />
@@ -64,190 +66,14 @@ export default function page() {
                     </div>
                     <div className="mt-[40px]">
                       <div className="grid grid-cols-12 gap-[20px] md:gap-[30px]">
-                        <div className="col-span-12 md:col-span-6">
-                          <div className="group relative mb-[10px]">
-                            <div className="h-auto w-full overflow-hidden rounded-xl drop-shadow-lg">
-                              <Image
-                                alt=""
-                                className="h-full w-full object-cover transition-all duration-500 group-hover:scale-[108%]"
-                                src="/download.png"
-                                width={400}
-                                height={400}
-                              />
-                            </div>
-                            <div className="mt-[20px]">
-                              <div className="flex gap-4">
-                                <div className="inline-block rounded-full bg-white px-[15px] py-[3px] text-[11px] text-text drop-shadow-md dark:bg-btn dark:text-theme">
-                                  03-08-2024
-                                </div>
-                                <div className="inline-block rounded-full bg-white px-[15px] py-[3px] text-[11px] text-text drop-shadow-md dark:bg-btn dark:text-theme">
-                                  By Admin
-                                </div>
-                              </div>
-                              <div className="mt-[15px]">
-                                <a href="/blog-details/66adbc21c67a0a6ac06d4b1d">
-                                  <h2 className="text-[28px] font-thin leading-[34px] tracking-wide text-btn transition-all duration-300 dark:text-white dark:hover:text-theme">
-                                    Comprehensive list of important Docker
-                                    commands with descriptions, tailored for a
-                                    MERN stack developer
-                                  </h2>
-                                </a>
-                              </div>
-                            </div>
+                        {blogs?.map((blog) => (
+                          <div
+                            key={blog?.id}
+                            className="col-span-12 md:col-span-6"
+                          >
+                            <BlogList blog={blog} />
                           </div>
-                        </div>
-                        <div className="col-span-12 md:col-span-6">
-                          <div className="group relative mb-[10px]">
-                            <div className="h-auto w-full overflow-hidden rounded-xl drop-shadow-lg">
-                              <Image
-                                alt=""
-                                className="h-full w-full object-cover transition-all duration-500 group-hover:scale-[108%]"
-                                src="/download.png"
-                                width={400}
-                                height={400}
-                              />
-                            </div>
-                            <div className="mt-[20px]">
-                              <div className="flex gap-4">
-                                <div className="inline-block rounded-full bg-white px-[15px] py-[3px] text-[11px] text-text drop-shadow-md dark:bg-btn dark:text-theme">
-                                  29-06-2024
-                                </div>
-                                <div className="inline-block rounded-full bg-white px-[15px] py-[3px] text-[11px] text-text drop-shadow-md dark:bg-btn dark:text-theme">
-                                  By Admin
-                                </div>
-                              </div>
-                              <div className="mt-[15px]">
-                                <a href="/blog-details/667f7e4065f4067130d7118a">
-                                  <h2 className="text-[28px] font-thin leading-[34px] tracking-wide text-btn transition-all duration-300 dark:text-white dark:hover:text-theme">
-                                    html এ svg file কি? || HTML এ SVG ফাইল
-                                    ব্যবহার করার নিয়ম
-                                  </h2>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-span-12 md:col-span-6">
-                          <div className="group relative mb-[10px]">
-                            <div className="h-auto w-full overflow-hidden rounded-xl drop-shadow-lg">
-                              <Image
-                                alt=""
-                                className="h-full w-full object-cover transition-all duration-500 group-hover:scale-[108%]"
-                                src="/download.png"
-                                width={400}
-                                height={400}
-                              />
-                            </div>
-                            <div className="mt-[20px]">
-                              <div className="flex gap-4">
-                                <div className="inline-block rounded-full bg-white px-[15px] py-[3px] text-[11px] text-text drop-shadow-md dark:bg-btn dark:text-theme">
-                                  30-08-2023
-                                </div>
-                                <div className="inline-block rounded-full bg-white px-[15px] py-[3px] text-[11px] text-text drop-shadow-md dark:bg-btn dark:text-theme">
-                                  By Admin
-                                </div>
-                              </div>
-                              <div className="mt-[15px]">
-                                <a href="/blog-details/64ef2a973dd0892621abac8b">
-                                  <h2 className="text-[28px] font-thin leading-[34px] tracking-wide text-btn transition-all duration-300 dark:text-white dark:hover:text-theme">
-                                    fake data এর মাধ্যমে ডাটা লোড করা || npm
-                                    package
-                                  </h2>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-span-12 md:col-span-6">
-                          <div className="group relative mb-[10px]">
-                            <div className="h-auto w-full overflow-hidden rounded-xl drop-shadow-lg">
-                              <Image
-                                alt=""
-                                className="h-full w-full object-cover transition-all duration-500 group-hover:scale-[108%]"
-                                src="/download.png"
-                                width={400}
-                                height={400}
-                              />
-                            </div>
-                            <div className="mt-[20px]">
-                              <div className="flex gap-4">
-                                <div className="inline-block rounded-full bg-white px-[15px] py-[3px] text-[11px] text-text drop-shadow-md dark:bg-btn dark:text-theme">
-                                  28-07-2023
-                                </div>
-                                <div className="inline-block rounded-full bg-white px-[15px] py-[3px] text-[11px] text-text drop-shadow-md dark:bg-btn dark:text-theme">
-                                  By Admin
-                                </div>
-                              </div>
-                              <div className="mt-[15px]">
-                                <a href="/blog-details/64c3c7f0b9cfb18b055211b0">
-                                  <h2 className="text-[28px] font-thin leading-[34px] tracking-wide text-btn transition-all duration-300 dark:text-white dark:hover:text-theme">
-                                    Javascript data types with unique examples
-                                  </h2>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-span-12 md:col-span-6">
-                          <div className="group relative mb-[10px]">
-                            <div className="h-auto w-full overflow-hidden rounded-xl drop-shadow-lg">
-                              <Image
-                                alt=""
-                                className="h-full w-full object-cover transition-all duration-500 group-hover:scale-[108%]"
-                                src="/download.png"
-                                width={400}
-                                height={400}
-                              />
-                            </div>
-                            <div className="mt-[20px]">
-                              <div className="flex gap-4">
-                                <div className="inline-block rounded-full bg-white px-[15px] py-[3px] text-[11px] text-text drop-shadow-md dark:bg-btn dark:text-theme">
-                                  28-07-2023
-                                </div>
-                                <div className="inline-block rounded-full bg-white px-[15px] py-[3px] text-[11px] text-text drop-shadow-md dark:bg-btn dark:text-theme">
-                                  By Admin
-                                </div>
-                              </div>
-                              <div className="mt-[15px]">
-                                <a href="/blog-details/64c3c73db9cfb18b055211a7">
-                                  <h2 className="text-[28px] font-thin leading-[34px] tracking-wide text-btn transition-all duration-300 dark:text-white dark:hover:text-theme">
-                                    Javascript switch statement with conditions
-                                  </h2>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-span-12 md:col-span-6">
-                          <div className="group relative mb-[10px]">
-                            <div className="h-auto w-full overflow-hidden rounded-xl drop-shadow-lg">
-                              <Image
-                                alt=""
-                                className="h-full w-full object-cover transition-all duration-500 group-hover:scale-[108%]"
-                                src="/download.png"
-                                width={400}
-                                height={400}
-                              />
-                            </div>
-                            <div className="mt-[20px]">
-                              <div className="flex gap-4">
-                                <div className="inline-block rounded-full bg-white px-[15px] py-[3px] text-[11px] text-text drop-shadow-md dark:bg-btn dark:text-theme">
-                                  28-07-2023
-                                </div>
-                                <div className="inline-block rounded-full bg-white px-[15px] py-[3px] text-[11px] text-text drop-shadow-md dark:bg-btn dark:text-theme">
-                                  By Admin
-                                </div>
-                              </div>
-                              <div className="mt-[15px]">
-                                <a href="/blog-details/64c3c5beb9cfb18b05521187">
-                                  <h2 className="text-[28px] font-thin leading-[34px] tracking-wide text-btn transition-all duration-300 dark:text-white dark:hover:text-theme">
-                                    What the difference href
-                                  </h2>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                        ))}
                       </div>
                     </div>
                   </div>

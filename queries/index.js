@@ -1,6 +1,7 @@
 "use server";
 
 import { dbConnect } from "@/databaseConncet/mongo";
+import { blogModel } from "@/models/blog-model";
 import { projectstModel } from "@/models/projects-model";
 import {
   replaceMongoIdInArray,
@@ -15,9 +16,18 @@ export async function getProjects() {
 
 export async function getProjectById(id) {
   await dbConnect();
-
   const project = await projectstModel.findById(id).lean();
-
   return replaceMongoIdInObject(project);
 }
 
+export async function getBlogs() {
+  await dbConnect();
+  const blogs = await blogModel.find().lean();
+  return replaceMongoIdInArray(blogs);
+}
+
+export async function getBlogById(id) {
+  await dbConnect();
+  const blog = await blogModel.findById(id).lean();
+  return replaceMongoIdInObject(blog);
+}
