@@ -1,5 +1,5 @@
 import SidebarLeft from "@/components/common/SidebarLeft";
-import { getBlogById } from "@/queries";
+import { getBlogById, getBlogs } from "@/queries";
 import Image from "next/image";
 
 export default async function page({ params }) {
@@ -177,12 +177,12 @@ export default async function page({ params }) {
 }
 
 
-// export async function generateStaticParams() {
-//   const blogs = await getBlogs();
+export async function generateStaticParams() {
+  const blogs = await getBlogs();
 
-//   return blogs.map((blog) => ({
-//     id: blog.id.toString(),
-//     revalidate: 10, // Revalidate every 10 seconds
-//   }));
-// }
+  return blogs.map((blog) => ({
+    id: blog.id.toString(),
+
+  }));
+}
 

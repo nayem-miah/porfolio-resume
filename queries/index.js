@@ -2,6 +2,7 @@
 
 import { dbConnect } from "@/databaseConncet/mongo";
 import { blogModel } from "@/models/blog-model";
+import { contactModel } from "@/models/contact-model";
 import { projectstModel } from "@/models/projects-model";
 import {
   replaceMongoIdInArray,
@@ -30,4 +31,13 @@ export async function getBlogById(id) {
   await dbConnect();
   const blog = await blogModel.findById(id).lean();
   return replaceMongoIdInObject(blog);
+}
+
+
+
+
+export async function getContact() {
+  await dbConnect();
+  const contact = await contactModel.find().lean();
+  return replaceMongoIdInArray(contact);
 }
