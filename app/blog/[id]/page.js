@@ -179,11 +179,16 @@ export default async function page({ params }) {
 
 
 export async function generateStaticParams() {
-  const blogs = await fetch('https://nayemjs.vercel.app/api/getBlogs');
+  const res = await fetch('https://nayemjs.vercel.app/api/getBlogs');
+  
+  if (!res.ok) {
+    throw new Error('Failed to fetch blogs');
+  }
+  
+  const blogs = await res.json();
 
   return blogs.map((blog) => ({
-    id: blog.id.toString(),
-
+    id: blog._id.toString(), // Assuming `_id` exists and is a valid identifier
   }));
 }
 
