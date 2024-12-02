@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default async function page() {
-  const data = fetch("https://nayemjs.vercel.app/api/getProject", {
+  const data = await fetch("https://nayemjs.vercel.app/api/getProject", {
     next: { revalidate: 120 },
   });
 
