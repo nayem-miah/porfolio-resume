@@ -1,5 +1,5 @@
 import SidebarLeft from "@/components/common/SidebarLeft";
-import { getBlogById, getBlogs } from "@/queries";
+import { getBlogById } from "@/queries";
 import Image from "next/image";
 
 export default async function page({ params }) {
