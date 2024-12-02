@@ -6,6 +6,12 @@ import Link from "next/link";
 export default async function page() {
   const projects = await getProjects();
 
+  // const data = fetch("https://nayemjs.vercel.app/api/getProject", {
+  //   next: { revalidate: 120 },
+  // });
+
+  // const projects = await data.json()
+
   return (
     <section>
       <div className="container mx-auto">
