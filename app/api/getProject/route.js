@@ -1,11 +1,12 @@
 import { dbConnect } from "@/databaseConncet/mongo";
-import { getProjects } from "@/queries";
 const { NextResponse } = require("next/server");
+import { projectstModel } from "@/models/projects-model";
+
 
 export const GET = async () => {
   await dbConnect();
   try {
-    const projects = await getProjects.find().lean();
+    const projects = await projectstModel.find();
 
     return new NextResponse(JSON.stringify(projects), {
       headers: { "Content-Type": "application/json" },
@@ -16,3 +17,4 @@ export const GET = async () => {
     });
   }
 };
+
