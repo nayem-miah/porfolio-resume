@@ -1,5 +1,6 @@
 import SidebarLeft from "@/components/common/SidebarLeft";
-import { getBlogById, getBlogs } from "@/queries";
+import { getBlogById } from "@/queries";
+import formatDateTime from "@/utils/dateTimeConverter";
 import Image from "next/image";
 
 export default async function page({ params }) {
@@ -32,7 +33,7 @@ export default async function page({ params }) {
                   </div>
                   <div className="flex gap-4">
                     <div className="mt-[16px] inline-block rounded-full bg-white px-[15px] py-[3px] text-[12px] text-text drop-shadow-md dark:bg-btn dark:text-theme">
-                      {blog?.published}
+                      {formatDateTime(blog?.published)}
                     </div>
                     <div className="mt-[16px] inline-block rounded-full bg-white px-[15px] py-[3px] text-[12px] text-text drop-shadow-md dark:bg-btn dark:text-theme">
                       0 Comments
@@ -178,7 +179,7 @@ export default async function page({ params }) {
 
 
 export async function generateStaticParams() {
-  const blogs = await getBlogs();
+  const blogs = await fetch('https://nayemjs.vercel.app/api/getBlogs');
 
   return blogs.map((blog) => ({
     id: blog.id.toString(),
