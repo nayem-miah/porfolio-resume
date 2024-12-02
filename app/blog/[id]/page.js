@@ -185,6 +185,7 @@ export async function generateStaticParams() {
     throw new Error('Failed to fetch blogs');
   }
   
+  
   const blogs = await res.json();
 
   return blogs.map((blog) => ({

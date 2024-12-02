@@ -1,5 +1,5 @@
 import SidebarLeft from "@/components/common/SidebarLeft";
-import { getProjectById, getProjects } from "@/queries";
+import { getProjectById } from "@/queries";
 import formatDateTime from "@/utils/dateTimeConverter";
 import Image from "next/image";
 import Link from "next/link";
@@ -130,9 +130,12 @@ export default async function page({ params }) {
 }
 
 export async function generateStaticParams() {
-  const prjects = await getProjects();
-
-  return prjects.map((project) => ({
-    id: project.id.toString(),
+  const res = await fetch("https://nayemjs.vercel.app/api/getProject");
+  if (!res.ok) {
+    throw new Error("Failed to fetch projects");
+  }
+  const projects = await res.json();
+  return projects.map((project) => ({
+    id: project._id.toString(),
   }));
 }
