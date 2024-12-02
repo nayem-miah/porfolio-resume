@@ -26,7 +26,7 @@ export default function BlogList({ blog }) {
             </div>
           </div>
           <div className="mt-[15px]">
-            <Link href={`/blog/${blog?.id}`}>
+            <Link href={`/blog/${blog?._id}`}>
               <h2 className="text-[28px] font-thin leading-[34px] tracking-wide text-btn transition-all duration-300 dark:text-white dark:hover:text-theme">
                 {blog?.title}
               </h2>

@@ -10,12 +10,9 @@ export const GET = async () => {
       headers: { "Content-Type": "application/json" },
     });
   } catch (e) {
-    return new NextResponse(
-      JSON.stringify({ error: e.message }),
-      {
-        status: 500,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    return new NextResponse(JSON.stringify({ error: e.message }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 };

@@ -6,8 +6,6 @@ import Link from "next/link";
 export default async function page() {
   const projects = await getProjects();
 
-  
-
   return (
     <section>
       <div className="container mx-auto">
@@ -41,8 +39,8 @@ export default async function page() {
                                   <Image
                                     className="transition-all duration-500 group-hover:scale-[110%]"
                                     src={project?.image}
-                                    width={500}
-                                    height={500}
+                                    width={400}
+                                    height={300}
                                     alt={`${project?.title} image`}
                                   />
                                 )}

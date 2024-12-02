@@ -1,10 +1,11 @@
-
-
 import BlogList from "@/components/blogs/BlogList";
 import SidebarLeft from "@/components/common/SidebarLeft";
-import { getBlogs } from "@/queries";
+
 export default async function page() {
-  const blogs = await getBlogs();
+  const data = await fetch("https://nayemjs.vercel.app/api/getBlogs", {
+    next: { revalidate: 120 },
+  });
+  const blogs = await data.json();
 
   return (
     <section>
@@ -71,7 +72,7 @@ export default async function page() {
                       <div className="grid grid-cols-12 gap-[20px] md:gap-[30px]">
                         {blogs?.map((blog) => (
                           <div
-                            key={blog?.id}
+                            key={blog?._id}
                             className="col-span-12 md:col-span-6"
                           >
                             <BlogList blog={blog} />
