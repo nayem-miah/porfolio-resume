@@ -1,11 +1,15 @@
 import SidebarLeft from "@/components/common/SidebarLeft";
-import { getProjects } from "@/queries";
+
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function page() {
-  const projects = await getProjects();
+  const data = await fetch("https://nayemjs.vercel.app/api/getBlogs", {
+    next: { revalidate: 120 },
+  });
+  const projects = await data.json();
 
+  
   return (
     <section>
       <div className="container mx-auto">
