@@ -1,3 +1,4 @@
+import formatDateTime from "@/utils/dateTimeConverter";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -19,7 +20,7 @@ export default function BlogList({ blog }) {
         <div className="mt-[20px]">
           <div className="flex gap-4">
             <div className="inline-block rounded-full bg-white px-[15px] py-[3px] text-[11px] text-text drop-shadow-md dark:bg-btn dark:text-theme">
-              {blog?.published}
+              {formatDateTime(blog?.pubshied)}
             </div>
             <div className="inline-block rounded-full bg-white px-[15px] py-[3px] text-[11px] text-text drop-shadow-md dark:bg-btn dark:text-theme">
               By Admin
