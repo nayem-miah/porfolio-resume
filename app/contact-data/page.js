@@ -3,7 +3,7 @@ export default async function page() {
 
   const data = await fetch('https://nayemjs.vercel.app/api/getContact', {
     // Cache behavior: Use 'no-store' for SSR without caching
-    cache: "no-store",
+    next: { revalidate: 120 }
   });
   const contacts = await data.json();
 
