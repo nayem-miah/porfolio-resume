@@ -8,7 +8,6 @@ export default function ContactForm() {
 
   const handleSubmit = async (formData) => {
     const data = Object.fromEntries(formData);
-
     const { name, email, websiteLink, message } = data;
 
     const res = await fetch("/api/contact", {

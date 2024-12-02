@@ -1,8 +1,11 @@
+
+
 import BlogList from "@/components/blogs/BlogList";
 import SidebarLeft from "@/components/common/SidebarLeft";
 import { getBlogs } from "@/queries";
 export default async function page() {
   const blogs = await getBlogs();
+
   return (
     <section>
       <div className="container mx-auto">

@@ -1,8 +1,12 @@
-import { getContact } from "@/queries";
-
-
 export default async function page() {
-    const contacts = await getContact()
+  // const contacts = await getContact()
+  const apiUrl = 'http://localhost:3000/api/getContact' || 'https://nayemjs.vercel.app';
+  const data = await fetch(apiUrl, {
+    // Cache behavior: Use 'no-store' for SSR without caching
+    cache: "no-store",
+  });
+  const contacts = await data.json();
+
   return (
     <section>
       <div className="container mx-auto">
