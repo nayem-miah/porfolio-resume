@@ -1,16 +1,14 @@
 import SidebarLeft from "@/components/common/SidebarLeft";
-import { getProjects } from "@/queries";
+
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function page() {
-  const projects = await getProjects();
+  const data = fetch("https://nayemjs.vercel.app/api/getProject", {
+    next: { revalidate: 120 },
+  });
 
-  // const data = fetch("https://nayemjs.vercel.app/api/getProject", {
-  //   next: { revalidate: 120 },
-  // });
-
-  // const projects = await data.json()
+  const projects = await data.json();
 
   return (
     <section>
