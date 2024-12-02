@@ -182,5 +182,7 @@ export async function generateStaticParams() {
 
   return blogs.map((blog) => ({
     id: blog.id.toString(),
+    revalidate: 10, // Revalidate every 10 seconds
   }));
 }
+
