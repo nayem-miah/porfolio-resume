@@ -5,8 +5,16 @@ import Image from "next/image";
 
 export default async function page({ params }) {
   const { id } = await params;
-  const blog = await getBlogById(id);
-
+  const blog= await getBlogById(id)
+  // const blog = await fetch(`http://localhost:3000/api/getBlogById?id=${id}`, {
+  //   next: { revalidate: 2 },
+  // });
+  
+  // if (!blog.ok) {
+  //   const errorText = await blog.text(); // Read response as text
+  //   console.error("Error response:", errorText);
+  //   throw new Error(`API error: ${blog.status}`);
+  // }
   return (
     <section>
       <div className="container mx-auto">
