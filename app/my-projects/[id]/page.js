@@ -3,6 +3,34 @@ import formatDateTime from "@/utils/dateTimeConverter";
 import Image from "next/image";
 import Link from "next/link";
 
+export async function generateMetadata(props) {
+  const params = await props.params;
+
+  const { id } = params;
+
+  // const product = await getProductById(id);
+  const data = await fetch(
+    `https://nayemjs.vercel.app/api/get-project-by-id?id=${id}`,
+    {
+      next: { revalidate: 120 },
+    }
+  );
+  const project = await data.json();
+
+  return {
+    title: project?.title,
+    description: project?.description,
+    openGraph: {
+      images: [
+        {
+          url: project?.image,
+          alt: "Detail About The Project",
+        },
+      ],
+    },
+  };
+}
+
 export default async function page({ params }) {
   const { id } = await params;
   const data = await fetch(
@@ -11,7 +39,6 @@ export default async function page({ params }) {
       next: { revalidate: 120 },
     }
   );
-
   const project = await data.json();
 
   return (
