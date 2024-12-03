@@ -3,11 +3,12 @@ import formatDateTime from "@/utils/dateTimeConverter";
 import Image from "next/image";
 
 export default async function page({ params }) {
-  const { id } = await params;
 
-  const blog = await fetch(`https://nayemjs.vercel.app/api/get-blog-by-id?id=${id}`, {
+  const { id } = await params;
+  const data = await fetch(`https://nayemjs.vercel.app/api/get-blog-by-id?id=${id}`, {
     next: { revalidate: 2 },
   });
+  const blog = await data?.json()
 
   if (!blog.ok) {
     const errorText = await blog.text(); // Read response as text
