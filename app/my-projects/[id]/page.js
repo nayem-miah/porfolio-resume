@@ -1,12 +1,18 @@
 import SidebarLeft from "@/components/common/SidebarLeft";
-import { getProjectById } from "@/queries";
 import formatDateTime from "@/utils/dateTimeConverter";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function page({ params }) {
   const { id } = await params;
-  const project = await getProjectById(id);
+  const data = await fetch(
+    `https://nayemjs.vercel.app/api/get-project-by-id?id=${id}`,
+    {
+      next: { revalidate: 120 },
+    }
+  );
+
+  const project = await data.json();
 
   return (
     <section>
