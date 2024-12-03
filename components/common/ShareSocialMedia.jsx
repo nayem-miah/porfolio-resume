@@ -8,11 +8,12 @@ import {
   LinkedinShareButton,
   LinkedinIcon,
 } from "next-share";
-import getURL from "@/utils/getUrl";
 
 export default function ShareSocialMedia() {
   const pathname = usePathname();
-  const currentURL = getURL(pathname);
+  const currentURL = `https://nayemjs.vercel.app${pathname}`;
+
+  console.log(currentURL);
   return (
     <>
       <FacebookShareButton url={currentURL}>

@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 export default function TypingAnimate() {
   const texts = ["Need help?", "Contact", "Hire Me!"]; // Array of texts
@@ -54,6 +53,8 @@ export default function TypingAnimate() {
     return () => clearTimeout(timeout); // Cleanup timeout
   }, [displayedText, isDeleting, currentTextIndex]);
 
+
+ 
   return (
     <>
       <span>
