@@ -5,7 +5,7 @@ export default async function page() {
   const data = await fetch("https://nayemjs.vercel.app/api/getBlogs", {
     next: { revalidate: 120 },
   });
-  const blogs = await data?.json();
+  const blogs = await data.json();
 
   return (
     <section>
