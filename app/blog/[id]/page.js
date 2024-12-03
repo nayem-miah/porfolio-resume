@@ -6,7 +6,7 @@ export default async function page({ params }) {
 
   const { id } = await params;
   const data = await fetch(`https://nayemjs.vercel.app/api/get-blog-by-id?id=${id}`, {
-    next: { revalidate: 60 },
+    next: { revalidate: 120 },
   });
   const blog = await data.json()
 
@@ -182,13 +182,10 @@ export default async function page({ params }) {
 
 export async function generateStaticParams() {
   const res = await fetch("https://nayemjs.vercel.app/api/getBlogs");
-
   if (!res.ok) {
     throw new Error("Failed to fetch blogs");
   }
-
   const blogs = await res.json();
-
   return blogs.map((blog) => ({
     id: blog._id.toString(), // Assuming `_id` exists and is a valid identifier
   }));
