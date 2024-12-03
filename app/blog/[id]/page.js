@@ -5,11 +5,12 @@ import Image from "next/image";
 
 export default async function page({ params }) {
   const { id } = await params;
-  const blog= await getBlogById(id)
-  // const blog = await fetch(`http://localhost:3000/api/getBlogById?id=${id}`, {
+  const blog = await getBlogById(id);
+
+  // const blog = await fetch(`https://nayemjs.vercel.app/api/getBlogById?id=${id}`, {
   //   next: { revalidate: 2 },
   // });
-  
+
   // if (!blog.ok) {
   //   const errorText = await blog.text(); // Read response as text
   //   console.error("Error response:", errorText);
@@ -185,19 +186,16 @@ export default async function page({ params }) {
   );
 }
 
-
 export async function generateStaticParams() {
-  const res = await fetch('https://nayemjs.vercel.app/api/getBlogs');
-  
+  const res = await fetch("https://nayemjs.vercel.app/api/getBlogs");
+
   if (!res.ok) {
-    throw new Error('Failed to fetch blogs');
+    throw new Error("Failed to fetch blogs");
   }
-  
-  
+
   const blogs = await res.json();
 
   return blogs.map((blog) => ({
     id: blog._id.toString(), // Assuming `_id` exists and is a valid identifier
   }));
 }
-
