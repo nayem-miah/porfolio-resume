@@ -1,21 +1,19 @@
 import SidebarLeft from "@/components/common/SidebarLeft";
-import { getBlogById } from "@/queries";
 import formatDateTime from "@/utils/dateTimeConverter";
 import Image from "next/image";
 
 export default async function page({ params }) {
   const { id } = await params;
-  const blog = await getBlogById(id);
 
-  // const blog = await fetch(`https://nayemjs.vercel.app/api/getBlogById?id=${id}`, {
-  //   next: { revalidate: 2 },
-  // });
+  const blog = await fetch(`https://nayemjs.vercel.app/api/get-blog-by-id?id=${id}`, {
+    next: { revalidate: 2 },
+  });
 
-  // if (!blog.ok) {
-  //   const errorText = await blog.text(); // Read response as text
-  //   console.error("Error response:", errorText);
-  //   throw new Error(`API error: ${blog.status}`);
-  // }
+  if (!blog.ok) {
+    const errorText = await blog.text(); // Read response as text
+    console.error("Error response:", errorText);
+    throw new Error(`API error: ${blog.status}`);
+  }
   return (
     <section>
       <div className="container mx-auto">
