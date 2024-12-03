@@ -1,3 +1,4 @@
+import ShareSocialMedia from "@/components/common/ShareSocialMedia";
 import SidebarLeft from "@/components/common/SidebarLeft";
 import formatDateTime from "@/utils/dateTimeConverter";
 import Image from "next/image";
@@ -82,7 +83,7 @@ export default async function page({ params }) {
                       </div>
                       <div className="mt-[20px] md:mt-0">
                         <div className="flex justify-center gap-3">
-                          <button>share the post</button>
+                         <ShareSocialMedia/>
                         </div>
                       </div>
                     </div>
