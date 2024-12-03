@@ -36,7 +36,7 @@ export default async function page({ params }) {
                   </div>
                   <div className="flex gap-4">
                     <div className="mt-[16px] inline-block rounded-full bg-white px-[15px] py-[3px] text-[12px] text-text drop-shadow-md dark:bg-btn dark:text-theme">
-                      {formatDateTime(blog?.published)}
+                      {formatDateTime(blog?.pubshied)}
                     </div>
                     <div className="mt-[16px] inline-block rounded-full bg-white px-[15px] py-[3px] text-[12px] text-text drop-shadow-md dark:bg-btn dark:text-theme">
                       0 Comments
