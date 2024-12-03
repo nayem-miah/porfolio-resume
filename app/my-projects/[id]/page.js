@@ -12,7 +12,7 @@ export async function generateMetadata(props) {
   const data = await fetch(
     `https://nayemjs.vercel.app/api/get-project-by-id?id=${id}`,
     {
-      next: { revalidate: 120 },
+      next: { revalidate: 10 },
     }
   );
   const project = await data.json();

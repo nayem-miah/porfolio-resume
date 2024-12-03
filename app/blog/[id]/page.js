@@ -2,6 +2,32 @@ import SidebarLeft from "@/components/common/SidebarLeft";
 import formatDateTime from "@/utils/dateTimeConverter";
 import Image from "next/image";
 
+export async function generateMetadata(props) {
+  const params = await props.params;
+
+  const { id } = params;
+
+  // const product = await getProductById(id);
+  const data = await fetch(`https://nayemjs.vercel.app/api/get-blog-by-id?id=${id}`, {
+    next: { revalidate: 10 },
+  });
+  const blog = await data.json()
+
+  return {
+    title: blog?.title,
+    description: blog?.description,
+    openGraph: {
+      images: [
+        {
+          url: blog?.image,
+          alt: "Detail About The Project",
+        },
+      ],
+    },
+  };
+}
+
+
 export default async function page({ params }) {
 
   const { id } = await params;
