@@ -10,11 +10,6 @@ export default async function page({ params }) {
   });
   const blog = await data.json()
 
-  if (!blog.ok) {
-    const errorText = await blog.text(); // Read response as text
-    console.error("Error response:", errorText);
-    throw new Error(`API error: ${blog.status}`);
-  }
   return (
     <section>
       <div className="container mx-auto">
