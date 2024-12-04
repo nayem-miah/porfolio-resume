@@ -78,6 +78,7 @@ export default function CreateBlog() {
     }
   };
 
+  
 // useEffect(()=>{
 //         const data = fetch('')
 //   }, [isUpdate])
