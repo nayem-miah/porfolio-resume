@@ -1,7 +1,6 @@
 import BlogList from "./BlogList";
 export default async function Content() {
   const data = await fetch("https://nayemjs.vercel.app/api/getBlogs", {
-    // next: { revalidate: 120 },
     cache: "no-store",
   });
   const blogs = await data.json();
