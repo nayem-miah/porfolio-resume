@@ -13,9 +13,9 @@ export default function ShareSocialMedia() {
   const pathname = usePathname();
   const currentURL = `https://nayemjs.vercel.app${pathname}`;
 
-  console.log(currentURL);
   return (
     <>
+      <p className="text-theme">Share on social media</p>
       <FacebookShareButton url={currentURL}>
         <FacebookIcon size={32} round />
       </FacebookShareButton>
