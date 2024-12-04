@@ -68,7 +68,9 @@ export default async function page({ params }) {
                             width={500}
                             height={500}
                             className="h-full w-full rounded-xl object-cover"
-                            alt="p"
+                            alt={project?.title}
+                            priority={true} // Ensures critical images are preloaded
+                            loading="eager" // Ensures above-the-fold images load eagerly
                           />
                         )}
                       </div>

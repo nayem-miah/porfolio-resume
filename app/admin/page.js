@@ -43,20 +43,21 @@ export default function AdminPanel() {
             </li>
 
             <li
-              onClick={() => handleTabClick("users")}
-              className={`cursor-pointer rounded-lg px-4 py-2 hover:bg-white hover:text-btn ${
-                activeTab === "users" ? "bg-white text-btn" : ""
-              }`}
-            >
-              Users
-            </li>
-            <li
               onClick={() => handleTabClick("contact")}
               className={`cursor-pointer rounded-lg px-4 py-2 hover:bg-white hover:text-btn ${
                 activeTab === "contact" ? "bg-white text-btn" : ""
               }`}
             >
               Contact
+            </li>
+
+            <li
+              onClick={() => handleTabClick("users")}
+              className={`cursor-pointer rounded-lg px-4 py-2 hover:bg-white hover:text-btn ${
+                activeTab === "users" ? "bg-white text-btn" : ""
+              }`}
+            >
+              Users
             </li>
 
             <li
@@ -112,6 +113,17 @@ export default function AdminPanel() {
               </div>
             </div>
           )}
+
+          {activeTab === "contact" && (
+            <div className="col-span-12">
+              <h3 className="text-lg font-medium text-btn dark:text-white">
+                Contact Messages
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                All contact messages here
+              </p>
+            </div>
+          )}
           {activeTab === "users" && (
             <div className="col-span-12">
               <h3 className="text-lg font-medium text-btn dark:text-white">
@@ -146,17 +158,6 @@ export default function AdminPanel() {
               </div>
             </div>
           )}
-          {activeTab === "contact" && (
-            <div className="col-span-12">
-              <h3 className="text-lg font-medium text-btn dark:text-white">
-                Contact Messages
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                All contact messages here
-              </p>
-            </div>
-          )}
-
           {activeTab === "blogs" && (
             <div className="col-span-12">
               <h3 className="text-lg font-medium text-btn dark:text-white">
@@ -177,12 +178,14 @@ export default function AdminPanel() {
                   <tbody>
                     {blogs?.map((blog) => (
                       <tr key={blog?._id}>
-                        <td className="border px-4 py-2">{blog?.title}</td>
+                        <td className="border px-4 py-2 hover:text-theme">
+                          {blog?.title}
+                        </td>
                         <td className="border px-4 py-2">
                           {" "}
                           {formatDateTime(blog?.pubshied)}
                         </td>
-                        <td className="border px-4 py-2">
+                        <td className=" hover:text-red-600  border px-4 py-2">
                           <Link href={`/admin/update-blog?id=${blog?._id}`}>
                             Edit
                           </Link>
