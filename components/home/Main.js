@@ -82,7 +82,7 @@ export default function Main() {
                               <p className="text-[14px] text-text dark:text-white">
                                 Specialization
                               </p>
-                              <Link className="hover:text-theme" href="/service">
+                              <Link className="hover:text-theme" href="">
                                 <h3 className="mt-[5px] inline-block text-[26px] tracking-[6px] text-btn dark:text-white">
                                   Services Offer
                                 </h3>
@@ -183,7 +183,7 @@ export default function Main() {
                               <p className="text-[14px] text-white">
                                 What Client Says?
                               </p>
-                              <Link className="hover:text-theme" href="/testimonial">
+                              <Link className="hover:text-theme" href="">
                                 <h3 className="mt-[5px] text-[26px] tracking-[6px] text-white">
                                   Testimonials
                                 </h3>
