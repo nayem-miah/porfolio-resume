@@ -16,6 +16,8 @@ export default function CreateBlog() {
     }
   };
 
+
+
   const handleImageUpload = async (imageFile) => {
     if (!imageFile) return null;
     const formData = new FormData();
@@ -76,6 +78,10 @@ export default function CreateBlog() {
     }
   };
 
+// useEffect(()=>{
+//         const data = fetch('')
+//   }, [isUpdate])
+  
   return (
     <>
       <form action={handleFormSubmit} className="mt-6">
