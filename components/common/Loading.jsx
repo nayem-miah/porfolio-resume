@@ -1,7 +1,7 @@
-export default function Loading() {
+export default function Loading({isProject}) {
   return (
     <>
-      <div className=" mt-10 grid sm:grid-cols-2 xl:grid-cols-2 gap-7 animate-pulse">
+      <div className={` ${isProject ? 'mt-20' : 'mt-10'} grid sm:grid-cols-2 xl:grid-cols-2 gap-7 animate-pulse`}>
         <div class="group relative mb-2 animate-pulse">
           <div class="h-48 w-full overflow-hidden rounded-xl">
             <div class="h-full w-full bg-gray-200"></div>
