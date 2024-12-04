@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export const POST = async (request) => {
   const {
-    _id,
+    id,
     title,
     image,
     overviewImage,
@@ -11,10 +11,9 @@ export const POST = async (request) => {
     conclusion,
     category,
   } = await request.json();
-
   try {
     await blogModel.findByIdAndUpdate(
-      _id,
+      id,
       {
         title,
         image,

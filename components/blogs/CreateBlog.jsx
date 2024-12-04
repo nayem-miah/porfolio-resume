@@ -1,13 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CreatingButton from "./CreatingButton";
 
-export default function CreateBlog() {
+export default function CreateBlog({ isUpdate, id }) {
   const [image, setImage] = useState(null);
   const [overviewImage, setOverviewImage] = useState(null);
   const [message, setMessage] = useState("");
+  const [blog, setBlog] = useState({
+    title: "",
+    category: "",
+    description: "",
+    conclusion: "",
+  });
 
   const handleImageChange = (e, setImageCallback) => {
     const file = e.target.files[0];
@@ -15,8 +21,6 @@ export default function CreateBlog() {
       setImageCallback(file);
     }
   };
-
-
 
   const handleImageUpload = async (imageFile) => {
     if (!imageFile) return null;
@@ -78,40 +82,124 @@ export default function CreateBlog() {
     }
   };
 
-  
-// useEffect(()=>{
-//         const data = fetch('')
-//   }, [isUpdate])
-  
+  const handleUpdateForm = async (formData) => {
+    const data = Object.fromEntries(formData);
+    const { title, category, description, conclusion } = data;
+
+    try {
+      const imageUrl = image ? await handleImageUpload(image) : blog?.image;
+      const overviewImageUrl = overviewImage
+        ? await handleImageUpload(overviewImage)
+        : blog?.overviewImage;
+
+      const response = await fetch("/api/update-blog", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id,
+          title,
+          category,
+          description,
+          conclusion,
+          image: imageUrl,
+          overviewImage: overviewImageUrl,
+        }),
+      });
+
+      if (response.status === 201) {
+        setMessage("Blog was updated successfully!");
+        setImage(null);
+        setOverviewImage(null);
+        setBlog({
+          title: "",
+          category: "",
+          description: "",
+          conclusion: "",
+        })
+      } else {
+        setMessage("Failed to update the blog. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setMessage("An error occurred. Please try again.");
+    }
+  };
+
+  useEffect(() => {
+    const fetchFun = async () => {
+      try {
+        const response = await fetch(`/api/get-blog-by-id?id=${id}`, {
+          cache: "no-store",
+          headers: {
+            Accept: "application/json",
+          },
+        });
+        const data = await response.json();
+
+        setBlog(data); // Set the resolved data to state
+      } catch (error) {
+        console.error("Error fetching blog data:", error);
+      }
+    };
+
+    fetchFun();
+  }, [isUpdate, id]);
+
   return (
     <>
-      <form action={handleFormSubmit} className="mt-6">
+      <form
+        action={isUpdate ? handleUpdateForm : handleFormSubmit}
+        className="mt-6"
+      >
         <div className="grid w-full gap-[20px]">
           <input
             required
             className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
             type="text"
             name="title"
+            value={blog?.title}
             placeholder="Blog Title"
+            onChange={(e) => setBlog({ ...blog, title: e.target.value })}
           />
           <input
             className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
             type="text"
             name="category"
+            value={blog?.category}
             placeholder="Category"
+            onChange={(e) =>
+              setBlog({
+                ...blog,
+                category: e.target.value,
+              })
+            }
           />
           <textarea
             className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
             name="description"
             rows="6"
             placeholder="Blog Description"
+            value={blog?.description}
             required
+            onChange={(e) =>
+              setBlog({
+                ...blog,
+                description: e.target.value,
+              })
+            }
           ></textarea>
           <textarea
             className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
             name="conclusion"
             rows="4"
+            value={blog?.conclusion}
             placeholder="Blog Conclusion (optional)"
+            onChange={(e) =>
+              setBlog({
+                ...blog,
+                conclusion: e.target.value,
+              })
+            }
           ></textarea>
 
           {/* File input and preview for image */}

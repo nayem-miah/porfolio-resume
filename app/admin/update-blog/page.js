@@ -1,6 +1,8 @@
 import CreateBlog from "@/components/blogs/CreateBlog";
 
-export default function Page() {
+export default async function Page(props) {
+  const params = await props.searchParams;
+  const { id } = params;
 
   return (
     <section className="flex min-h-screen items-center justify-center">
@@ -13,7 +15,7 @@ export default function Page() {
             <p className="text-[14px] text-text text-center">
               Fill out the form below to update your blog.
             </p>
-            <CreateBlog isUpdate={true}/>
+            <CreateBlog isUpdate={true} id={id} />
           </div>
         </div>
       </div>
