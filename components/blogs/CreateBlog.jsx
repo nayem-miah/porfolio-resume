@@ -71,8 +71,7 @@ export default function CreateBlog({ isUpdate, id }) {
 
       if (response.status === 201) {
         setMessage("Blog was created successfully!");
-        setImage(null);
-        setOverviewImage(null);
+        resetForm();
       } else {
         setMessage("Failed to create the blog. Please try again.");
       }
@@ -108,14 +107,7 @@ export default function CreateBlog({ isUpdate, id }) {
 
       if (response.status === 201) {
         setMessage("Blog was updated successfully!");
-        setImage(null);
-        setOverviewImage(null);
-        setBlog({
-          title: "",
-          category: "",
-          description: "",
-          conclusion: "",
-        })
+        resetForm();
       } else {
         setMessage("Failed to update the blog. Please try again.");
       }
@@ -125,29 +117,54 @@ export default function CreateBlog({ isUpdate, id }) {
     }
   };
 
+  const resetForm = () => {
+    setImage(null);
+    setOverviewImage(null);
+    setBlog({
+      title: "",
+      category: "",
+      description: "",
+      conclusion: "",
+    });
+  };
+
   useEffect(() => {
-    const fetchFun = async () => {
-      try {
-        const response = await fetch(`/api/get-blog-by-id?id=${id}`, {
-          cache: "no-store",
-          headers: {
-            Accept: "application/json",
-          },
-        });
-        const data = await response.json();
+    if (isUpdate && id) {
+      const fetchFun = async () => {
+        try {
+          const response = await fetch(`/api/get-blog-by-id?id=${id}`, {
+            cache: "no-store",
+            headers: {
+              Accept: "application/json",
+            },
+          });
+          if (!response.ok) throw new Error("Failed to fetch blog data");
+          const data = await response.json();
+          setBlog(data);
+        } catch (error) {
+          console.error("Error fetching blog data:", error);
+          setMessage("Error fetching blog data. Please try again later.");
+        }
+      };
 
-        setBlog(data); // Set the resolved data to state
-      } catch (error) {
-        console.error("Error fetching blog data:", error);
-      }
-    };
-
-    fetchFun();
+      fetchFun();
+    }
   }, [isUpdate, id]);
+
+  useEffect(() => {
+    return () => {
+      if (image) URL.revokeObjectURL(image);
+      if (overviewImage) URL.revokeObjectURL(overviewImage);
+    };
+  }, [image, overviewImage]);
 
   return (
     <>
       <form
+        // onSubmit={(e) => {
+        //   e.preventDefault();
+        //   isUpdate ? handleUpdateForm(new FormData(e.target)) : handleFormSubmit(new FormData(e.target));
+        // }}
         action={isUpdate ? handleUpdateForm : handleFormSubmit}
         className="mt-6"
       >
@@ -157,7 +174,7 @@ export default function CreateBlog({ isUpdate, id }) {
             className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
             type="text"
             name="title"
-            value={blog?.title}
+            value={blog?.title || ""}
             placeholder="Blog Title"
             onChange={(e) => setBlog({ ...blog, title: e.target.value })}
           />
@@ -165,7 +182,7 @@ export default function CreateBlog({ isUpdate, id }) {
             className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
             type="text"
             name="category"
-            value={blog?.category}
+            value={blog?.category || ""}
             placeholder="Category"
             onChange={(e) =>
               setBlog({
@@ -179,7 +196,7 @@ export default function CreateBlog({ isUpdate, id }) {
             name="description"
             rows="6"
             placeholder="Blog Description"
-            value={blog?.description}
+            value={blog?.description || ""}
             required
             onChange={(e) =>
               setBlog({
@@ -192,7 +209,7 @@ export default function CreateBlog({ isUpdate, id }) {
             className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
             name="conclusion"
             rows="4"
-            value={blog?.conclusion}
+            value={blog?.conclusion || ""}
             placeholder="Blog Conclusion (optional)"
             onChange={(e) =>
               setBlog({

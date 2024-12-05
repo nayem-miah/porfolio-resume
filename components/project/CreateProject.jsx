@@ -1,13 +1,21 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CreatingButton from "../blogs/CreatingButton";
 
-export default function CreateProject() {
+export default function CreateProject({ isUpdate, id }) {
   const [image, setImage] = useState(null);
   const [overviewImage, setOverviewImage] = useState(null);
   const [message, setMessage] = useState("");
+  const [project, setProject] = useState({
+    title: "",
+    category: "",
+    description: "",
+    conclusion: "",
+    liveLink: "",
+    client: "",
+  });
 
   const handleImageChange = (e, setImageCallback) => {
     const file = e.target.files[0];
@@ -47,31 +55,39 @@ export default function CreateProject() {
     const { title, category, description, conclusion, liveLink, client } = data;
 
     try {
-      const imageUrl = await handleImageUpload(image);
-      const overviewImageUrl = await handleImageUpload(overviewImage);
-      
-      console.log( title, category, description, conclusion, liveLink, client,imageUrl,overviewImageUrl)
-      const response = await fetch("/api/createProject", {
-        method: "POST",
+      const imageUrl = image ? await handleImageUpload(image) : project?.image;
+      const overviewImageUrl = overviewImage
+        ? await handleImageUpload(overviewImage)
+        : project?.overviewImage;
+
+      const url = isUpdate ? "/api/update-project" : "/api/createProject";
+      const method = isUpdate ? "POST" : "POST";
+
+      const response = await fetch(url, {
+        method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          id,
           title,
           category,
           description,
           conclusion,
-          link:liveLink,
+          link: liveLink,
           client,
           image: imageUrl,
           overviewImage: overviewImageUrl,
         }),
       });
 
-      if (response.status === 201) {
-        setMessage("Project was created successfully!");
-        setImage(null);
-        setOverviewImage(null);
+      if (response.ok) {
+        setMessage(
+          isUpdate
+            ? "Project was updated successfully!"
+            : "Project was created successfully!"
+        );
+        resetForm();
       } else {
-        setMessage("Failed to create the blog. Please try again.");
+        setMessage("Failed to submit the project. Please try again.");
       }
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -79,9 +95,55 @@ export default function CreateProject() {
     }
   };
 
+  const resetForm = () => {
+    setImage(null);
+    setOverviewImage(null);
+    setProject({
+      title: "",
+      category: "",
+      description: "",
+      conclusion: "",
+      liveLink: "",
+      client: "",
+    });
+  };
+
+  useEffect(() => {
+    if (isUpdate && id) {
+      const fetchProject = async () => {
+        try {
+          const response = await fetch(`/api/get-project-by-id?id=${id}`, {
+            cache: "no-store",
+            headers: {
+              Accept: "application/json",
+            },
+          });
+          if (!response.ok) throw new Error("Failed to fetch project data");
+          const data = await response.json();
+          setProject(data);
+        } catch (error) {
+          console.error("Error fetching project data:", error);
+          setMessage("Error fetching project data. Please try again later.");
+        }
+      };
+
+      fetchProject();
+    }
+  }, [isUpdate, id]);
+
+  useEffect(() => {
+    return () => {
+      if (image) URL.revokeObjectURL(image);
+      if (overviewImage) URL.revokeObjectURL(overviewImage);
+    };
+  }, [image, overviewImage]);
+
   return (
     <>
-      <form action={handleFormSubmit} className="mt-6">
+      <form
+        action={handleFormSubmit}
+        className="mt-6"
+      >
         <div className="grid w-full gap-[20px]">
           <input
             required
@@ -89,12 +151,20 @@ export default function CreateProject() {
             type="text"
             name="title"
             placeholder="Project Title"
+            value={project?.title || ""}
+            onChange={(e) =>
+              setProject({ ...project, title: e.target.value })
+            }
           />
           <input
             className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
             type="text"
             name="category"
             placeholder="Category"
+            value={project?.category || ""}
+            onChange={(e) =>
+              setProject({ ...project, category: e.target.value })
+            }
           />
           <textarea
             className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
@@ -102,12 +172,20 @@ export default function CreateProject() {
             rows="6"
             placeholder="Project Description"
             required
+            value={project?.description || ""}
+            onChange={(e) =>
+              setProject({ ...project, description: e.target.value })
+            }
           ></textarea>
           <textarea
             className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
             name="conclusion"
             rows="4"
             placeholder="Conclusion (optional)"
+            value={project?.conclusion || ""}
+            onChange={(e) =>
+              setProject({ ...project, conclusion: e.target.value })
+            }
           ></textarea>
 
           <input
@@ -115,13 +193,21 @@ export default function CreateProject() {
             type="text"
             name="liveLink"
             placeholder="Live Link"
+            value={project?.liveLink || ""}
+            onChange={(e) =>
+              setProject({ ...project, liveLink: e.target.value })
+            }
           />
 
           <input
             className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
             type="text"
             name="client"
-            placeholder="client"
+            placeholder="Client"
+            value={project?.client || ""}
+            onChange={(e) =>
+              setProject({ ...project, client: e.target.value })
+            }
           />
 
           {/* File input and preview for image */}
