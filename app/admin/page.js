@@ -1,36 +1,50 @@
 "use client";
+
 import ConfirmationModal from "@/components/common/ConfirmationModal";
 import formatDateTime from "@/utils/dateTimeConverter";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function AdminPanel() {
-  const [activeTab, setActiveTab] = useState("blogs");
+  const [activeTab, setActiveTab] = useState("Blogs");
   const [blogs, setBlogs] = useState([]);
   const [contacts, setContacts] = useState([]);
   const [projects, setProjects] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [deleteId, setDeleteId] = useState(null);
+  const [deleteInfo, setDeleteInfo] = useState({ id: null, type: null });
 
-  const handleTabClick = (tab) => {
-    setActiveTab(tab);
-  };
+  const handleTabClick = (tab) => setActiveTab(tab);
 
-  const openModal = (id) => {
-    setDeleteId(id);
+  const openModal = (id, type) => {
+    setDeleteInfo({ id, type });
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
-    setDeleteId(null);
+    setDeleteInfo({ id: null, type: null });
     setIsModalOpen(false);
   };
 
   const handleDelete = async () => {
-    if (!deleteId) return;
+    const { id, type } = deleteInfo;
+    if (!id || !type) return;
+
+    let endpoint = "";
+    let setter;
+
+    if (type === "contact") {
+      endpoint = `/api/delete-contact?id=${id}`;
+      setter = setContacts;
+    } else if (type === "blog") {
+      endpoint = `/api/delete-blog?id=${id}`;
+      setter = setBlogs;
+    } else if (type === "project") {
+      endpoint = `/api/delete-project?id=${id}`;
+      setter = setProjects;
+    }
 
     try {
-      const response = await fetch(`/api/delete-contact?id=${deleteId}`, {
+      const response = await fetch(endpoint, {
         method: "DELETE",
         headers: {
           Accept: "application/json",
@@ -38,16 +52,14 @@ export default function AdminPanel() {
       });
 
       if (response.ok) {
-        console.log("Contact deleted successfully.");
-        setContacts((prevContacts) =>
-          prevContacts.filter((contact) => contact._id !== deleteId)
-        );
+        setter((prev) => prev.filter((item) => item._id !== id));
         closeModal();
+        console.log(`${type} deleted successfully.`);
       } else {
-        console.error("Failed to delete contact:", await response.text());
+        console.error(`Failed to delete ${type}:`, await response.text());
       }
     } catch (error) {
-      console.error("Error occurred during deletion:", error);
+      console.error(`Error occurred during deletion of ${type}:`, error);
     }
   };
 
@@ -69,218 +81,160 @@ export default function AdminPanel() {
     fetchData("/api/getProject", setProjects);
   }, []);
 
+  const renderTableRows = (data, type) =>
+    data?.map((item) => (
+      <tr key={item?._id}>
+        <td className="border px-4 py-2 hover:text-theme">
+          {item?.title || item?.name}
+        </td>
+        <td className="border px-4 py-2">
+          {type === "blogs" || type === "projects" ? (
+            item?.pubshied ? (
+              formatDateTime(item?.pubshied)
+            ) : (
+              <Link href={item?.link} target="_blank">
+                Live Preview
+              </Link>
+            )
+          ) : (
+            item?.email
+          )}
+        </td>
+        {type === "contact" && (
+          <td className="border px-4 py-2">{item?.message}</td>
+        )}
+        <td className="border px-4 py-2">
+          <div className="inline-flex space-x-2">
+            {type !== "contact" && (
+              <Link
+                className="px-2 py-1 bg-blue-600 text-white font-medium text-xs rounded-md hover:bg-blue-700 focus:ring focus:ring-blue-400"
+                href={`/admin/update-${type}?id=${item?._id}`}
+              >
+                Edit
+              </Link>
+            )}
+            <button
+              onClick={() => openModal(item?._id, type)}
+              className="px-2 py-1 bg-red-600 text-white font-medium text-xs rounded-md hover:bg-red-700 focus:ring focus:ring-red-400"
+            >
+              Delete
+            </button>
+          </div>
+        </td>
+      </tr>
+    ));
+
   return (
-    <div className=" container grid h-screen grid-cols-12">
-      <aside className="col-span-2 bg-btn  text-white p-4 sm:col-span-2">
-        <p className="mb-6 text-xxl font-bold">Admin Panel</p>
+    <div className="container grid h-screen grid-cols-12">
+      <aside className="col-span-2 bg-btn text-white p-4">
+        <p className="mb-6 text-2xl font-bold">Admin Panel</p>
         <nav>
           <ul className="space-y-4">
-            <li
-              onClick={() => handleTabClick("blogs")}
-              className={`cursor-pointer rounded-lg px-4 py-2 hover:bg-white hover:text-btn ${
-                activeTab === "blogs" ? "bg-white text-btn" : ""
-              }`}
-            >
-              All Blogs
-            </li>
-
-            <li
-              onClick={() => handleTabClick("createBlog")}
-              className={`cursor-pointer rounded-lg px-4 py-2 hover:bg-white hover:text-btn ${
-                activeTab === "createBlog" ? "bg-white text-btn" : ""
-              }`}
-            >
-              Create Blog
-            </li>
-
-            <li
-              onClick={() => handleTabClick("contact")}
-              className={`cursor-pointer rounded-lg px-4 py-2 hover:bg-white hover:text-btn ${
-                activeTab === "contact" ? "bg-white text-btn" : ""
-              }`}
-            >
-              Contact
-            </li>
-
-            <li
-              onClick={() => handleTabClick("projects")}
-              className={`cursor-pointer rounded-lg px-4 py-2 hover:bg-white hover:text-btn ${
-                activeTab === "projects" ? "bg-white text-btn" : ""
-              }`}
-            >
-              Projects
-            </li>
-
-            <li
-              onClick={() => handleTabClick("createProject")}
-              className={`cursor-pointer rounded-lg px-4 py-2 hover:bg-white hover:text-btn ${
-                activeTab === "createProject" ? "bg-white text-btn" : ""
-              }`}
-            >
-              Create Project
-            </li>
+            {[
+              "Blogs",
+              "CreateBlog",
+              "Contact",
+              "Projects",
+              "CreateProject",
+            ].map((tab) => (
+              <li
+                key={tab}
+                onClick={() => handleTabClick(tab)}
+                className={`cursor-pointer rounded-lg px-4 py-2 ${
+                  activeTab === tab ? "bg-gray-400 text-white" : ""
+                }`}
+              >
+                {tab.replace(/([A-Z])/g, " $1")}
+              </li>
+            ))}
           </ul>
         </nav>
-        <button className="mt-8 flex w-full items-center rounded-lg px-4 py-2 hover:bg-white hover:text-btn">
-          {/* <FaSignOutAlt className="mr-2" /> */}
+        <button className="mt-8 w-full px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-gray-200">
           Logout
         </button>
       </aside>
 
-      <div className="col-span-10 flex flex-col p-6 sm:col-span-10">
-        <section className="grid grid-cols-12 gap-4">
-
-          {activeTab === "contact" && (
-            <div className="col-span-12">
-              <h3 className="text-lg font-medium text-btn dark:text-white">
-                Contacts Message
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                All Contact Message Here
-              </p>
-              <div className="mt-6 rounded-lg border p-4 dark:border-gray-700">
-                <table className="w-full table-auto border-collapse text-btn dark:text-white">
+      <div className="col-span-10 p-6">
+        <section>
+          {activeTab === "Contact" && (
+            <div>
+              <h3 className="text-lg font-medium text-btn">Contacts</h3>
+              <div className="mt-6 rounded-lg  p-4">
+                <table className="w-full table-auto border-collapse">
                   <thead>
-                    <tr className="bg-gray-100 dark:bg-gray-800">
+                    <tr className="bg-gray-400">
                       <th className="border px-4 py-2">Name</th>
                       <th className="border px-4 py-2">Email</th>
-                      <th className="border px-4 py-2">Website</th>
                       <th className="border px-4 py-2">Message</th>
-                      <th className="border px-4 py-2">Action</th>
+                      <th className="border px-4 py-2">Actions</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    {contacts?.map((contact) => (
-                      <tr key={contact?._id}>
-                        <td className="border px-4 py-2 hover:text-theme">
-                          {contact?.name}
-                        </td>
-
-                        <td className="border px-4 py-2">{contact?.email}</td>
-                        <td className="border px-4 py-2">{contact?.website}</td>
-                        <td className="border px-4 py-2">{contact?.message}</td>
-
-                        <td
-                          onClick={() => openModal(contact?._id)}
-                          className="hover:text-red-600 cursor-pointer border px-4 py-2"
-                        >
-                          Delete
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
+                  <tbody>{renderTableRows(contacts, "contact")}</tbody>
                 </table>
               </div>
             </div>
           )}
-
-          {activeTab === "createBlog" && (
-            <div className=" mt-20 col-span-12 flex items-center justify-center">
-              <Link href="/admin/create-blog" target="_blank">
-                <div className="cursor-pointer w-full max-w-sm rounded-lg bg-theme px-4 py-2 text-center">
-                  <p className="text-lg font-semibold  text-btn dark:text-gray-50">
-                    Create a New Blog
-                  </p>
-                </div>
-              </Link>
-            </div>
-          )}
-
-          {activeTab === "blogs" && (
-            <div className="col-span-12">
-              <h3 className="text-lg font-medium text-btn dark:text-white">
-                Blogs
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                All Blogs Here
-              </p>
-              <div className="mt-6 rounded-lg border p-4 dark:border-gray-700">
-                <table className="w-full table-auto border-collapse text-btn dark:text-white">
+          {activeTab === "Blogs" && (
+            <div>
+              <h3 className="text-lg font-medium text-btn">Blogs</h3>
+              <div className="mt-6 rounded-lg  p-4">
+                <table className="w-full table-auto border-collapse">
                   <thead>
-                    <tr className="bg-gray-100 dark:bg-gray-800">
+                    <tr className="bg-gray-400">
                       <th className="border px-4 py-2">Title</th>
                       <th className="border px-4 py-2">Published</th>
                       <th className="border px-4 py-2">Actions</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    {blogs?.map((blog) => (
-                      <tr key={blog?._id}>
-                        <td className="border px-4 py-2 hover:text-theme">
-                          {blog?.title}
-                        </td>
-                        <td className="border px-4 py-2">
-                          {" "}
-                          {formatDateTime(blog?.pubshied)}
-                        </td>
-                        <td className=" hover:text-red-600  border px-4 py-2">
-                          <Link href={`/admin/update-blog?id=${blog?._id}`}>
-                            Edit
-                          </Link>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
+                  <tbody>{renderTableRows(blogs, "blog")}</tbody>
                 </table>
               </div>
             </div>
           )}
-
-          {activeTab === "projects" && (
-            <div className="col-span-12">
-              <h3 className="text-lg font-medium text-btn dark:text-white">
-                Projects
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                All Projects Here
-              </p>
-              <div className="mt-6 rounded-lg border p-4 dark:border-gray-700">
-                <table className="w-full table-auto border-collapse text-btn dark:text-white">
+          {activeTab === "Projects" && (
+            <div>
+              <h3 className="text-lg font-medium text-btn">Projects</h3>
+              <div className="mt-6 rounded-lg  p-4">
+                <table className="w-full table-auto border-collapse">
                   <thead>
-                    <tr className="bg-gray-100 dark:bg-gray-800">
+                    <tr className="bg-gray-400">
                       <th className="border px-4 py-2">Title</th>
                       <th className="border px-4 py-2">Live Link</th>
                       <th className="border px-4 py-2">Actions</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    {projects?.map((project) => (
-                      <tr key={project?._id}>
-                        <td className="border px-4 py-2 hover:text-theme">
-                          {project?.title}
-                        </td>
-                        <td className="border px-4 py-2">
-                          <Link href={project?.link} target="_blank">
-                            Live Preview
-                          </Link>
-                        </td>
-                        <td className=" hover:text-red-600  border px-4 py-2">
-                          <Link href={`/admin/update-project?id=${project?._id}`}>
-                            Edit
-                          </Link>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
+                  <tbody>{renderTableRows(projects, "project")}</tbody>
                 </table>
               </div>
             </div>
           )}
 
-          {activeTab === "createProject" && (
+          {activeTab === "CreateProject" && (
             <div className=" mt-20 col-span-12 flex items-center justify-center">
               <Link href="/admin/create-project" target="_blank">
-                <div className="cursor-pointer w-full max-w-sm rounded-lg bg-theme px-4 py-2 text-center">
-                  <p className="text-lg font-semibold  text-btn dark:text-gray-50">
-                    Create a New Project
+                <div className="cursor-pointer w-full max-w-sm rounded-lg  bg-red-500 px-4 py-1.5 text-center">
+                  <p className="text-md font-semibold  text-white dark:text-gray-50">
+                    Create Project
                   </p>
                 </div>
               </Link>
             </div>
           )}
-          
+
+          {activeTab === "CreateBlog" && (
+            <div className=" mt-20 col-span-12 flex items-center justify-center">
+              <Link href="/admin/create-blog" target="_blank">
+                <div className="cursor-pointer w-full max-w-sm rounded-lg bg-red-500 px-4 py-1.5 text-center">
+                  <p className="text-md font-semibold  text-white dark:text-gray-50">
+                    Create Blog
+                  </p>
+                </div>
+              </Link>
+            </div>
+          )}
         </section>
       </div>
+
       <ConfirmationModal
         isOpen={isModalOpen}
         onClose={closeModal}
