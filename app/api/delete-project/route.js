@@ -29,7 +29,7 @@ export const DELETE = async (request) => {
     return new NextResponse("Project was deleted!", {
       status: 200, 
     });
-  } catch (error) {
+  } catch (error) {3
     console.error("Error deleting project:", error);
     return new NextResponse("Internal Server Error", {
       status: 500, // Internal Server Error
