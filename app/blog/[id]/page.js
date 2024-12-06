@@ -2,6 +2,7 @@ import ShareSocialMedia from "@/components/common/ShareSocialMedia";
 import SidebarLeft from "@/components/common/SidebarLeft";
 import formatDateTime from "@/utils/dateTimeConverter";
 import Image from "next/image";
+// import DOMPurify from 'dompurify';
 
 export async function generateMetadata(props) {
   const params = await props.params;
@@ -37,6 +38,10 @@ export default async function page({ params }) {
   });
   const blog = await data.json()
 
+
+
+// const sanitizedContent = DOMPurify.sanitize(blog?.description);
+
   return (
     <section>
       <div className="container mx-auto">
@@ -70,9 +75,9 @@ export default async function page({ params }) {
                     </div>
                   </div>
                   <div className="rich-text mt-[30px] text-text dark:text-gray-100">
-                    <p> {blog?.description} </p>
+                    {/* <>  {blog?.description} </> */}
+                    <div dangerouslySetInnerHTML={{ __html: blog?.description }} />
                     <br />
-                    <p> {blog?.conclusion} </p>
                   </div>
                   <div className="mt-[30px]">
                     <div className="grid items-center justify-between md:flex">

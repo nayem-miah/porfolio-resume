@@ -6,9 +6,7 @@ export const POST = async (request) => {
     id,
     title,
     image,
-    overviewImage,
     description,
-    conclusion,
     category,
   } = await request.json();
   try {
@@ -18,8 +16,6 @@ export const POST = async (request) => {
         title,
         image,
         description,
-        overviewImage,
-        conclusion,
         category,
       },
       { new: true }

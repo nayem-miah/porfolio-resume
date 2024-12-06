@@ -4,6 +4,7 @@ import SelfExplain from "@/components/about/SelfExplain";
 import Skill from "@/components/about/Skill";
 import SidebarLeft from "@/components/common/SidebarLeft";
 
+
 export default function page() {
   return (
     <section>
@@ -44,6 +45,7 @@ export default function page() {
                 </div>
                 <Experience />
                 <Skill />
+         
               </section>
             </div>
           </div>

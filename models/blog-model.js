@@ -9,22 +9,12 @@ const blogSchema = new Schema({
     required: false,
     type: String,
   },
-
-  overviewImage: {
-    required: false,
-    type: String,
-  },
   description: {
     required: false,
     type: String,
   },
 
-  conclusion: {
-    required: false,
-    type: String,
-  },
   
- 
   category: {
     required: false,
     type: String,

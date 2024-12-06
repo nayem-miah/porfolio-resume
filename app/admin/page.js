@@ -131,13 +131,12 @@ export default function AdminPanel() {
         <nav>
           <ul className="space-y-4">
             {[
-                "Dashboard",
+              "Dashboard",
               "Blogs",
               "CreateBlog",
               "Contact",
               "Projects",
-              "CreateProject"
-            
+              "CreateProject",
             ].map((tab) => (
               <li
                 key={tab}
@@ -158,27 +157,39 @@ export default function AdminPanel() {
 
       <div className="col-span-10 p-6">
         <section>
-
-        {activeTab === "Dashboard" && (
+          {activeTab === "Dashboard" && (
             <div>
               <h3 className="text-3xl font-bold text-btn">Welcome, Admin!</h3>
-              <p className="text-lg mt-4 text-gray-600">Here is an overview of your data:</p>
+              <p className="text-lg mt-4 text-gray-600">
+                Here is an overview of your data:
+              </p>
               <div className="grid grid-cols-3 gap-4 mt-6">
                 <div className="p-4 bg-blue-100 rounded-lg shadow-md">
-                  <h4 className="text-2xl font-semibold text-blue-800">Blogs</h4>
+                  <h4 className="text-2xl font-semibold text-blue-800">
+                    Blogs
+                  </h4>
                   <p className="text-lg text-gray-700">{blogs.length} total</p>
                 </div>
                 <div className="p-4 bg-green-100 rounded-lg shadow-md">
-                  <h4 className="text-2xl font-semibold text-green-800">Contacts</h4>
-                  <p className="text-lg text-gray-700">{contacts.length} total</p>
+                  <h4 className="text-2xl font-semibold text-green-800">
+                    Contacts
+                  </h4>
+                  <p className="text-lg text-gray-700">
+                    {contacts.length} total
+                  </p>
                 </div>
                 <div className="p-4 bg-purple-100 rounded-lg shadow-md">
-                  <h4 className="text-2xl font-semibold text-purple-800">Projects</h4>
-                  <p className="text-lg text-gray-700">{projects.length} total</p>
+                  <h4 className="text-2xl font-semibold text-purple-800">
+                    Projects
+                  </h4>
+                  <p className="text-lg text-gray-700">
+                    {projects.length} total
+                  </p>
                 </div>
               </div>
             </div>
           )}
+
 
           {activeTab === "Contact" && (
             <div>
@@ -198,6 +209,7 @@ export default function AdminPanel() {
               </div>
             </div>
           )}
+
           {activeTab === "Blogs" && (
             <div>
               <h3 className="text-lg font-medium text-btn">Blogs</h3>
@@ -215,6 +227,7 @@ export default function AdminPanel() {
               </div>
             </div>
           )}
+          
           {activeTab === "Projects" && (
             <div>
               <h3 className="text-lg font-medium text-btn">Projects</h3>
@@ -256,6 +269,8 @@ export default function AdminPanel() {
               </Link>
             </div>
           )}
+
+
         </section>
       </div>
 

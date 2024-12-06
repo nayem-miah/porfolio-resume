@@ -4,8 +4,8 @@ import CreateBlog from "@/components/blogs/CreateBlog";
 export default function Page() {
 
   return (
-    <section className="flex min-h-screen items-center justify-center">
-      <div className="w-full max-w-lg">
+    <section className="flex min-h-screen container items-center justify-center">
+      <div className="w-full max-w-full">
         <div className="mt-10 rounded-xl bg-white p-[30px] dark:bg-card shadow-lg">
           <div>
             <h1 className="text-[32px] leading-[42px] text-btn  dark:text-white md:text-[42px] md:leading-[52px] text-center">

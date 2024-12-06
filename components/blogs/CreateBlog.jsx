@@ -3,16 +3,19 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import CreatingButton from "./CreatingButton";
+import JoditRich from "./JoditRichEdit";
+
+
+
 
 export default function CreateBlog({ isUpdate, id }) {
   const [image, setImage] = useState(null);
-  const [overviewImage, setOverviewImage] = useState(null);
   const [message, setMessage] = useState("");
+  const [content, setContent] = useState(""); //declare using state
   const [blog, setBlog] = useState({
     title: "",
     category: "",
     description: "",
-    conclusion: "",
   });
 
   const handleImageChange = (e, setImageCallback) => {
@@ -50,11 +53,10 @@ export default function CreateBlog({ isUpdate, id }) {
 
   const handleFormSubmit = async (formData) => {
     const data = Object.fromEntries(formData);
-    const { title, category, description, conclusion } = data;
+    const { title, category } = data;
 
     try {
       const imageUrl = await handleImageUpload(image);
-      const overviewImageUrl = await handleImageUpload(overviewImage);
 
       const response = await fetch("/api/createBlog", {
         method: "POST",
@@ -62,10 +64,8 @@ export default function CreateBlog({ isUpdate, id }) {
         body: JSON.stringify({
           title,
           category,
-          description,
-          conclusion,
+          description:content,
           image: imageUrl,
-          overviewImage: overviewImageUrl,
         }),
       });
 
@@ -87,9 +87,7 @@ export default function CreateBlog({ isUpdate, id }) {
 
     try {
       const imageUrl = image ? await handleImageUpload(image) : blog?.image;
-      const overviewImageUrl = overviewImage
-        ? await handleImageUpload(overviewImage)
-        : blog?.overviewImage;
+
 
       const response = await fetch("/api/update-blog", {
         method: "POST",
@@ -101,7 +99,7 @@ export default function CreateBlog({ isUpdate, id }) {
           description,
           conclusion,
           image: imageUrl,
-          overviewImage: overviewImageUrl,
+      
         }),
       });
 
@@ -119,12 +117,11 @@ export default function CreateBlog({ isUpdate, id }) {
 
   const resetForm = () => {
     setImage(null);
-    setOverviewImage(null);
+  
     setBlog({
       title: "",
       category: "",
       description: "",
-      conclusion: "",
     });
   };
 
@@ -154,17 +151,14 @@ export default function CreateBlog({ isUpdate, id }) {
   useEffect(() => {
     return () => {
       if (image) URL.revokeObjectURL(image);
-      if (overviewImage) URL.revokeObjectURL(overviewImage);
+    
     };
-  }, [image, overviewImage]);
+  }, [image]);
 
   return (
     <>
       <form
-        // onSubmit={(e) => {
-        //   e.preventDefault();
-        //   isUpdate ? handleUpdateForm(new FormData(e.target)) : handleFormSubmit(new FormData(e.target));
-        // }}
+
         action={isUpdate ? handleUpdateForm : handleFormSubmit}
         className="mt-6"
       >
@@ -191,7 +185,7 @@ export default function CreateBlog({ isUpdate, id }) {
               })
             }
           />
-          <textarea
+          {/* <textarea
             className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
             name="description"
             rows="6"
@@ -204,20 +198,10 @@ export default function CreateBlog({ isUpdate, id }) {
                 description: e.target.value,
               })
             }
-          ></textarea>
-          <textarea
-            className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
-            name="conclusion"
-            rows="4"
-            value={blog?.conclusion || ""}
-            placeholder="Blog Conclusion (optional)"
-            onChange={(e) =>
-              setBlog({
-                ...blog,
-                conclusion: e.target.value,
-              })
-            }
-          ></textarea>
+          ></textarea> */}
+
+
+          <JoditRich setContent={setContent} content={content}/>
 
           {/* File input and preview for image */}
           <div className="flex items-center space-x-4">
@@ -238,28 +222,16 @@ export default function CreateBlog({ isUpdate, id }) {
             )}
           </div>
 
-          {/* File input and preview for overview image */}
-          <div className="flex items-center space-x-4">
-            <input
-              type="file"
-              accept="image/*"
-              className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
-              onChange={(e) => handleImageChange(e, setOverviewImage)}
-            />
-            {overviewImage && (
-              <Image
-                src={URL.createObjectURL(overviewImage)}
-                alt="Overview Preview"
-                className="h-16 w-16 rounded-md"
-                width={64}
-                height={64}
-              />
-            )}
-          </div>
         </div>
         <CreatingButton />
         {message && <p className="mt-4 text-center text-theme">{message}</p>}
       </form>
+
+ 
     </>
   );
 }
+
+
+
+
