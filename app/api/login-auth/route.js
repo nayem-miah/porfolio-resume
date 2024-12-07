@@ -1,23 +1,3 @@
-// import { signIn } from "@/auth";
-
-// const { dbConnect } = require("@/databaseConncet/mongo");
-// const { NextResponse } = require("next/server")
-
-// export const POST = async (request) => {
-//   await dbConnect();
-//   const loginData = await request.json();
-
-//   try {
-//     await signIn("credentials", {
-//       email: loginData?.email,
-//       password: loginData?.password,
-//       redirect: false,
-//     });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
 
 
 
@@ -42,7 +22,6 @@ export async function POST(request) {
       );
     }
 
-    console.log('data...............',loginData?.email, loginData?.password);
 
     // Perform authentication
     const result = await signIn("credentials", {

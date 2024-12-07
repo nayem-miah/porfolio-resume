@@ -61,7 +61,7 @@ export default function AdminPanel() {
       if (response.ok) {
         setter((prev) => prev.filter((item) => item._id !== id));
         closeModal();
-        console.log(`${type} deleted successfully.`);
+      
       } else {
         console.error(`Failed to delete ${type}:`, await response.text());
       }

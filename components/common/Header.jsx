@@ -9,7 +9,6 @@ import { auth } from "@/auth";
 export default async function Header() {
   const session = await auth();
 
-  console.log("header.......................", session?.user?.name);
 
   return (
     <>
@@ -39,7 +38,7 @@ export default async function Header() {
             </menu>
             <div className="flex items-center">
               <div className="flex items-center gap-4 px-[30px]">
-                <p className="text-red-700">{session?.user?.name}</p>
+                <Link href='/admin/deshboard' className="text-red-700">{session?.user?.name && 'Admin Deshboard'}</Link>
 
                 <ThemeSwitcher isMobile={false} />
                 <SidebarOpen />
