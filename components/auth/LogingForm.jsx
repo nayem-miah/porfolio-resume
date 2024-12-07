@@ -1,5 +1,6 @@
 "use client";
 
+import { serverRevalidate } from "@/utils/serverRevalidate";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -31,6 +32,7 @@ export default function LoginForm() {
 
       if (response.ok) {
         // Redirect to home or dashboard after successful login
+        await serverRevalidate()
         router.push('/admin/deshboard');
       } else {
         // Handle server-side errors
