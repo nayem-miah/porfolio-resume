@@ -1,8 +1,16 @@
+import { auth } from "@/auth";
 import CreateBlog from "@/components/blogs/CreateBlog";
+import { redirect } from "next/navigation";
 
 export default async function Page(props) {
   const params = await props.searchParams;
   const { id } = params;
+
+  const session = await auth();
+
+  if (!session?.user) {
+    redirect("/admin");
+  }
 
   return (
     <section className="flex  items-center justify-center">

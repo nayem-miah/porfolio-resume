@@ -1,8 +1,16 @@
+import { auth } from "@/auth";
 import CreateProject from "@/components/project/CreateProject";
+import { redirect } from "next/navigation";
 
 export default async function Page(props) {
   const params = await props.searchParams;
   const { id } = params;
+  const session = await auth();
+
+  if (!session?.user) {
+    redirect("/admin");
+  }
+
 
 
   return (

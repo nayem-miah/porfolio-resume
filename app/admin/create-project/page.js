@@ -1,8 +1,15 @@
 
 
+import { auth } from "@/auth";
 import CreateProject from "@/components/project/CreateProject";
+import { redirect } from "next/navigation";
 
-export default function Page() {
+export default async function Page() {
+  const session = await auth();
+
+  if (!session?.user) {
+    redirect("/admin");
+  }
 
   return (
     <section className="flex min-h-screen items-center justify-center">
