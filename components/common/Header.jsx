@@ -9,7 +9,7 @@ import { auth } from "@/auth";
 export default async function Header() {
   const session = await auth();
 
-  console.log("header.......................", session?.user);
+  console.log("header.......................", session?.user?.name);
 
   return (
     <>
@@ -39,7 +39,7 @@ export default async function Header() {
             </menu>
             <div className="flex items-center">
               <div className="flex items-center gap-4 px-[30px]">
-                <p className="text-red-700">{session?.user && "Useing As Admin"}</p>
+                <p className="text-red-700">{session?.user?.name && session?.user?.name}</p>
 
                 <ThemeSwitcher isMobile={false} />
                 <SidebarOpen />
