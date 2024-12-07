@@ -6,7 +6,7 @@ import Credentials from "next-auth/providers/credentials";
 import clientPromise from "./databaseConncet/mongoClientPromise";
 import { userModel } from "./models/user-model";
 import { dbConnect } from "./databaseConncet/mongo";
-// import bcrypt from "bcryptjs";
+import bcrypt from "bcryptjs";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   adapter: MongoDBAdapter(clientPromise),
@@ -31,7 +31,10 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
           await dbConnect();
           const user = await userModel.findOne({ email: credentials?.email });
           if (user) {
-            const isMatch = credentials.password === user.password;
+            const isMatch = await bcrypt.compare(
+              credentials.password,
+              user.password
+            );
             if (isMatch) {
               return user;
             } else {
