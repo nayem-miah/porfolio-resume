@@ -40,8 +40,6 @@ export default async function page({ params }) {
 
 
 
-// const sanitizedContent = DOMPurify.sanitize(blog?.description);
-
   return (
     <section>
       <div className="container mx-auto">
