@@ -27,9 +27,11 @@ export default function LoginForm() {
       });
 
       const data = await response.json();
+      console.log('response............................',response)
 
       if (response.ok) {
         // Redirect to home or dashboard after successful login
+        console.log('logged in .........................................')
         router.push('/admin/deshboard');
       } else {
         // Handle server-side errors

@@ -1,14 +1,18 @@
 import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 
-const PUBLIC_ROUTES = ["/", "/admin", "/about", "/blog", "/my-projects", "/contact", "/api/getBlogs",
+const PUBLIC_ROUTES = [
+  "/",
+  "/admin",
+  "/about",
+  "/blog",
+  "/my-projects",
+  "/contact",
+  "/api/getBlogs",
   "/api/getContact",
-  "/api/getProject"
-
-
+  "/api/getProject",
 ];
 const PRIVATE_ROUTES = [
-
   "/admin/deshboard",
   "/admin/create-blog",
   "/admin/create-project",
@@ -21,8 +25,7 @@ const PRIVATE_ROUTES = [
   "/api/delete-project",
   "/api/delete-project",
   "/api/update-project",
-  "/api/update-blog"
- 
+  "/api/update-blog",
 ]; // Define private routes
 
 export async function middleware(req) {
@@ -36,7 +39,9 @@ export async function middleware(req) {
   }
 
   // Check if the route is private
-  const isPrivateRoute = PRIVATE_ROUTES.some((route) => pathname.startsWith(route));
+  const isPrivateRoute = PRIVATE_ROUTES.some((route) =>
+    pathname.startsWith(route)
+  );
 
   if (isPrivateRoute) {
     // Validate token for private routes
