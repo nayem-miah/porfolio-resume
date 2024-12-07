@@ -4,8 +4,13 @@ import Link from "next/link";
 import LinkComponent from "./LinkComponent";
 import SidebarOpen from "./SidebarOpen";
 import ThemeSwitcher from "./ThemeSwitcher";
+import { auth } from "@/auth";
 
-export default function Header() {
+export default async function Header() {
+  const session = await auth();
+
+  console.log("header.......................", session?.user);
+
   return (
     <>
       <header>
@@ -34,8 +39,9 @@ export default function Header() {
             </menu>
             <div className="flex items-center">
               <div className="flex items-center gap-4 px-[30px]">
-  
-                <ThemeSwitcher isMobile={false}/>
+                <p className="text-red-700">{session?.user && "Useing As Admin"}</p>
+
+                <ThemeSwitcher isMobile={false} />
                 <SidebarOpen />
               </div>
             </div>
