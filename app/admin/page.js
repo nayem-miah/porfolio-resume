@@ -159,7 +159,7 @@ export default function AdminPanel() {
         <section>
           {activeTab === "Dashboard" && (
             <div>
-              <h3 className="text-3xl font-bold text-btn">Welcome, Admin!</h3>
+              <p className="text-3xl font-bold text-white">Welcome, Admin!</p>
               <p className="text-lg mt-4 text-gray-600">
                 Here is an overview of your data:
               </p>

@@ -3,8 +3,7 @@ import Link from "next/link";
 
 export default async function ProjectContent() {
   const data = await fetch("https://nayemjs.vercel.app/api/getProject", {
-    // next: { revalidate: 120 },
-    cache: "no-store",
+    next: { revalidate: 1800 } 
   });
   const projects = await data.json();
 
