@@ -31,6 +31,9 @@ const PRIVATE_ROUTES = [
 export async function middleware(req) {
   const { pathname } = req.nextUrl;
 
+
+  console.log('pathname...................................................',pathname)
+
   // Check if the route is public
   const isPublicRoute = PUBLIC_ROUTES.includes(pathname);
   if (isPublicRoute) {
