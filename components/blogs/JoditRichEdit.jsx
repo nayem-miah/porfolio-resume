@@ -9,7 +9,7 @@ import dynamic from 'next/dynamic';
 const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
 
 /*functions*/
-export default function JoditRich ({setContent, content}) {
+export default function JoditRich ({setBlog, blog}) {
   const editor = useRef(null); //declared a null value 
 
   /* The most important point*/
@@ -24,7 +24,11 @@ export default function JoditRich ({setContent, content}) {
   );
   /* function to handle the changes in the editor */
   const handleChange = (value) => {
-    setContent(value);
+    setBlog({
+      ...blog,
+      description: value
+
+    })
   };
 
   return (
@@ -33,7 +37,7 @@ export default function JoditRich ({setContent, content}) {
         {/* This is the main initialization of the Jodit editor */}
           <JoditEditor 
             ref={editor}            //This is important
-            value={content}         //This is important
+            value={blog?.description}         //This is important
             config={config}         //Only use when you declare some custom configs
             onChange={handleChange} //handle the changes
             className="w-full h-[70%] mt-10 text-gray-800"

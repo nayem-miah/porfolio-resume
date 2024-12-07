@@ -25,7 +25,7 @@ export default function Header() {
                   <LinkComponent name={"Projects"} pathName={"/my-projects"} />
                 </li>
                 <li>
-                  <LinkComponent name={"About Me"} pathName={"/about"} />
+                  <LinkComponent name={"About"} pathName={"/about"} />
                 </li>
                 <li className="w-[100px]">
                   <LinkComponent pathName={"/contact"} />

@@ -5,8 +5,8 @@ export default async function Page(props) {
   const { id } = params;
 
   return (
-    <section className="flex min-h-screen items-center justify-center">
-      <div className="w-full max-w-lg">
+    <section className="flex  items-center justify-center">
+      <div className="w-full">
         <div className="mt-10 rounded-xl bg-white p-[30px] dark:bg-card shadow-lg">
           <div>
             <h1 className="text-[32px] leading-[42px] text-btn  dark:text-white md:text-[42px] md:leading-[52px] text-center">

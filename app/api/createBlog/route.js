@@ -8,7 +8,7 @@ export const POST = async (request) => {
   await dbConnect();
   const blogData = await request.json();
 
-  console.log('api route................',blogData)
+ 
 
   try {
     await blogModel.create(blogData);

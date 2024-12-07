@@ -11,7 +11,6 @@ import JoditRich from "./JoditRichEdit";
 export default function CreateBlog({ isUpdate, id }) {
   const [image, setImage] = useState(null);
   const [message, setMessage] = useState("");
-  const [content, setContent] = useState(""); //declare using state
   const [blog, setBlog] = useState({
     title: "",
     category: "",
@@ -64,7 +63,7 @@ export default function CreateBlog({ isUpdate, id }) {
         body: JSON.stringify({
           title,
           category,
-          description:content,
+          description:blog?.description,
           image: imageUrl,
         }),
       });
@@ -83,12 +82,10 @@ export default function CreateBlog({ isUpdate, id }) {
 
   const handleUpdateForm = async (formData) => {
     const data = Object.fromEntries(formData);
-    const { title, category, description, conclusion } = data;
+    const { title, category } = data;
 
     try {
       const imageUrl = image ? await handleImageUpload(image) : blog?.image;
-
-
       const response = await fetch("/api/update-blog", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -96,8 +93,7 @@ export default function CreateBlog({ isUpdate, id }) {
           id,
           title,
           category,
-          description,
-          conclusion,
+          description: blog?.description,
           image: imageUrl,
       
         }),
@@ -105,7 +101,7 @@ export default function CreateBlog({ isUpdate, id }) {
 
       if (response.status === 201) {
         setMessage("Blog was updated successfully!");
-        resetForm();
+    
       } else {
         setMessage("Failed to update the blog. Please try again.");
       }
@@ -158,7 +154,6 @@ export default function CreateBlog({ isUpdate, id }) {
   return (
     <>
       <form
-
         action={isUpdate ? handleUpdateForm : handleFormSubmit}
         className="mt-6"
       >
@@ -185,26 +180,9 @@ export default function CreateBlog({ isUpdate, id }) {
               })
             }
           />
-          {/* <textarea
-            className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
-            name="description"
-            rows="6"
-            placeholder="Blog Description"
-            value={blog?.description || ""}
-            required
-            onChange={(e) =>
-              setBlog({
-                ...blog,
-                description: e.target.value,
-              })
-            }
-          ></textarea> */}
 
-
-          <JoditRich setContent={setContent} content={content}/>
-
-          {/* File input and preview for image */}
-          <div className="flex items-center space-x-4">
+              {/* File input and preview for image */}
+              <div className="flex items-center space-x-4">
             <input
               type="file"
               accept="image/*"
@@ -222,6 +200,10 @@ export default function CreateBlog({ isUpdate, id }) {
             )}
           </div>
 
+
+          <JoditRich setBlog={setBlog} blog={blog}/>
+
+      
         </div>
         <CreatingButton />
         {message && <p className="mt-4 text-center text-theme">{message}</p>}
