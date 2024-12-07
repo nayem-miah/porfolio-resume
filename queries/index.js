@@ -41,3 +41,5 @@ export async function getContact() {
   const contact = await contactModel.find().lean();
   return replaceMongoIdInArray(contact);
 }
+
+

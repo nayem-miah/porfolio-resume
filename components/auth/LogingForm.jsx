@@ -30,7 +30,7 @@ export default function LoginForm() {
 
       if (response.ok) {
         // Redirect to home or dashboard after successful login
-        router.push('/');
+        router.push('/admin/deshboard');
       } else {
         // Handle server-side errors
         setErr(data.message || "Login failed. Please try again.");

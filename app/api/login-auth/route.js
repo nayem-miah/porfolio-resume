@@ -42,6 +42,8 @@ export async function POST(request) {
       );
     }
 
+    console.log('data...............',loginData?.email, loginData?.password);
+
     // Perform authentication
     const result = await signIn("credentials", {
       email: loginData.email,

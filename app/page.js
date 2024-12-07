@@ -1,7 +1,9 @@
 import Main from "@/components/home/Main";
 import Sidebar from "@/components/common/Sidebar";
 
-export default function Home() {
+export default async function Home() {
+
+
   return (
     <>
       <div>

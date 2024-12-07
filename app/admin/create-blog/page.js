@@ -1,7 +1,17 @@
 
+import { auth } from "@/auth";
 import CreateBlog from "@/components/blogs/CreateBlog";
+import { redirect } from "next/navigation";
 
-export default function Page() {
+export default async function Page() {
+  const session = await auth();
+
+
+  console.log(session?.user)
+
+  if (!session?.user) {
+    redirect("/login");
+  }
 
   return (
     <section className="flex min-h-screen container items-center justify-center">
