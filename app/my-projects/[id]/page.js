@@ -5,16 +5,20 @@ import Link from "next/link";
 
 export async function generateMetadata(props) {
   const params = await props.params;
-
   const { id } = params;
+  let project;
 
-  const data = await fetch(
-    `https://nayemjs.vercel.app/api/get-project-by-id?id=${id}`,
-    {
-      next: { revalidate: 10 },
-    }
-  );
-  const project = await data.json();
+  try {
+    const data = await fetch(
+      `https://nayemjs.vercel.app/api/get-project-by-id?id=${id}`,
+      {
+        next: { revalidate: 180 },
+      }
+    );
+    project = await data.json();
+  } catch (err) {
+    console.error(err);
+  }
 
   return {
     title: project?.title,
@@ -32,13 +36,23 @@ export async function generateMetadata(props) {
 
 export default async function page({ params }) {
   const { id } = await params;
-  const data = await fetch(
-    `https://nayemjs.vercel.app/api/get-project-by-id?id=${id}`,
-    {
-      next: { revalidate: 120 },
-    }
-  );
-  const project = await data.json();
+  let project;
+  try {
+    const response = await fetch(
+      `https://nayemjs.vercel.app/api/get-project-by-id?id=${id}`,
+      {
+        next: { revalidate: 1800 },
+      }
+    );
+    project = await response.json();
+  } catch (err) {
+    console.error(err);
+    return (
+      <div className="text-red-600 text-xl mt-10">
+        Error to load project data. Please try again later.
+      </div>
+    );
+  }
 
   return (
     <section>
@@ -164,12 +178,17 @@ export default async function page({ params }) {
 }
 
 export async function generateStaticParams() {
-  const res = await fetch("https://nayemjs.vercel.app/api/getProject");
-  if (!res.ok) {
-    throw new Error("Failed to fetch projects");
+  try {
+    const res = await fetch("https://nayemjs.vercel.app/api/getProject");
+    if (!res.ok) {
+      throw new Error("Failed to fetch projects");
+    }
+    const projects = await res.json();
+    return projects.map((project) => ({
+      id: project._id.toString(),
+    }));
+  } catch (err) {
+    console.error(err);
+    return [];
   }
-  const projects = await res.json();
-  return projects.map((project) => ({
-    id: project._id.toString(),
-  }));
 }

@@ -2,10 +2,20 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default async function ProjectContent() {
-  const data = await fetch("https://nayemjs.vercel.app/api/getProject", {
-    next: { revalidate: 1800 } 
-  });
-  const projects = await data.json();
+
+  let projects
+  try{
+    const response = await fetch("https://nayemjs.vercel.app/api/getProject", {
+      next: { revalidate: 1800 } 
+    });
+    if(!response.ok){
+      throw new Error("Failed to fetch project data");
+    }
+    projects = await response.json();
+  }catch(err){
+    console.error(err);
+    return <div className="text-red-600 text-xl mt-10">Error to load project data. Please try again later.</div>;
+  }
 
   return (
     <>
