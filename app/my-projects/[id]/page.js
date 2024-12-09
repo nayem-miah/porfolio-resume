@@ -8,7 +8,6 @@ export async function generateMetadata(props) {
 
   const { id } = params;
 
-  // const product = await getProductById(id);
   const data = await fetch(
     `https://nayemjs.vercel.app/api/get-project-by-id?id=${id}`,
     {

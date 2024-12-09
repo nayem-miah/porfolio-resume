@@ -1,42 +1,65 @@
+
 import ShareSocialMedia from "@/components/common/ShareSocialMedia";
 import SidebarLeft from "@/components/common/SidebarLeft";
 import formatDateTime from "@/utils/dateTimeConverter";
 import Image from "next/image";
-// import DOMPurify from 'dompurify';
 
-export async function generateMetadata(props) {
-  const params = await props.params;
-
+// Generate metadata for the blog post
+export async function generateMetadata({ params }) {
   const { id } = params;
+  try {
+    const response = await fetch(
+      `https://nayemjs.vercel.app/api/get-blog-by-id?id=${id}`,
+      { next: { revalidate: 10 } }
+    );
 
-  // const product = await getProductById(id);
-  const data = await fetch(`https://nayemjs.vercel.app/api/get-blog-by-id?id=${id}`, {
-    next: { revalidate: 10 },
-  });
-  const blog = await data.json()
+    if (!response.ok) {
+      throw new Error("Failed to fetch blog metadata");
+    }
 
-  return {
-    title: blog?.title,
-    description: blog?.description,
-    openGraph: {
-      images: [
-        {
-          url: blog?.image,
-          alt: "Detail About The Project",
-        },
-      ],
-    },
-  };
+    const blog = await response.json();
+
+    return {
+      title: blog?.title || "Blog Title",
+      description: blog?.description || "Blog Description",
+      openGraph: {
+        images: [
+          {
+            url: blog?.image || "/default-image.png",
+            alt: blog?.title || "Blog Image",
+          },
+        ],
+      },
+    };
+  } catch (error) {
+    console.error("Error generating metadata:", error);
+    return {
+      title: "Blog",
+      description: "A blog about technology and development",
+    };
+  }
 }
 
+// Blog page component
+export default async function BlogPage({ params }) {
+  const { id } = params;
 
-export default async function page({ params }) {
+  let blog;
+  try {
+    const response = await fetch(
+      `https://nayemjs.vercel.app/api/get-blog-by-id?id=${id}`,
+      { next: { revalidate: 120 } }
+    );
 
-  const { id } = await params;
-  const data = await fetch(`https://nayemjs.vercel.app/api/get-blog-by-id?id=${id}`, {
-    next: { revalidate: 120 },
-  });
-  const blog = await data.json()
+    if (!response.ok) {
+      throw new Error("Failed to fetch blog data");
+    }
+
+    blog = await response.json();
+  } catch (error) {
+    console.error("Error fetching blog data:", error);
+    return <div>Error loading the blog. Please try again later.</div>;
+  }
 
 
   return (
@@ -73,7 +96,9 @@ export default async function page({ params }) {
                   </div>
                   <div className="rich-text mt-[30px] text-text dark:text-gray-100">
                     {/* <>  {blog?.description} </> */}
-                    <div dangerouslySetInnerHTML={{ __html: blog?.description }} />
+                    <div
+                      dangerouslySetInnerHTML={{ __html: blog?.description }}
+                    />
                     <br />
                   </div>
                   <div className="mt-[30px]">
@@ -85,7 +110,7 @@ export default async function page({ params }) {
                       </div>
                       <div className="mt-[20px] md:mt-0">
                         <div className="flex justify-center gap-3">
-                         <ShareSocialMedia/>
+                          <ShareSocialMedia />
                         </div>
                       </div>
                     </div>
@@ -209,13 +234,21 @@ export default async function page({ params }) {
   );
 }
 
+// Generate static paths for dynamic routes
 export async function generateStaticParams() {
-  const res = await fetch("https://nayemjs.vercel.app/api/getBlogs");
-  if (!res.ok) {
-    throw new Error("Failed to fetch blogs");
+  try {
+    const response = await fetch("https://nayemjs.vercel.app/api/getBlogs");
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch blogs");
+    }
+
+    const blogs = await response.json();
+    return blogs.map((blog) => ({
+      id: blog._id.toString(),
+    }));
+  } catch (error) {
+    console.error("Error generating static params:", error);
+    return [];
   }
-  const blogs = await res.json();
-  return blogs.map((blog) => ({
-    id: blog._id.toString(), // Assuming `_id` exists and is a valid identifier
-  }));
 }
