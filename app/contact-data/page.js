@@ -1,8 +1,16 @@
 export default async function page() {
-  const data = await fetch('https://nayemjs.vercel.app/api/getContact', {
-    next: { revalidate: 120 }
-  });
-  const contacts = await data.json();
+  let contacts;
+  try {
+    const response = await fetch("https://nayemjs.vercel.app/api/getContact", {
+      next: { revalidate: 120 },
+    });
+    if (!response.ok) {
+      throw new Error("Error fetching contact");
+    }
+    contacts = await response.json();
+  } catch (err) {
+    console.error(err);
+  }
 
   return (
     <section>

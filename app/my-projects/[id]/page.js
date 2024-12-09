@@ -9,13 +9,16 @@ export async function generateMetadata(props) {
   let project;
 
   try {
-    const data = await fetch(
+    const response = await fetch(
       `https://nayemjs.vercel.app/api/get-project-by-id?id=${id}`,
       {
         next: { revalidate: 180 },
       }
     );
-    project = await data.json();
+    if (!response.ok) {
+      throw new Error("Error fetching contact");
+    }
+    project = await response.json();
   } catch (err) {
     console.error(err);
   }
@@ -44,6 +47,10 @@ export default async function page({ params }) {
         next: { revalidate: 1800 },
       }
     );
+
+    if (!response.ok) {
+      throw new Error("Error fetching project");
+    }
     project = await response.json();
   } catch (err) {
     console.error(err);
