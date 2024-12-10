@@ -1,4 +1,4 @@
-import localFont from "next/font/local";
+// import localFont from "next/font/local";
 import "./style.css";
 import "./custom.css";
 import "./globals.css";
