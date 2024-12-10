@@ -2,19 +2,22 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default async function ProjectContent() {
-
-  let projects
-  try{
+  let projects;
+  try {
     const response = await fetch("https://nayemjs.vercel.app/api/getProject", {
-      next: { revalidate: 1800 } 
+      next: { revalidate: 1800 },
     });
-    if(!response.ok){
+    if (!response.ok) {
       throw new Error("Failed to fetch project data");
     }
     projects = await response.json();
-  }catch(err){
+  } catch (err) {
     console.error(err);
-    return <div className="text-red-600 text-xl mt-10">Error to load project data. Please try again later.</div>;
+    return (
+      <div className="text-red-600 text-xl mt-10">
+        Error to load project data. Please try again later.
+      </div>
+    );
   }
 
   return (
@@ -39,8 +42,34 @@ export default async function ProjectContent() {
                   )}
                 </div>
                 <div className="mb-[10px] mt-[20px]">
-                  <p className="text-[16px] text-text">{project?.category}</p>
-                  <Link href={`/my-projects/${project?._id}`}>
+                  <h3 className="text-[16px] text-theme">
+                    {" "}
+                    <span className="text-gray-400"> Category:</span>{" "}
+                    {project?.category}
+                  </h3>
+
+                  <div className="flex items-center space-x-4">
+                    <h3 className="text-[16px] text-gray-400">Technologies:</h3>{" "}
+                    {project?.technologies?.map((technology, index) => (
+                      <p
+                        key={index}
+                        className="text-[10px] px-2 rounded-md text-dark bg-gray-700"
+                      >
+                        {technology}
+                      </p>
+                    ))}
+                  </div>
+
+                 
+                  <Link
+                    href={project?.link}
+                     target='_blank'
+                    className="text-[12px] p-1.5 rounded-md text-dark bg-theme "
+                  >
+                    View Live
+                  </Link>
+
+                  <Link  href={`/my-projects/${project?._id}`}>
                     <h2 className="mt-[14px] inline-block text-[30px] leading-[40px] text-btn transition-all duration-300 hover:text-theme dark:text-white dark:hover:text-theme">
                       {project?.title}
                     </h2>

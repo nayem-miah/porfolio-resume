@@ -74,12 +74,7 @@ export default async function page({ params }) {
                     <h1 className="text-[42px] leading-[52px] text-btn dark:text-white md:text-[62px] md:leading-[72px]">
                       Projects Details<span className="text-theme">!</span>
                     </h1>
-                    <p className="text-[14px] text-text">
-                      Featured and popular products are the best-selling items
-                      for your product, product range, or company. However, a
-                      featured product could be a new product line or seasonal
-                      products instead.
-                    </p>
+                
                     <div className="mt-[60px]">
                       <div className="h-auto w-full overflow-hidden rounded-lg">
                         {project?.image && (
@@ -99,11 +94,33 @@ export default async function page({ params }) {
                           {project?.title}
                         </h2>
 
-                        <div className="mt-[15px]">
+                        <h3 className="mt-2 text-[18px] text-theme">
+                          {" "}
+                          <span className="text-gray-400"> Category:</span>{" "}
+                          {project?.category}
+                        </h3>
+
+                        <div className="mt-2 flex items-center space-x-4">
+                          <h3 className="text-[18px] text-gray-400">
+                            Technologies:
+                          </h3>{" "}
+                          {project?.technologies?.map((technology, index) => (
+                            <p
+                              key={index}
+                              className="text-[12px] px-2 rounded-md text-dark bg-gray-700"
+                            >
+                              {technology}
+                            </p>
+                          ))}
+                        </div>
+
+                        <div className="mt-2 flex items-center space-x-4">
+                        <h3 className=" text-[18px] text-gray-400">
+                        Live View
+                          </h3>{" "}
                           <Link
-                            className="boxShadow bg-green-400 dark:bg-lime-600 rounded-lg  px-[14px] py-[10px] text-[14px] text-white transition duration-300 hover:text-btn dark:bg-btn dark:shadow-none dark:hover:text-theme"
                             href={project?.link}
-                            target="_blank"
+                            className="text-[14px] py-0.5 px-2 rounded-md text-dark bg-theme "
                           >
                             Live View
                           </Link>
