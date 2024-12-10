@@ -176,7 +176,7 @@ export default function Main() {
                           <div
                             className="relative flex h-[205px] items-end rounded-xl bg-cover bg-local bg-center bg-no-repeat px-[30px] py-[30px]"
                             style={{
-                              backgroundImage: "url('/image-4.png')",
+                              backgroundImage: "url('/image-4.jpg')",
                             }}
                           >
                             <div>
