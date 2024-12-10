@@ -48,7 +48,7 @@ export default async function BlogPage({ params }) {
   try {
     const response = await fetch(
       `https://nayemjs.vercel.app/api/get-blog-by-id?id=${id}`,
-      { next: { revalidate: 120 } }
+      { next: { revalidate: 1800 } }
     );
 
     if (!response.ok) {
@@ -66,7 +66,9 @@ export default async function BlogPage({ params }) {
     <section>
       <div className="container mx-auto">
         <div className="grid grid-cols-12">
-          <SidebarLeft />
+        <div className="hidden md:block lg:col-span-3">
+            <SidebarLeft />
+          </div>
           <div className="col-span-12 lg:col-span-9 lg:ml-[30px]">
             <div className="main__body">
               <section className="mt-[60px]">

@@ -8,7 +8,9 @@ export default async function page() {
     <section>
       <div className="container mx-auto">
         <div className="grid grid-cols-12">
-          <SidebarLeft />
+          <div className="hidden lg:block lg:col-span-3">
+            <SidebarLeft />
+          </div>
           <div className="col-span-12 lg:col-span-9 lg:ml-[30px]">
             <div className="main__body">
               <section className="mt-[60px]">
@@ -25,10 +27,9 @@ export default async function page() {
                       design and development information.
                     </p>
 
-                    <Suspense fallback={<Loading isProject={true}/>}>
+                    <Suspense fallback={<Loading isProject={true} />}>
                       <ProjectContent />
                     </Suspense>
-
                   </div>
                 </div>
               </section>

@@ -65,7 +65,9 @@ export default async function page({ params }) {
     <section>
       <div className="container mx-auto">
         <div className="grid grid-cols-12">
-          <SidebarLeft />
+          <div className="hidden md:block lg:col-span-3">
+            <SidebarLeft />
+          </div>
           <div className="col-span-12 lg:col-span-9 lg:ml-[30px]">
             <div className="main__body">
               <section className="mt-[60px]">
@@ -74,7 +76,7 @@ export default async function page({ params }) {
                     <h1 className="text-[42px] leading-[52px] text-btn dark:text-white md:text-[62px] md:leading-[72px]">
                       Projects Details<span className="text-theme">!</span>
                     </h1>
-                
+
                     <div className="mt-[60px]">
                       <div className="h-auto w-full overflow-hidden rounded-lg">
                         {project?.image && (
@@ -115,8 +117,8 @@ export default async function page({ params }) {
                         </div>
 
                         <div className="mt-2 flex items-center space-x-4">
-                        <h3 className=" text-[18px] text-gray-400">
-                        Live View
+                          <h3 className=" text-[18px] text-gray-400">
+                            Live View
                           </h3>{" "}
                           <Link
                             href={project?.link}
