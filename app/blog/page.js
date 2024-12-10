@@ -7,8 +7,8 @@ export default async function Page() {
   return (
     <section>
       <div className="container mx-auto">
-        <div className="grid grid-cols-12">\
-          
+        <div className="grid grid-cols-12">
+
           <div className="hidden lg:block lg:col-span-3">
             <SidebarLeft />
           </div>
