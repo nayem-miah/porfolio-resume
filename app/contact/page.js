@@ -15,6 +15,7 @@ export default function page() {
               <section className="mt-[60px]">
                 <ContactForm />
                 <ContactAddress />
+                
               </section>
             </div>
           </div>

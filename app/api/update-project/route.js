@@ -12,6 +12,7 @@ export const POST = async (request) => {
     client,
     image,
     overviewImage,
+    technologies
   } = await request.json();
 
   try {
@@ -26,6 +27,7 @@ export const POST = async (request) => {
         category,
         link,
         client,
+        technologies
       },
       { new: true }
     );

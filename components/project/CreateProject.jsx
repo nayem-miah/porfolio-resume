@@ -7,6 +7,8 @@ import CreatingButton from "../blogs/CreatingButton";
 export default function CreateProject({ isUpdate, id }) {
   const [image, setImage] = useState(null);
   const [overviewImage, setOverviewImage] = useState(null);
+  const [techValue, setTechValue] = useState("");
+
   const [message, setMessage] = useState("");
   const [project, setProject] = useState({
     title: "",
@@ -15,7 +17,26 @@ export default function CreateProject({ isUpdate, id }) {
     conclusion: "",
     liveLink: "",
     client: "",
+    technologies: [],
   });
+
+  const addtech = () => {
+    if (techValue.trim()) {
+      setProject({
+        ...project,
+        technologies: [...project.technologies, techValue],
+      });
+      setTechValue("");
+    }
+  };
+
+  const removeTech = (indexToRemove) => {
+    setProject({
+      ...project,
+      technologies: project.technologies.filter((_, index) => index !== indexToRemove),
+    });
+  };
+  
 
   const handleImageChange = (e, setImageCallback) => {
     const file = e.target.files[0];
@@ -76,6 +97,7 @@ export default function CreateProject({ isUpdate, id }) {
           client,
           image: imageUrl,
           overviewImage: overviewImageUrl,
+          technologies: project.technologies, // Include technologies array
         }),
       });
 
@@ -105,6 +127,7 @@ export default function CreateProject({ isUpdate, id }) {
       conclusion: "",
       liveLink: "",
       client: "",
+      technologies: [],
     });
   };
 
@@ -140,10 +163,7 @@ export default function CreateProject({ isUpdate, id }) {
 
   return (
     <>
-      <form
-        action={handleFormSubmit}
-        className="mt-6"
-      >
+      <form action={handleFormSubmit} className="mt-6">
         <div className="grid w-full gap-[20px]">
           <input
             required
@@ -152,9 +172,7 @@ export default function CreateProject({ isUpdate, id }) {
             name="title"
             placeholder="Project Title"
             value={project?.title || ""}
-            onChange={(e) =>
-              setProject({ ...project, title: e.target.value })
-            }
+            onChange={(e) => setProject({ ...project, title: e.target.value })}
           />
           <input
             className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
@@ -166,6 +184,53 @@ export default function CreateProject({ isUpdate, id }) {
               setProject({ ...project, category: e.target.value })
             }
           />
+
+
+
+
+
+<input
+  className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
+  type="text"
+  name="technologies"
+  placeholder="Add Technology"
+  value={techValue || ""}
+  onChange={(e) => setTechValue(e.target.value)}
+/>
+<button
+  type="button"
+  onClick={addtech}
+  className="mt-2 rounded bg-blue-500 px-4 py-2 text-white"
+>
+  Add Technology
+</button>
+<ul className="mt-2 list-disc pl-5">
+  {project.technologies.map((tech, index) => (
+    <li key={index} className="flex items-center justify-between">
+      <span>{tech}</span>
+      <button
+        type="button"
+        onClick={() => removeTech(index)}
+        className="ml-4 text-red-500"
+      >
+        Remove
+      </button>
+    </li>
+  ))}
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
           <textarea
             className="block w-full rounded-lg border bg-white px-[15px] py-[10px] text-btn focus:outline-none dark:border-none dark:bg-btn dark:text-white"
             name="description"
@@ -205,9 +270,7 @@ export default function CreateProject({ isUpdate, id }) {
             name="client"
             placeholder="Client"
             value={project?.client || ""}
-            onChange={(e) =>
-              setProject({ ...project, client: e.target.value })
-            }
+            onChange={(e) => setProject({ ...project, client: e.target.value })}
           />
 
           {/* File input and preview for image */}
