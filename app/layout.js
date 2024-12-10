@@ -9,16 +9,6 @@ import Footer from "@/components/common/Footer";
 import { SidebarProvider } from "@/providers/SidebarSwitchProvider";
 import { Providers } from "@/providers/Providers";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
 
 export const metadata = {
   title: "Home || Nayem",
@@ -34,7 +24,7 @@ export default async function RootLayout({ children }) {
     <html suppressHydrationWarning lang="en">
       <SidebarProvider>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-normal dark:bg-dark`}
+          className={`antialiased bg-normal dark:bg-dark`}
         >
           <Providers>
             <Header />
