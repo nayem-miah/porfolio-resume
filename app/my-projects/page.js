@@ -8,7 +8,7 @@ export default async function page() {
     <section>
       <div className="container mx-auto">
         <div className="grid grid-cols-12">
-          <div className="hidden lg:block lg:col-span-3">
+          <div className="hidden md:block lg:col-span-3">
             <SidebarLeft />
           </div>
           <div className="col-span-12 lg:col-span-9 lg:ml-[30px]">
