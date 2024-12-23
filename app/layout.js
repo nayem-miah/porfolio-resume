@@ -10,6 +10,7 @@ import { SidebarProvider } from "@/providers/SidebarSwitchProvider";
 import { Providers } from "@/providers/Providers";
 
 
+
 export const metadata = {
   title: "Home || Nayem",
   description:
@@ -19,7 +20,9 @@ export const metadata = {
   },
 };
 
+
 export default async function RootLayout({ children }) {
+
   return (
     <html suppressHydrationWarning lang="en">
       <SidebarProvider>

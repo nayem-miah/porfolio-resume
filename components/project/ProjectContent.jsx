@@ -17,7 +17,7 @@ export default async function ProjectContent() {
       <div className="text-red-600 text-xl mt-10">
         Error to load project data. Please try again later.
       </div>
-    );
+    );git push origin main
   }
 
   return (

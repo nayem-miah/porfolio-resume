@@ -5,9 +5,11 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "export":"next build && next export",
     "start": "next start",
     "lint": "next lint"
   },
+
   "dependencies": {
     "@auth/mongodb-adapter": "^3.7.4",
     "bcryptjs": "^2.4.3",
