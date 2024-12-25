@@ -9,7 +9,7 @@ export default function Main() {
         <div className="container mx-auto">
           <div className="grid grid-cols-12">
             <SidebarLeft />
-            <h1>Hi this is a test</h1>
+           
             <div className="col-span-12 lg:col-span-9 lg:ml-[30px]">
               <div className="main__body">
                 <section className="mt-[60px]">
