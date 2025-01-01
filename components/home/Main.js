@@ -89,8 +89,8 @@ export default function Main() {
                               <p className="text-[14px] text-text dark:text-white">
                                 Specialization
                               </p>
-                              <Link className="hover:text-theme" href="">
-                                <h3 className="mt-[5px] inline-block text-[26px] tracking-[6px] text-btn dark:text-white">
+                              <Link href="/service">
+                                <h3 className="hover:text-theme mt-[5px] inline-block text-[26px] tracking-[6px] text-btn dark:text-white">
                                   Services Offer
                                 </h3>
                               </Link>

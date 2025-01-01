@@ -44,6 +44,13 @@ export default function Sidebar() {
                   sidebar={true}
                 />
               </li>
+              <li className="text-[18px] py-[8px] font-semibold">
+                <LinkComponent
+                  name={"Services"}
+                  pathName={"/service"}
+                  sidebar={true}
+                />
+              </li>
 
               <li className="text-[18px] py-[8px] font-semibold">
                 <LinkComponent

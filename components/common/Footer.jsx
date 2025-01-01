@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="container mx-auto mt-[60px] flex justify-center pb-[40px]">
           <div>
             <p className="text-center text-text">
-              Copyright <span className="text-theme">nayemjs</span> ©2024. All
+              Copyright <span className="text-theme">nayem.com</span> ©2024. All
               rights reserved
             </p>
             <div className="mt-[20px] flex justify-center text-center">
