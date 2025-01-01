@@ -18,7 +18,7 @@ export default function AdminPanel() {
 
   const handleLogout = () => {
     signOut({
-      callbackUrl: "/",
+      callbackUrl: "/admin",
     });
   };
 
