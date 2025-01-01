@@ -9,12 +9,6 @@
     padding: 0;
   }
 
-  /* body {
-    font-family: "Inter", sans-serif;
-    background: #252525;
-    color: #fff;
-    font-size: 15px;
-  } */
 
   p {
     line-height: 26px;
@@ -86,10 +80,13 @@
     color: #2ff093;
     overflow: auto;
   }
+
   .text-theme {
     --tw-text-opacity: 1 !important;
     color: rgb(47 240 147 / var(--tw-text-opacity)) !important;
   }
+  
+  
 
   .bg-btn {
     --tw-bg-opacity: 1 !important;

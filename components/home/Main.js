@@ -9,7 +9,7 @@ export default function Main() {
         <div className="container mx-auto">
           <div className="grid grid-cols-12">
             <SidebarLeft />
-           
+
             <div className="col-span-12 lg:col-span-9 lg:ml-[30px]">
               <div className="main__body">
                 <section className="mt-[60px]">
@@ -25,13 +25,13 @@ export default function Main() {
                         Specialist
                       </h2>
                       <p className="mt-[15px] text-text">
-                         An aspiring Front-End Developer with six months of
+                        An aspiring Front-End Developer with six months of
                         internship experience, specializing in React, Next.js,
                         and Django. Passionate about creating responsive and
-                        dynamic user interfaces, I’ve developed my skills through documentations,
-                        personal projects and online courses. Eager to
-                        contribute to a collaborative team and grow my technical
-                        expertise.
+                        dynamic user interfaces, I’ve developed my skills
+                        through documentations, personal projects and online
+                        courses. Eager to contribute to a collaborative team and
+                        grow my technical expertise.
                       </p>
                     </div>
                   </div>
@@ -39,13 +39,19 @@ export default function Main() {
                     <div className="grid grid-cols-12 gap-[30px]">
                       <div className="col-span-12 md:col-span-5">
                         <div className="rounded-xl bg-white p-[30px] dark:bg-card">
-                          <Image src="/logo.png" alt="" width={200} height={49} />
+                          <Image
+                            src="/logo.png"
+                            alt=""
+                            width={200}
+                            height={49}
+                          />
                           <div className="mt-[20px]">
                             <p className="text-[14px] hover:text-theme text-text dark:text-white">
                               Want To Know More
                             </p>
-                            <Link className="hover:text-theme" href="/about">
-                              <h3 className= " mt-[5px] inline-block text-[26px] tracking-[6px] text-btn dark:text-white">
+                      
+                            <Link href="/about">
+                              <h3 className="hover:text-theme mt-[5px] inline-block text-[26px] tracking-[6px] text-btn dark:text-white">
                                 About Me
                               </h3>
                             </Link>
@@ -95,7 +101,9 @@ export default function Main() {
                           <div className="grid grid-cols-12 pb-1">
                             <div className="col-span-6">
                               <h2 className="text-[50px] font-semibold text-btn dark:text-theme">
-                                <div><CountExpe targetValue={2} /></div>
+                                <div>
+                                  <CountExpe targetValue={2} />
+                                </div>
                               </h2>
                               <p className="text-text dark:text-white">
                                 Years of <br />
@@ -104,7 +112,9 @@ export default function Main() {
                             </div>
                             <div className="col-span-6">
                               <h2 className="text-[50px] font-semibold text-btn dark:text-theme">
-                                <div><CountExpe targetValue={50} /></div>
+                                <div>
+                                  <CountExpe targetValue={50} />
+                                </div>
                               </h2>
                               <p className="text-text dark:text-white">
                                 Project <br />
@@ -144,8 +154,11 @@ export default function Main() {
                             <p className="text-[14px] text-text dark:text-white">
                               Showcase View
                             </p>
-                            <Link className="hover:text-theme" href="/my-projects">
-                              <h3 className="mt-[5px] inline-block text-[26px] tracking-[6px] text-btn dark:text-white">
+                            <Link
+                            
+                              href="/my-projects"
+                            >
+                              <h3 className="hover:text-theme mt-[5px] inline-block text-[26px] tracking-[6px] text-btn dark:text-white">
                                 Projects
                               </h3>
                             </Link>
@@ -156,8 +169,8 @@ export default function Main() {
                             <p className="text-[14px] text-btn">
                               Visit Our Blog
                             </p>
-                            <Link className="hover:text-theme" href="/blog">
-                              <h3 className="mt-[5px] inline-block text-[26px] tracking-[6px] text-btn">
+                            <Link href="/blog">
+                              <h3 className="hover:text-white mt-[5px] inline-block text-[26px] tracking-[6px] text-btn">
                                 Blog
                               </h3>
                             </Link>
@@ -166,8 +179,8 @@ export default function Main() {
                             <p className="text-[14px] text-text dark:text-white">
                               Let’s work
                             </p>
-                            <Link className="hover:text-theme" href="/contact">
-                              <h3 className="mt-[5px] inline-block text-[26px] tracking-[6px] text-btn dark:text-white">
+                            <Link href="/contact">
+                              <h3 className="hover:text-theme mt-[5px] inline-block text-[26px] tracking-[6px] text-btn dark:text-white">
                                 Contact
                               </h3>
                             </Link>
