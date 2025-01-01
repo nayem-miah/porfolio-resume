@@ -18,7 +18,7 @@ export default function AdminPanel() {
 
   const handleLogout = () => {
     signOut({
-      callbackUrl: `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/admin`,
+   callbackUrl: 'https://nayemmiah.com/admin',
     });
   };
 
