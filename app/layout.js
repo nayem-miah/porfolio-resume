@@ -31,8 +31,9 @@ export const metadata = {
       "Nayem Miah, a passionate Full-Stack developer with two years of experience, specializes in React, Next.js, and Django.",
     url: "https://your-website.com", // Replace with your actual website URL
     images: [
+     
       {
-        url: "https://i.ibb.co/your-image.jpg", // Replace with the direct URL of your image
+        url: "https://i.ibb.co.com/z83CtKS/og.jpg", // Replace with the direct URL of your image
         width: 1200,
         height: 630,
         alt: "Nayem Miah - Full-Stack Developer",
