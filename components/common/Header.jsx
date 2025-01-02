@@ -9,7 +9,6 @@ import { auth } from "@/auth";
 export default async function Header() {
   const session = await auth();
 
-
   return (
     <>
       <header>
@@ -28,8 +27,13 @@ export default async function Header() {
                 <li>
                   <LinkComponent name={"Projects"} pathName={"/my-projects"} />
                 </li>
+
                 <li>
-                  <LinkComponent name={"About"} pathName={"/about"} />
+                  <LinkComponent name={"Blogs"} pathName={"/blog"} />
+                </li>
+              
+                <li>
+                  <LinkComponent name={"Services"} pathName={"/service"} />
                 </li>
                 <li className="w-[100px]">
                   <LinkComponent pathName={"/contact"} />
@@ -38,7 +42,9 @@ export default async function Header() {
             </menu>
             <div className="flex items-center">
               <div className="flex items-center gap-4 px-[30px]">
-                <Link href='/admin/deshboard' className="text-red-700">{session?.user?.name && 'Admin Deshboard'}</Link>
+                <Link href="/admin/deshboard" className="text-red-700">
+                  {session?.user?.name && "Admin Deshboard"}
+                </Link>
 
                 <ThemeSwitcher isMobile={false} />
                 <SidebarOpen />
