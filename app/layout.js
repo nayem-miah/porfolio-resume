@@ -16,7 +16,7 @@ export const metadata = {
   description:
     "Nayem Miah, a passionate Full-Stack developer with two years of experience, specializes in React, Next.js, and Django",
   openGraph: {
-    images: ["/og.jpg"],
+    images: ["https://ibb.co.com/FsQcdGB"],
   },
 };
 
