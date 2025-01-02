@@ -11,14 +11,36 @@ import { Providers } from "@/providers/Providers";
 
 
 
+// export const metadata = {
+//   title: "Home || Nayem Miah | Full-Stack Developer | React, Next.js, & Django Expert",
+//   description:
+//     "Nayem Miah, a passionate Full-Stack developer with two years of experience, specializes in React, Next.js, and Django",
+//   openGraph: {
+//     images: ["https://ibb.co.com/FsQcdGB"],
+//   },
+// };
+
+
 export const metadata = {
-  title: "Home || Nayem Miah | Aspiring Full-Stack Developer | React, Next.js, & Django Expert",
+  title: "Home || Nayem Miah | Full-Stack Developer | React, Next.js, & Django Expert",
   description:
-    "Nayem Miah, a passionate Full-Stack developer with two years of experience, specializes in React, Next.js, and Django",
+    "Nayem Miah, a passionate Full-Stack developer with two years of experience, specializes in React, Next.js, and Django.",
   openGraph: {
-    images: ["https://ibb.co.com/FsQcdGB"],
+    title: "Nayem Miah | Full-Stack Developer",
+    description:
+      "Nayem Miah, a passionate Full-Stack developer with two years of experience, specializes in React, Next.js, and Django.",
+    url: "https://your-website.com", // Replace with your actual website URL
+    images: [
+      {
+        url: "https://i.ibb.co/your-image.jpg", // Replace with the direct URL of your image
+        width: 1200,
+        height: 630,
+        alt: "Nayem Miah - Full-Stack Developer",
+      },
+    ],
   },
 };
+
 
 
 export default async function RootLayout({ children }) {
