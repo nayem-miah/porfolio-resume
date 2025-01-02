@@ -47,8 +47,6 @@ export default async function ProjectContent() {
                     <span className="text-gray-400"> Category:</span>{" "}
                     {project?.category}
                   </h3>
-                  
-
 
                   <div className="flex items-center space-x-4">
                     <h3 className="text-[16px] text-gray-400">Technologies:</h3>{" "}
@@ -70,7 +68,7 @@ export default async function ProjectContent() {
                   >
                     View Live
                   </Link>
-                  <br/>
+                  <br />
 
                   <Link href={`/my-projects/${project?._id}`}>
                     <h2 className="mt-[14px] inline-block text-[30px] leading-[40px] text-btn transition-all duration-300 hover:text-theme dark:text-white dark:hover:text-theme">

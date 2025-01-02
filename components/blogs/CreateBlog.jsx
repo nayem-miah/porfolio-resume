@@ -5,9 +5,6 @@ import { useEffect, useState } from "react";
 import CreatingButton from "./CreatingButton";
 import JoditRich from "./JoditRichEdit";
 
-
-
-
 export default function CreateBlog({ isUpdate, id }) {
   const [image, setImage] = useState(null);
   const [message, setMessage] = useState("");
@@ -63,7 +60,7 @@ export default function CreateBlog({ isUpdate, id }) {
         body: JSON.stringify({
           title,
           category,
-          description:blog?.description,
+          description: blog?.description,
           image: imageUrl,
         }),
       });
@@ -95,13 +92,11 @@ export default function CreateBlog({ isUpdate, id }) {
           category,
           description: blog?.description,
           image: imageUrl,
-      
         }),
       });
 
       if (response.status === 201) {
         setMessage("Blog was updated successfully!");
-    
       } else {
         setMessage("Failed to update the blog. Please try again.");
       }
@@ -113,7 +108,7 @@ export default function CreateBlog({ isUpdate, id }) {
 
   const resetForm = () => {
     setImage(null);
-  
+
     setBlog({
       title: "",
       category: "",
@@ -147,7 +142,6 @@ export default function CreateBlog({ isUpdate, id }) {
   useEffect(() => {
     return () => {
       if (image) URL.revokeObjectURL(image);
-    
     };
   }, [image]);
 
@@ -181,8 +175,8 @@ export default function CreateBlog({ isUpdate, id }) {
             }
           />
 
-              {/* File input and preview for image */}
-              <div className="flex items-center space-x-4">
+          {/* File input and preview for image */}
+          <div className="flex items-center space-x-4">
             <input
               type="file"
               accept="image/*"
@@ -200,20 +194,11 @@ export default function CreateBlog({ isUpdate, id }) {
             )}
           </div>
 
-
-          <JoditRich setBlog={setBlog} blog={blog}/>
-
-      
+          <JoditRich setBlog={setBlog} blog={blog} />
         </div>
         <CreatingButton />
         {message && <p className="mt-4 text-center text-theme">{message}</p>}
       </form>
-
- 
     </>
   );
 }
-
-
-
-
