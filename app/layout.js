@@ -22,7 +22,7 @@ import { Providers } from "@/providers/Providers";
 
 
 export const metadata = {
-  title: "Home || Nayem Miah | Full-Stack Developer | React, Next.js, & Django Expert",
+  title: "Nayem Miah | Full-Stack Developer | React, Next.js, & Django Expert",
   description:
     "Nayem Miah, a passionate Full-Stack developer with two years of experience, specializes in React, Next.js, and Django.",
   openGraph: {
