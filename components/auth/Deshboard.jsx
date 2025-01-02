@@ -18,7 +18,7 @@ export default function AdminPanel() {
 
   const handleLogout = () => {
     signOut({
-   callbackUrl: 'https://nayemmiah.com/admin',
+      callbackUrl: "https://nayemmiah.com/admin",
     });
   };
 
@@ -61,7 +61,6 @@ export default function AdminPanel() {
       if (response.ok) {
         setter((prev) => prev.filter((item) => item._id !== id));
         closeModal();
-      
       } else {
         console.error(`Failed to delete ${type}:`, await response.text());
       }

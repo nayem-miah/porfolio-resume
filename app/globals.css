@@ -9,7 +9,6 @@
     padding: 0;
   }
 
-
   p {
     line-height: 26px;
   }
@@ -85,8 +84,6 @@
     --tw-text-opacity: 1 !important;
     color: rgb(47 240 147 / var(--tw-text-opacity)) !important;
   }
-  
-  
 
   .bg-btn {
     --tw-bg-opacity: 1 !important;
@@ -127,18 +124,17 @@
     --tw-text-opacity: 1 !important;
   }
 
-  .bg-normal{
-      background: #ecf0f3;
-      color: #fff;
-      font-family: Inter,sans-serif;
-      font-size: 15px
+  .bg-normal {
+    background: #ecf0f3;
+    color: #fff;
+    font-family: Inter, sans-serif;
+    font-size: 15px;
   }
 
-  .bg-dark{
+  .bg-dark {
     background: #252525;
     color: #fff;
-    font-family: Inter,sans-serif;
-    font-size: 15px
-}
-
+    font-family: Inter, sans-serif;
+    font-size: 15px;
+  }
 }
